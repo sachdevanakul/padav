@@ -1,0 +1,195 @@
+{
+  "packVersion": 1,
+  "subjects": [
+    {"id": "math", "name": {"en": "Mathematics", "hi": "गणित"}, "sortOrder": 1},
+    {"id": "reasoning", "name": {"en": "Reasoning", "hi": "तर्कशक्ति"}, "sortOrder": 2},
+    {"id": "gk", "name": {"en": "General Knowledge", "hi": "सामान्य ज्ञान"}, "sortOrder": 3}
+  ],
+  "quizzes": [
+    {"id": "quiz_math_01", "subjectId": "math", "title": {"en": "Mathematics: Quick Practice", "hi": "गणित: त्वरित अभ्यास"}, "durationSeconds": 300, "marksPerQuestion": 1.0, "negativeMarks": 0.25, "questionCount": 5},
+    {"id": "quiz_reasoning_01", "subjectId": "reasoning", "title": {"en": "Reasoning: Quick Practice", "hi": "तर्कशक्ति: त्वरित अभ्यास"}, "durationSeconds": 300, "marksPerQuestion": 1.0, "negativeMarks": 0.25, "questionCount": 5},
+    {"id": "quiz_gk_01", "subjectId": "gk", "title": {"en": "General Knowledge: Quick Practice", "hi": "सामान्य ज्ञान: त्वरित अभ्यास"}, "durationSeconds": 300, "marksPerQuestion": 1.0, "negativeMarks": 0.0, "questionCount": 5}
+  ],
+  "questions": [
+    {
+      "id": "q_math_001", "subjectId": "math", "topic": {"en": "Percentages", "hi": "प्रतिशत"}, "difficulty": "easy",
+      "text": {"en": "What is 15% of 200?", "hi": "200 का 15% कितना होता है?"},
+      "options": [
+        {"key": "a", "text": {"en": "20", "hi": "20"}},
+        {"key": "b", "text": {"en": "25", "hi": "25"}},
+        {"key": "c", "text": {"en": "30", "hi": "30"}},
+        {"key": "d", "text": {"en": "35", "hi": "35"}}
+      ],
+      "correctKey": "c",
+      "explanation": {"en": "15% of 200 = 15 × 200 / 100 = 30.", "hi": "200 का 15% = 15 × 200 / 100 = 30।"}
+    },
+    {
+      "id": "q_math_002", "subjectId": "math", "topic": {"en": "Averages", "hi": "औसत"}, "difficulty": "easy",
+      "text": {"en": "Find the average of 10, 20, 30, 40 and 50.", "hi": "10, 20, 30, 40 और 50 का औसत ज्ञात कीजिए।"},
+      "options": [
+        {"key": "a", "text": {"en": "25", "hi": "25"}},
+        {"key": "b", "text": {"en": "30", "hi": "30"}},
+        {"key": "c", "text": {"en": "35", "hi": "35"}},
+        {"key": "d", "text": {"en": "40", "hi": "40"}}
+      ],
+      "correctKey": "b",
+      "explanation": {"en": "Sum = 150; 150 ÷ 5 = 30.", "hi": "योग = 150; 150 ÷ 5 = 30।"}
+    },
+    {
+      "id": "q_math_003", "subjectId": "math", "topic": {"en": "Speed and Distance", "hi": "चाल और दूरी"}, "difficulty": "easy",
+      "text": {"en": "A train travels at 60 km/h. How far does it go in 2.5 hours?", "hi": "एक रेलगाड़ी 60 किमी/घंटा की चाल से चलती है। 2.5 घंटे में वह कितनी दूरी तय करेगी?"},
+      "options": [
+        {"key": "a", "text": {"en": "120 km", "hi": "120 किमी"}},
+        {"key": "b", "text": {"en": "150 km", "hi": "150 किमी"}},
+        {"key": "c", "text": {"en": "160 km", "hi": "160 किमी"}},
+        {"key": "d", "text": {"en": "180 km", "hi": "180 किमी"}}
+      ],
+      "correctKey": "b",
+      "explanation": {"en": "Distance = speed × time = 60 × 2.5 = 150 km.", "hi": "दूरी = चाल × समय = 60 × 2.5 = 150 किमी।"}
+    },
+    {
+      "id": "q_math_004", "subjectId": "math", "topic": {"en": "Algebra", "hi": "बीजगणित"}, "difficulty": "easy",
+      "text": {"en": "If x + 5 = 12, what is the value of x?", "hi": "यदि x + 5 = 12 है, तो x का मान क्या है?"},
+      "options": [
+        {"key": "a", "text": {"en": "5", "hi": "5"}},
+        {"key": "b", "text": {"en": "6", "hi": "6"}},
+        {"key": "c", "text": {"en": "7", "hi": "7"}},
+        {"key": "d", "text": {"en": "8", "hi": "8"}}
+      ],
+      "correctKey": "c",
+      "explanation": {"en": "x = 12 − 5 = 7.", "hi": "x = 12 − 5 = 7।"}
+    },
+    {
+      "id": "q_math_005", "subjectId": "math", "topic": {"en": "Squares and Roots", "hi": "वर्ग और वर्गमूल"}, "difficulty": "easy",
+      "text": {"en": "What is the square root of 144?", "hi": "144 का वर्गमूल क्या है?"},
+      "options": [
+        {"key": "a", "text": {"en": "11", "hi": "11"}},
+        {"key": "b", "text": {"en": "12", "hi": "12"}},
+        {"key": "c", "text": {"en": "13", "hi": "13"}},
+        {"key": "d", "text": {"en": "14", "hi": "14"}}
+      ],
+      "correctKey": "b",
+      "explanation": {"en": "12 × 12 = 144.", "hi": "12 × 12 = 144।"}
+    },
+    {
+      "id": "q_reasoning_001", "subjectId": "reasoning", "topic": {"en": "Number Series", "hi": "संख्या श्रृंखला"}, "difficulty": "easy",
+      "text": {"en": "Find the next number: 2, 4, 8, 16, ?", "hi": "अगली संख्या ज्ञात कीजिए: 2, 4, 8, 16, ?"},
+      "options": [
+        {"key": "a", "text": {"en": "24", "hi": "24"}},
+        {"key": "b", "text": {"en": "28", "hi": "28"}},
+        {"key": "c", "text": {"en": "30", "hi": "30"}},
+        {"key": "d", "text": {"en": "32", "hi": "32"}}
+      ],
+      "correctKey": "d",
+      "explanation": {"en": "Each term is double the previous one, so 16 × 2 = 32.", "hi": "प्रत्येक पद पिछले पद का दुगुना है, इसलिए 16 × 2 = 32।"}
+    },
+    {
+      "id": "q_reasoning_002", "subjectId": "reasoning", "topic": {"en": "Classification", "hi": "वर्गीकरण"}, "difficulty": "easy",
+      "text": {"en": "Choose the odd one out.", "hi": "बेमेल का चयन कीजिए।"},
+      "options": [
+        {"key": "a", "text": {"en": "Apple", "hi": "सेब"}},
+        {"key": "b", "text": {"en": "Mango", "hi": "आम"}},
+        {"key": "c", "text": {"en": "Potato", "hi": "आलू"}},
+        {"key": "d", "text": {"en": "Banana", "hi": "केला"}}
+      ],
+      "correctKey": "c",
+      "explanation": {"en": "Potato is a vegetable; the others are fruits.", "hi": "आलू एक सब्ज़ी है, जबकि अन्य फल हैं।"}
+    },
+    {
+      "id": "q_reasoning_003", "subjectId": "reasoning", "topic": {"en": "Coding-Decoding", "hi": "कूटलेखन"}, "difficulty": "medium",
+      "text": {"en": "If CAT is coded as DBU, how is DOG coded?", "hi": "यदि CAT को DBU लिखा जाता है, तो DOG को कैसे लिखा जाएगा?"},
+      "options": [
+        {"key": "a", "text": {"en": "EOH", "hi": "EOH"}},
+        {"key": "b", "text": {"en": "EPG", "hi": "EPG"}},
+        {"key": "c", "text": {"en": "EPH", "hi": "EPH"}},
+        {"key": "d", "text": {"en": "CNF", "hi": "CNF"}}
+      ],
+      "correctKey": "c",
+      "explanation": {"en": "Every letter is shifted one place forward: D→E, O→P, G→H.", "hi": "प्रत्येक अक्षर एक स्थान आगे बढ़ाया गया है: D→E, O→P, G→H।"}
+    },
+    {
+      "id": "q_reasoning_004", "subjectId": "reasoning", "topic": {"en": "Blood Relations", "hi": "रक्त संबंध"}, "difficulty": "medium",
+      "text": {"en": "Pointing to a boy, Ravi says, \"He is the son of my father's only son.\" How is the boy related to Ravi?", "hi": "एक लड़के की ओर इशारा करके रवि कहता है, \"यह मेरे पिता के इकलौते पुत्र का पुत्र है।\" वह लड़का रवि का क्या लगता है?"},
+      "options": [
+        {"key": "a", "text": {"en": "Brother", "hi": "भाई"}},
+        {"key": "b", "text": {"en": "Son", "hi": "पुत्र"}},
+        {"key": "c", "text": {"en": "Nephew", "hi": "भतीजा"}},
+        {"key": "d", "text": {"en": "Cousin", "hi": "चचेरा भाई"}}
+      ],
+      "correctKey": "b",
+      "explanation": {"en": "My father's only son is Ravi himself, so the boy is Ravi's son.", "hi": "मेरे पिता का इकलौता पुत्र स्वयं रवि है, इसलिए वह लड़का रवि का पुत्र है।"}
+    },
+    {
+      "id": "q_reasoning_005", "subjectId": "reasoning", "topic": {"en": "Number Series", "hi": "संख्या श्रृंखला"}, "difficulty": "medium",
+      "text": {"en": "Find the missing number: 3, 6, 11, 18, ?", "hi": "लुप्त संख्या ज्ञात कीजिए: 3, 6, 11, 18, ?"},
+      "options": [
+        {"key": "a", "text": {"en": "25", "hi": "25"}},
+        {"key": "b", "text": {"en": "26", "hi": "26"}},
+        {"key": "c", "text": {"en": "27", "hi": "27"}},
+        {"key": "d", "text": {"en": "28", "hi": "28"}}
+      ],
+      "correctKey": "c",
+      "explanation": {"en": "The differences are 3, 5, 7, so the next difference is 9: 18 + 9 = 27.", "hi": "अंतर 3, 5, 7 हैं, अगला अंतर 9 होगा: 18 + 9 = 27।"}
+    },
+    {
+      "id": "q_gk_001", "subjectId": "gk", "topic": {"en": "Indian Geography", "hi": "भारतीय भूगोल"}, "difficulty": "easy",
+      "text": {"en": "Which is the largest Indian state by area?", "hi": "क्षेत्रफल की दृष्टि से भारत का सबसे बड़ा राज्य कौन-सा है?"},
+      "options": [
+        {"key": "a", "text": {"en": "Uttar Pradesh", "hi": "उत्तर प्रदेश"}},
+        {"key": "b", "text": {"en": "Rajasthan", "hi": "राजस्थान"}},
+        {"key": "c", "text": {"en": "Madhya Pradesh", "hi": "मध्य प्रदेश"}},
+        {"key": "d", "text": {"en": "Maharashtra", "hi": "महाराष्ट्र"}}
+      ],
+      "correctKey": "b",
+      "explanation": {"en": "Rajasthan is the largest state by area.", "hi": "राजस्थान क्षेत्रफल में सबसे बड़ा राज्य है।"}
+    },
+    {
+      "id": "q_gk_002", "subjectId": "gk", "topic": {"en": "Culture", "hi": "संस्कृति"}, "difficulty": "easy",
+      "text": {"en": "Who wrote the Indian national anthem, 'Jana Gana Mana'?", "hi": "भारत का राष्ट्रगान 'जन गण मन' किसने लिखा?"},
+      "options": [
+        {"key": "a", "text": {"en": "Bankim Chandra Chatterjee", "hi": "बंकिमचंद्र चट्टोपाध्याय"}},
+        {"key": "b", "text": {"en": "Rabindranath Tagore", "hi": "रवींद्रनाथ टैगोर"}},
+        {"key": "c", "text": {"en": "Sarojini Naidu", "hi": "सरोजिनी नायडू"}},
+        {"key": "d", "text": {"en": "Muhammad Iqbal", "hi": "मुहम्मद इक़बाल"}}
+      ],
+      "correctKey": "b",
+      "explanation": {"en": "Rabindranath Tagore wrote 'Jana Gana Mana'.", "hi": "'जन गण मन' की रचना रवींद्रनाथ टैगोर ने की।"}
+    },
+    {
+      "id": "q_gk_003", "subjectId": "gk", "topic": {"en": "Polity", "hi": "राजव्यवस्था"}, "difficulty": "easy",
+      "text": {"en": "On which date did the Constitution of India come into effect?", "hi": "भारत का संविधान किस तिथि को लागू हुआ?"},
+      "options": [
+        {"key": "a", "text": {"en": "15 August 1947", "hi": "15 अगस्त 1947"}},
+        {"key": "b", "text": {"en": "26 November 1949", "hi": "26 नवंबर 1949"}},
+        {"key": "c", "text": {"en": "26 January 1950", "hi": "26 जनवरी 1950"}},
+        {"key": "d", "text": {"en": "2 October 1950", "hi": "2 अक्टूबर 1950"}}
+      ],
+      "correctKey": "c",
+      "explanation": {"en": "The Constitution came into effect on 26 January 1950, celebrated as Republic Day. It was adopted on 26 November 1949.", "hi": "संविधान 26 जनवरी 1950 को लागू हुआ, जिसे गणतंत्र दिवस के रूप में मनाया जाता है। इसे 26 नवंबर 1949 को अपनाया गया था।"}
+    },
+    {
+      "id": "q_gk_004", "subjectId": "gk", "topic": {"en": "General Science", "hi": "सामान्य विज्ञान"}, "difficulty": "easy",
+      "text": {"en": "Which gas is the most abundant in Earth's atmosphere?", "hi": "पृथ्वी के वायुमंडल में सबसे अधिक मात्रा में कौन-सी गैस पाई जाती है?"},
+      "options": [
+        {"key": "a", "text": {"en": "Oxygen", "hi": "ऑक्सीजन"}},
+        {"key": "b", "text": {"en": "Nitrogen", "hi": "नाइट्रोजन"}},
+        {"key": "c", "text": {"en": "Carbon dioxide", "hi": "कार्बन डाइऑक्साइड"}},
+        {"key": "d", "text": {"en": "Argon", "hi": "आर्गन"}}
+      ],
+      "correctKey": "b",
+      "explanation": {"en": "Nitrogen makes up about 78% of the atmosphere.", "hi": "वायुमंडल का लगभग 78% भाग नाइट्रोजन है।"}
+    },
+    {
+      "id": "q_gk_005", "subjectId": "gk", "topic": {"en": "Astronomy", "hi": "खगोल विज्ञान"}, "difficulty": "easy",
+      "text": {"en": "Which planet is known as the Red Planet?", "hi": "किस ग्रह को 'लाल ग्रह' कहा जाता है?"},
+      "options": [
+        {"key": "a", "text": {"en": "Venus", "hi": "शुक्र"}},
+        {"key": "b", "text": {"en": "Jupiter", "hi": "बृहस्पति"}},
+        {"key": "c", "text": {"en": "Mercury", "hi": "बुध"}},
+        {"key": "d", "text": {"en": "Mars", "hi": "मंगल"}}
+      ],
+      "correctKey": "d",
+      "explanation": {"en": "Mars looks red because of iron oxide on its surface.", "hi": "मंगल की सतह पर आयरन ऑक्साइड के कारण वह लाल दिखाई देता है।"}
+    }
+  ]
+}
