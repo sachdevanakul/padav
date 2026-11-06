@@ -25,28 +25,3 @@ def get_db():
         db.close()
 
 
-def create_db_and_tables():
-    # Import all models to ensure relationships are resolved
-    from app.models import (
-        user,
-        user_profile,
-        exam,
-        user_exam,
-        subject,
-        course,
-        chapter,
-        lesson,
-        question,
-        question_option,
-        test,
-        test_section,
-        test_attempt,
-        test_answer,
-        bookmark,
-        study_session,
-        achievement,
-        notification,
-        planner_block,
-        refresh_token,
-    )
-    Base.metadata.create_all(bind=engine)

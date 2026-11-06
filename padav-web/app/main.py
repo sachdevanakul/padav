@@ -7,7 +7,6 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.core.config import settings
-from app.database.session import create_db_and_tables
 from app.api.v1 import auth, users, exams, courses, tests, analytics, bookmarks, lessons, planner
 from app.database.session import SessionLocal
 from app.services.seed import seed_development_data
@@ -16,8 +15,6 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    if settings.environment != "production":
-        create_db_and_tables()
     with SessionLocal() as db:
         seed_development_data(db)
     yield
