@@ -14,6 +14,7 @@ from app.models.subject import Subject
 from app.models.test import Test
 from app.models.test_answer import TestAnswer
 from app.models.test_attempt import TestAttempt
+from app.models.test_question import TestQuestion
 from app.models.test_section import TestSection
 from app.models.user import User
 from app.models.user_exam import UserExam
@@ -22,5 +23,5 @@ from app.models.user_profile import UserProfile
 __all__ = [
     "Achievement", "Bookmark", "Chapter", "Course", "Exam", "Lesson", "Notification", "PlannerBlock",
     "Question", "QuestionOption", "RefreshToken", "StudySession", "Subject", "Test",
-    "TestAnswer", "TestAttempt", "TestSection", "User", "UserExam", "UserProfile",
+    "TestAnswer", "TestAttempt", "TestQuestion", "TestSection", "User", "UserExam", "UserProfile",
 ]

@@ -1,9 +1,10 @@
-from pydantic import BaseModel
-from typing import Optional
 from datetime import datetime
+from typing import List, Optional
+
+from app.schemas.base import ORMModel
 
 
-class CourseBase(BaseModel):
+class CourseBase(ORMModel):
     subject_id: str
     title: str
     title_hi: Optional[str] = None
@@ -22,26 +23,33 @@ class CourseOut(CourseBase):
     is_active: bool
     created_at: datetime
 
-    class Config:
-        from_attributes = True
 
+class LessonSummary(ORMModel):
+    """Listing view: no body or video URL, so locked content cannot leak via the outline."""
 
-class LessonBase(BaseModel):
+    id: str
     chapter_id: str
     title: str
     title_hi: Optional[str] = None
+    sort_order: int = 0
+    is_free: bool = True
+    video_duration_seconds: Optional[int] = None
+
+
+class ChapterOut(ORMModel):
+    id: str
+    course_id: str
+    title: str
+    title_hi: Optional[str] = None
+    description: Optional[str] = None
+    description_hi: Optional[str] = None
+    sort_order: int = 0
+    lessons: List[LessonSummary] = []
+
+
+class LessonOut(LessonSummary):
     content: Optional[str] = None
     content_hi: Optional[str] = None
     video_url: Optional[str] = None
-    video_duration_seconds: Optional[int] = None
-    sort_order: int = 0
-    is_free: bool = True
-
-
-class LessonOut(LessonBase):
-    id: str
     is_active: bool
     created_at: datetime
-
-    class Config:
-        from_attributes = True

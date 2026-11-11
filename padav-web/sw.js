@@ -1,6 +1,6 @@
 // Service worker: precache the app shell, then serve cache-first and refresh in the background.
 // Bump CACHE when you ship changes so old files are dropped.
-const CACHE = 'padav-v1';
+const CACHE = 'padav-v2';
 const ASSETS = [
   './',
   'index.html',
@@ -33,7 +33,11 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const req = event.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+  const url = new URL(req.url);
+  if (req.method !== 'GET' || url.origin !== self.location.origin) return;
+  // Never cache API traffic: responses are per-user and must not outlive the session
+  // (shared devices) or be served stale after logout.
+  if (url.pathname.startsWith('/api/') || req.headers.has('Authorization')) return;
 
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);

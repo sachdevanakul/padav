@@ -1,8 +1,13 @@
+from pathlib import Path
+
 from sqlalchemy.orm import Session
 
 from app.models.course import Course
 from app.models.exam import Exam
 from app.models.subject import Subject
+from app.services.content import ContentImporter
+
+SAMPLE_CONTENT = Path(__file__).resolve().parents[2] / "content" / "ssc-cgl-sample.json"
 
 EXAMS = [
     ("ssc-cgl", "SSC CGL", "एसएससी सीजीएल", "SSC", "Combined Graduate Level Examination"),
@@ -51,3 +56,5 @@ def seed_development_data(db: Session) -> None:
                 is_free=True,
             ))
     db.commit()
+    if SAMPLE_CONTENT.is_file():
+        ContentImporter(db).import_file(SAMPLE_CONTENT)

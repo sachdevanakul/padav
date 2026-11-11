@@ -1,40 +1,42 @@
-from pydantic import BaseModel, Field
-from typing import List, Optional
 from datetime import datetime
+from typing import List, Optional
+
+from pydantic import Field
+
+from app.schemas.base import ORMModel
 
 
-class QuestionOptionBase(BaseModel):
+class QuestionOptionPublic(ORMModel):
+    """What a candidate may see. Never includes correctness."""
+
+    id: str
     key: str
     text: str
     text_hi: Optional[str] = None
 
 
-class QuestionOptionOut(QuestionOptionBase):
+class QuestionPublic(ORMModel):
     id: str
-    is_correct: bool
-
-    class Config:
-        from_attributes = True
-
-
-class QuestionBase(BaseModel):
     lesson_id: Optional[str] = None
     subject_id: str
     text: str
     text_hi: Optional[str] = None
-    explanation: Optional[str] = None
-    explanation_hi: Optional[str] = None
     difficulty: str = "easy"
     marks: float = 1.0
     negative_marks: float = 0.0
+    options: List[QuestionOptionPublic] = Field(default_factory=list)
+
+
+class QuestionOptionAdmin(QuestionOptionPublic):
+    is_correct: bool
+
+
+class QuestionAdminOut(QuestionPublic):
+    """Reveals answers and explanations. For authoring/review endpoints only."""
+
+    explanation: Optional[str] = None
+    explanation_hi: Optional[str] = None
     correct_option_key: str
-
-
-class QuestionOut(QuestionBase):
-    id: str
-    options: List[QuestionOptionOut] = Field(default_factory=list)
+    options: List[QuestionOptionAdmin] = Field(default_factory=list)  # type: ignore[assignment]
     is_active: bool
     created_at: datetime
-
-    class Config:
-        from_attributes = True

@@ -1,9 +1,10 @@
-from pydantic import BaseModel
-from typing import Optional
 from datetime import datetime
+from typing import Optional
+
+from app.schemas.base import ORMModel
 
 
-class ExamBase(BaseModel):
+class ExamBase(ORMModel):
     name: str
     name_hi: Optional[str] = None
     code: str
@@ -16,11 +17,3 @@ class ExamOut(ExamBase):
     id: str
     is_active: bool
     created_at: datetime
-
-    class Config:
-        from_attributes = True
-
-
-class UserExamCreate(BaseModel):
-    exam_id: str
-    is_primary: bool = False

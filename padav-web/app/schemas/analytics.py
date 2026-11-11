@@ -1,9 +1,8 @@
-from pydantic import BaseModel
-from typing import Optional, List
-from datetime import datetime
+from typing import Optional
+from app.schemas.base import ORMModel
 
 
-class AnalyticsOverview(BaseModel):
+class AnalyticsOverview(ORMModel):
     total_tests_taken: int
     average_score: float
     overall_accuracy: float
@@ -12,7 +11,7 @@ class AnalyticsOverview(BaseModel):
     total_questions_attempted: int
 
 
-class SubjectPerformance(BaseModel):
+class SubjectPerformance(ORMModel):
     subject_id: str
     subject_name: str
     subject_name_hi: Optional[str] = None
@@ -22,7 +21,7 @@ class SubjectPerformance(BaseModel):
     average_time_per_question: float
 
 
-class TopicPerformance(BaseModel):
+class TopicPerformance(ORMModel):
     topic_id: str
     topic_name: str
     questions_attempted: int
@@ -30,7 +29,7 @@ class TopicPerformance(BaseModel):
     accuracy: float
 
 
-class TrendPoint(BaseModel):
+class TrendPoint(ORMModel):
     date: str
     score: float
     accuracy: float

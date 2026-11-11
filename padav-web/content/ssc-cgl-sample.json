@@ -1,0 +1,45 @@
+{
+  "exam": "ssc-cgl",
+  "tests": [
+    {
+      "title": "SSC CGL Practice Test 1",
+      "title_hi": "एसएससी सीजीएल अभ्यास परीक्षा 1",
+      "description": "A 10-question warm-up across quantitative aptitude, reasoning, English and general awareness.",
+      "duration_minutes": 10,
+      "marks_per_question": 2,
+      "negative_marks_per_question": 0.5,
+      "questions": [
+        {"subject": "Quantitative Aptitude", "text": "What is 15% of 240?",
+         "options": {"a": "24", "b": "36", "c": "30", "d": "40"}, "correct": "b",
+         "explanation": "240 × 15 / 100 = 36."},
+        {"subject": "Quantitative Aptitude", "text": "A train travels at 60 km/h. How far does it go in 2.5 hours?",
+         "options": {"a": "120 km", "b": "140 km", "c": "150 km", "d": "160 km"}, "correct": "c",
+         "explanation": "Distance = speed × time = 60 × 2.5 = 150 km."},
+        {"subject": "Quantitative Aptitude", "text": "What is the average of 12, 18, 24 and 30?",
+         "options": {"a": "21", "b": "22", "c": "24", "d": "20"}, "correct": "a",
+         "explanation": "(12 + 18 + 24 + 30) / 4 = 84 / 4 = 21."},
+        {"subject": "Reasoning", "text": "Find the next number: 2, 6, 12, 20, 30, ?",
+         "options": {"a": "40", "b": "42", "c": "44", "d": "46"}, "correct": "b", "difficulty": "medium",
+         "explanation": "The differences are 4, 6, 8, 10, so the next difference is 12: 30 + 12 = 42."},
+        {"subject": "Reasoning", "text": "Pick the odd one out: Apple, Mango, Potato, Banana.",
+         "options": {"a": "Apple", "b": "Mango", "c": "Potato", "d": "Banana"}, "correct": "c",
+         "explanation": "Potato is a vegetable; the others are fruits."},
+        {"subject": "Reasoning", "text": "If A = 1, B = 2, C = 3 and so on, what is the sum of the letters in DOG?",
+         "options": {"a": "24", "b": "26", "c": "28", "d": "30"}, "correct": "b", "difficulty": "medium",
+         "explanation": "D = 4, O = 15, G = 7, and 4 + 15 + 7 = 26."},
+        {"subject": "English Language", "text": "Choose the synonym of 'rapid'.",
+         "options": {"a": "Slow", "b": "Quick", "c": "Weak", "d": "Late"}, "correct": "b",
+         "explanation": "'Rapid' means fast, so 'quick' is the synonym."},
+        {"subject": "English Language", "text": "Choose the correct sentence: She ___ to school every day.",
+         "options": {"a": "go", "b": "goes", "c": "going", "d": "gone"}, "correct": "b",
+         "explanation": "A third-person singular subject takes the verb form 'goes' in the simple present."},
+        {"subject": "General Awareness", "text": "What is the capital of Australia?",
+         "options": {"a": "Sydney", "b": "Melbourne", "c": "Canberra", "d": "Perth"}, "correct": "c",
+         "explanation": "Canberra is the capital; Sydney and Melbourne are larger but not the capital."},
+        {"subject": "General Awareness", "text": "Who wrote the Indian national anthem, 'Jana Gana Mana'?",
+         "options": {"a": "Rabindranath Tagore", "b": "Bankim Chandra Chatterjee", "c": "Muhammad Iqbal", "d": "Jawaharlal Nehru"}, "correct": "a",
+         "explanation": "Rabindranath Tagore wrote 'Jana Gana Mana'; 'Vande Mataram' was written by Bankim Chandra Chatterjee."}
+      ]
+    }
+  ]
+}

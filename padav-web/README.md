@@ -4,33 +4,43 @@ PADAV is a bilingual exam preparation platform with a React + TypeScript fronten
 
 ## Run locally
 
-In one PowerShell terminal, start the API:
+Run these commands from PowerShell. The backend commands assume Python 3.11 is installed.
+
+One-time setup:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python -m alembic upgrade head
-python main.py
+cd D:\padav\padav-web
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+npm ci
+.\.venv\Scripts\python.exe -m alembic upgrade head
 ```
 
-In a second terminal, start the React frontend:
+Start both the API and React development server together:
 
 ```powershell
-npm install
-npm run dev
+cd D:\padav\padav-web
+.\.venv\Scripts\python.exe main.py
 ```
 
-Open the Vite URL shown in the terminal (normally `http://localhost:5173`). The development server proxies `/api` requests to FastAPI at `http://localhost:8000`. API docs are at `http://localhost:8000/docs`.
+If you activated the virtual environment, you can instead run `python main.py`. Open `http://localhost:5173` for the frontend; API docs are at `http://localhost:8000/docs`. Press `Ctrl+C` in that terminal to stop both servers. Make sure Node.js is installed and `npm ci` has completed before starting.
+
+After initial setup, apply migrations whenever a new schema migration is added:
+
+```powershell
+cd D:\padav\padav-web
+.\.venv\Scripts\python.exe -m alembic upgrade head
+```
 
 To serve the built React app through FastAPI instead, run `npm run build`, then start the API and open `http://localhost:8000`.
 
 ## Project layout
 
-- `app/` — FastAPI routers, services, schemas, models, and database setup.
+- `app/` — FastAPI backend, layered: `api/` (thin routers) → `services/` (business rules) → `repositories/` (data access) → `models/`. `core/` holds config, security, rate limiting, middleware and shared exceptions.
 - `alembic/` and `alembic.ini` — schema migration environment and revision history.
 - `src/` — React pages, reusable components, state, API services, locales, and styles.
-- `tests/` — backend API and scoring tests.
+- `tests/` — backend API, access-control and security tests (`pip install -r requirements-dev.txt && pytest`).
 - `legacy/` plus root `js/`, `css/`, `data/`, and `icons/` — the previous browser app, retained during migration.
 - `.env.example` — local environment variable template.
 
@@ -62,3 +72,13 @@ Only use `stamp head` for an existing database whose schema already matches the 
 ## Current implementation scope
 
 Foundation and initial experience include the responsive app shell, onboarding, login and registration, exam selection, the dashboard, persistent theme/language preferences, JWT authentication with rotating refresh tokens, course/catalog APIs, study planning, test attempt scoring endpoints, and Alembic database migrations. Course player, full test-taking UI, detailed analytics, profile/settings, and deployment hardening remain follow-up work.
+
+## Security notes
+
+- **Secrets:** never commit `.env`. In production `SECRET_KEY` (>= 32 random chars), `ALLOWED_HOSTS` and explicit `CORS_ORIGINS` are mandatory and `DEBUG` must be off; the app refuses to start otherwise. In development an empty `SECRET_KEY` gives a random per-process key.
+- **Auth:** bcrypt passwords (max 72 bytes), JWTs pinned to HS256 with issuer/audience/`jti`, single-use rotating refresh tokens with reuse detection (a replayed token revokes all of that user's sessions), per-account login lockout and per-IP rate limits. Rate-limit state is in memory (per worker); use a shared store such as Redis when running several instances, and run uvicorn with `--proxy-headers --forwarded-allow-ips=<proxy>` behind a reverse proxy.
+- **Authorization:** all per-user data goes through `OwnedRepository`, which scopes every lookup by `user_id`; other users' rows return 404.
+- **Responses:** correct answers and per-answer correctness are never sent while an attempt is open; locked lessons need a signed-in user.
+- **HTTP:** CSP, `X-Frame-Options`, `nosniff`, HSTS (production) and `Cache-Control: no-store` on API responses. Swagger docs and starter seed data are off in production.
+- **Service worker:** `/api/*` responses are never cached.
+- **Known follow-ups:** there is no test<->question link table yet (answers are checked against the test's section subjects); tokens are kept in `sessionStorage` on the client (an HttpOnly-cookie refresh token would reduce XSS impact); e-mail verification / password reset are not implemented.

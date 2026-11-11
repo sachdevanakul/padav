@@ -1,9 +1,11 @@
 from datetime import date, datetime, time
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import Field, model_validator
+
+from app.schemas.base import ORMModel, StrictInput
 
 
-class PlannerBlockCreate(BaseModel):
+class PlannerBlockCreate(StrictInput):
     title: str = Field(min_length=1, max_length=120)
     subject: str | None = Field(default=None, max_length=80)
     study_date: date
@@ -17,13 +19,11 @@ class PlannerBlockCreate(BaseModel):
         return self
 
 
-class PlannerBlockUpdate(BaseModel):
+class PlannerBlockUpdate(StrictInput):
     completed: bool
 
 
-class PlannerBlockOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
+class PlannerBlockOut(ORMModel):
     id: str
     title: str
     subject: str | None
