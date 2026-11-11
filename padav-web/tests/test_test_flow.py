@@ -1,4 +1,5 @@
 from app.models.question import Question
+from app.models.question_option import QuestionOption
 from app.models.subject import Subject
 from app.models.test import Test as Assessment
 
@@ -20,6 +21,9 @@ def test_attempt_scores_answers_on_the_backend(api_client):
         db.flush()
         question = Question(subject_id=subject.id, text="What is 2 + 2?", correct_option_key="B", marks=1, negative_marks=0.25)
         db.add(question)
+        db.flush()
+        for key in "ABCD":
+            db.add(QuestionOption(question_id=question.id, key=key, text=f"Option {key}", is_correct=key == "B"))
         db.commit()
         test_id, question_id = assessment.id, question.id
 
@@ -28,7 +32,7 @@ def test_attempt_scores_answers_on_the_backend(api_client):
     attempt_id = started.json()["attempt_id"]
     saved = api_client.put(
         f"/api/v1/tests/attempts/{attempt_id}/answers",
-        params={"question_id": question_id, "selected_option_key": "B"},
+        json={"question_id": question_id, "selected_option_key": "B"},
         headers=headers,
     )
     result = api_client.post(f"/api/v1/tests/attempts/{attempt_id}/submit", headers=headers)

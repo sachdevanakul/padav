@@ -1,6 +1,6 @@
 from datetime import date
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Query, Response, status
+from fastapi import APIRouter, Query, Response, status
 
 from app.core.dependencies import CurrentUser, PlannerServiceDep
 from app.schemas.planner import PlannerBlockCreate, PlannerBlockOut, PlannerBlockUpdate

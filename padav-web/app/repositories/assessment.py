@@ -62,7 +62,10 @@ class TestAttemptRepository(OwnedRepository[TestAttempt]):
 
     def list_recent_for_user(self, user_id: str):
         return self.db.scalars(
-            select(TestAttempt).where(TestAttempt.user_id == user_id).order_by(TestAttempt.started_at.desc())
+            select(TestAttempt)
+            .where(TestAttempt.user_id == user_id)
+            .options(joinedload(TestAttempt.test))
+            .order_by(TestAttempt.started_at.desc())
         ).all()
 
     def list_completed_with_tests(self, user_id: str, *, chronological: bool = False):
@@ -78,7 +81,7 @@ class TestAttemptRepository(OwnedRepository[TestAttempt]):
         return self.db.scalars(
             select(TestAttempt)
             .where(TestAttempt.id == attempt_id, TestAttempt.user_id == user_id)
-            .options(joinedload(TestAttempt.answers))
+            .options(joinedload(TestAttempt.answers), joinedload(TestAttempt.test))
         ).unique().first()
 
 

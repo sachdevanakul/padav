@@ -66,3 +66,15 @@ def user(client):
 def other_user(client):
     tokens = register(client, email="other@example.com")
     return {"tokens": tokens, "headers": auth_headers(tokens)}
+
+
+@pytest.fixture
+def api_client():
+    """Client against a freshly seeded database (exams, courses, sample test)."""
+    from app.services.seed import seed_development_data
+
+    with SessionLocal() as session:
+        seed_development_data(session)
+    app.state.test_session_factory = SessionLocal
+    with TestClient(app) as c:
+        yield c

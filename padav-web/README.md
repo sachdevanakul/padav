@@ -82,3 +82,10 @@ Foundation and initial experience include the responsive app shell, onboarding, 
 - **HTTP:** CSP, `X-Frame-Options`, `nosniff`, HSTS (production) and `Cache-Control: no-store` on API responses. Swagger docs and starter seed data are off in production.
 - **Service worker:** `/api/*` responses are never cached.
 - **Known follow-ups:** there is no test<->question link table yet (answers are checked against the test's section subjects); tokens are kept in `sessionStorage` on the client (an HttpOnly-cookie refresh token would reduce XSS impact); e-mail verification / password reset are not implemented.
+
+## Test arena (v1 slice)
+
+- Pages: `/tests` (list + your attempts), `/tests/attempts/:id` (timed runner), `/tests/attempts/:id/result` (score + review).
+- The runner counts down from the server-computed `seconds_remaining`, auto-saves each answer, auto-submits at zero, and never receives the answer key. The key and explanations are only served by `/tests/attempts/:id/review` after submission.
+- Add content with `python -m app.cli import-content content/<file>.json` (format: `content/ssc-cgl-sample.json`). Keep answer-key files in `content/`, never in a served folder such as `data/`.
+- After pulling: `python -m alembic upgrade head`.

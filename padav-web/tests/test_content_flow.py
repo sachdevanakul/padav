@@ -126,3 +126,15 @@ def test_migrations_upgrade_fresh_database(tmp_path):
     # differences on older columns come from the SQLAlchemy version, not from this change.)
     chk = subprocess.run([sys.executable, "-m", "alembic", "check"], cwd=ROOT, env=env, capture_output=True, text=True)
     assert "test_questions" not in chk.stdout + chk.stderr
+
+
+def test_attempt_detail_exposes_server_side_timer(client, db, user, seeded):
+    h = user["headers"]
+    attempt = run_attempt(client, h, seeded.id)
+    detail = client.get(f"{API}/tests/attempts/{attempt}", headers=h).json()
+    assert detail["test_title"] == "SSC CGL Practice Test 1" and detail["duration_minutes"] == 10
+    assert 590 <= detail["seconds_remaining"] <= 600
+    listing = client.get(f"{API}/tests/attempts", headers=h).json()
+    assert listing[0]["test_title"] == "SSC CGL Practice Test 1"
+    client.post(f"{API}/tests/attempts/{attempt}/submit", headers=h)
+    assert client.get(f"{API}/tests/attempts/{attempt}", headers=h).json()["seconds_remaining"] is None

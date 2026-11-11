@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter
 
 from app.core.dependencies import AnalyticsServiceDep, CurrentUser
 from app.schemas.analytics import AnalyticsOverview, SubjectPerformance, TrendPoint

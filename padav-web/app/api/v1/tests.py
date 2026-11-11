@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Depends
+from fastapi import APIRouter, Depends
 
 from app.core.dependencies import CurrentUser, TestServiceDep
 from app.core.rate_limit import write_rate_limit

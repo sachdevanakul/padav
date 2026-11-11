@@ -11,7 +11,7 @@ def test_security_headers(client):
     assert r.headers["x-content-type-options"] == "nosniff"
     assert r.headers["x-frame-options"] == "DENY"
     assert "frame-ancestors 'none'" in r.headers["content-security-policy"]
-    assert r.json() == {"status": "ok"}
+    assert r.json() == {"status": "ok", "service": "Padav"}
     assert client.get(f"{API}/exams").headers["cache-control"] == "no-store"
 
 
@@ -35,6 +35,26 @@ def test_unhandled_errors_do_not_leak(monkeypatch):
     with TestClient(app, raise_server_exceptions=False) as quiet:
         r = quiet.get(f"{API}/exams")
     assert r.status_code == 500 and r.json() == {"detail": "Internal server error"}
+
+
+def test_built_frontend_routes_support_deep_links(tmp_path, monkeypatch):
+    from fastapi.testclient import TestClient
+
+    import app.main as main
+
+    dist = tmp_path / "dist"
+    (dist / "assets").mkdir(parents=True)
+    for asset_dir in main.LEGACY_ASSET_DIRS:
+        (tmp_path / asset_dir).mkdir()
+    (dist / "index.html").write_text("<html><div id='root'></div></html>", encoding="utf-8")
+    monkeypatch.setattr(main, "PROJECT_ROOT", tmp_path)
+
+    with TestClient(main.create_app()) as frontend:
+        page = frontend.get("/onboarding", headers={"accept": "text/html"})
+        assert page.status_code == 200 and "<div id='root'></div>" in page.text
+        assert frontend.get("/auth/register", headers={"accept": "text/html"}).status_code == 200
+        assert frontend.get("/api/v1/unknown", headers={"accept": "text/html"}).status_code == 404
+        assert frontend.get("/missing.js", headers={"accept": "application/javascript"}).status_code == 404
 
 
 def test_auth_endpoint_ip_rate_limit(client, monkeypatch):
@@ -91,3 +111,27 @@ def test_hasher_roundtrip_and_legacy_hash():
     assert hasher.verify("anything", None) is False
     assert hasher.verify("x", "not-a-hash") is False
     assert hashed.startswith("$2b$")  # same format passlib produced, existing users keep working
+
+
+def test_spa_route_serves_real_files_and_blocks_traversal(tmp_path, monkeypatch):
+    from fastapi.testclient import TestClient
+
+    import app.main as main
+
+    dist = tmp_path / "dist"
+    (dist / "assets").mkdir(parents=True)
+    for asset_dir in main.LEGACY_ASSET_DIRS:
+        (tmp_path / asset_dir).mkdir()
+    (dist / "index.html").write_text("<html>app</html>", encoding="utf-8")
+    (dist / "favicon.svg").write_text("<svg/>", encoding="utf-8")
+    (tmp_path / "secret.txt").write_text("TOP-SECRET", encoding="utf-8")
+    monkeypatch.setattr(main, "PROJECT_ROOT", tmp_path)
+
+    with TestClient(main.create_app()) as c:
+        # a real root-level file is served even when the request does not accept HTML
+        ok = c.get("/favicon.svg", headers={"accept": "image/svg+xml"})
+        assert ok.status_code == 200 and "<svg/>" in ok.text
+        # path traversal (plain and encoded) must never reach files outside dist
+        for attempt in ("/../secret.txt", "/%2e%2e/secret.txt", "/..%2fsecret.txt", "/assets/../../secret.txt"):
+            r = c.get(attempt, headers={"accept": "text/html"})
+            assert "TOP-SECRET" not in r.text, attempt

@@ -19,6 +19,7 @@ export default function OnboardingPage() {
   const slide = slides[step]
   const Icon = slide.icon
   function finish() { localStorage.setItem('padav-onboarded', 'true'); navigate('/auth/register') }
+  function skip() { localStorage.setItem('padav-onboarded', 'true'); navigate('/auth/login') }
 
   return <div className="onboarding-page">
     <header className="onboarding-top"><Link to="/" className="brand"><span className="brand-mark"><GraduationCap size={21} /></span><span>PADAV<small>YOUR AMBITION. YOUR ADVANTAGE.</small></span></Link><div className="onboarding-actions"><button className="language-pill" onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}><Languages size={15} />{language === 'en' ? 'English' : 'हिन्दी'}</button><Link to="/auth/login" className="signin-link">Already a member? <b>Sign in</b></Link></div></header>
@@ -31,6 +32,6 @@ export default function OnboardingPage() {
       </div>
       <div className={`onboarding-art art-${slide.glow}`}><div className="art-grid" /><div className="art-glow" /><div className="art-ring ring-one" /><div className="art-ring ring-two" /><div className="art-ring ring-three" /><motion.div className="hero-emblem" key={step} initial={{ scale: .84, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={{ type: 'spring', stiffness: 160, damping: 18 }}><Icon size={92} strokeWidth={1.15} /></motion.div><span className="float-chip chip-one"><Check size={14} /> Study plan ready</span><span className="float-chip chip-two"><span className="tiny-spark">✦</span> Your next chapter</span><span className="art-caption">A little progress each day adds up.</span></div>
     </div>
-    <button className="skip-onboarding" onClick={finish}>Skip for now</button>
+    <button className="skip-onboarding" onClick={skip}>Skip for now</button>
   </div>
 }

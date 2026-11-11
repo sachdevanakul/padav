@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { ArrowLeft, Eye, EyeOff, GraduationCap, LockKeyhole, Mail, UserRound } from 'lucide-react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -14,6 +14,7 @@ type Props = { mode: 'login' | 'register' }
 export default function AuthPage({ mode }: Props) {
   const [visible, setVisible] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
   const setTokens = authStore((state) => state.setTokens)
   const setUser = authStore((state) => state.setUser)
   const isRegister = mode === 'register'
@@ -28,9 +29,13 @@ export default function AuthPage({ mode }: Props) {
       setTokens(tokens.access_token, tokens.refresh_token)
       const user = await api.me()
       setUser(user)
-      return user
+      if (isRegister) return '/exams'
+      const exams = await api.myExams()
+      if (!exams.length) return '/exams'
+      const returnTo = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname
+      return returnTo || '/'
     },
-    onSuccess: () => navigate('/exams'),
+    onSuccess: (path) => navigate(path, { replace: true }),
   })
   const form = isRegister ? registerForm : loginForm
   const emailInput = isRegister ? registerForm.register('email') : loginForm.register('email')

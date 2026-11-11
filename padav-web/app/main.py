@@ -2,7 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -77,7 +77,7 @@ def _add_error_handlers(app: FastAPI) -> None:
 def _add_frontend_routes(app: FastAPI) -> None:
     @app.get("/health", include_in_schema=False)
     def health():
-        return {"status": "ok"}  # no service name/version: nothing to fingerprint
+        return {"status": "ok", "service": settings.app_name}  # no version/build info
 
     # Legacy vanilla-JS PWA assets.
     for asset_dir in LEGACY_ASSET_DIRS:
@@ -108,7 +108,22 @@ def _add_frontend_routes(app: FastAPI) -> None:
     if (dist / "assets").is_dir():
         app.mount("/assets", StaticFiles(directory=dist / "assets"), name="built-assets")
     if dist.is_dir():
-        app.mount("/", StaticFiles(directory=dist, html=True), name="frontend")
+        dist_root = dist.resolve()
+        api_prefix = settings.api_v1_str.strip("/")
+
+        @app.get("/{path:path}", include_in_schema=False)
+        def frontend_route(path: str, request: Request):
+            """Serve built files; fall back to index.html for client-side routes (deep links)."""
+            if path == api_prefix or path.startswith(f"{api_prefix}/"):
+                raise HTTPException(status_code=404, detail="Not Found")
+            # Real file inside dist? (resolve() + relative_to() blocks ../ traversal and symlink escapes.)
+            candidate = (dist_root / path).resolve()
+            if path and candidate.is_file() and candidate.is_relative_to(dist_root):
+                return FileResponse(candidate)
+            index = dist_root / "index.html"
+            if "text/html" not in request.headers.get("accept", "") or not index.is_file():
+                raise HTTPException(status_code=404, detail="Not Found")
+            return FileResponse(index)
 
 
 app = create_app()

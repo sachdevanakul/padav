@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter
 
 from app.core.dependencies import CatalogServiceDep
 from app.schemas.course import ChapterOut, CourseOut

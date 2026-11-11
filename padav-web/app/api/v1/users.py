@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter
 
 from app.core.dependencies import CurrentUser, UserServiceDep
 from app.schemas.auth import UserOut, UserUpdate

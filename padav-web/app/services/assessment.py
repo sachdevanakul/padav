@@ -130,8 +130,13 @@ class TestService(BaseService):
         )
 
     # -- reads ----------------------------------------------------------------------
-    def list_attempts(self, user: User):
-        return self.attempts.list_recent_for_user(user.id)
+    def list_attempts(self, user: User) -> list[AttemptSummary]:
+        return [self._summary(a) for a in self.attempts.list_recent_for_user(user.id)]
+
+    @staticmethod
+    def _summary(attempt: TestAttempt) -> AttemptSummary:
+        title = attempt.test.title if attempt.test else ""
+        return AttemptSummary.model_validate(attempt).model_copy(update={"test_title": title})
 
     def detail(self, user: User, attempt_id: str) -> AttemptDetail:
         attempt = self.attempts.with_answers(attempt_id, user.id) or self.attempts.require_owned(attempt_id, user.id)
@@ -145,7 +150,17 @@ class TestService(BaseService):
             )
             for a in attempt.answers
         ]
-        return AttemptDetail(**AttemptSummary.model_validate(attempt).model_dump(), answers=answers)
+        duration = attempt.test.duration_minutes if attempt.test else 0
+        remaining = None
+        if not attempt.is_submitted:
+            deadline = attempt.started_at + timedelta(minutes=duration)
+            remaining = max(0, int((deadline - utcnow()).total_seconds()))
+        return AttemptDetail(
+            **self._summary(attempt).model_dump(),
+            duration_minutes=duration,
+            seconds_remaining=remaining,
+            answers=answers,
+        )
 
     def attempt_questions(self, user: User, attempt_id: str) -> list[QuestionPublic]:
         """Questions for an *open* attempt. Never includes answers or explanations."""

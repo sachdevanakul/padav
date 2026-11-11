@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends
 
 from app.core.dependencies import AuthServiceDep, ClientId, CurrentUser
 from app.core.rate_limit import auth_rate_limit

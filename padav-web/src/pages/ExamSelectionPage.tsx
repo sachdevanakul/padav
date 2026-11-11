@@ -10,23 +10,23 @@ const categories = ['All', 'SSC', 'Banking', 'UPSC', 'Railway', 'State']
 export default function ExamSelectionPage() {
   const [category, setCategory] = useState('All')
   const [search, setSearch] = useState('')
-  const [selected, setSelected] = useState<string[]>(() => JSON.parse(localStorage.getItem('padav-selected-exams') || '[]') as string[])
+  const [selected, setSelected] = useState<string[]>([])
   const token = authStore((state) => state.accessToken)
   const navigate = useNavigate()
   const examsQuery = useQuery({ queryKey: ['exams'], queryFn: api.exams })
   const savedQuery = useQuery({ queryKey: ['my-exams'], queryFn: api.myExams, enabled: Boolean(token) })
   const save = useMutation({ mutationFn: async () => {
-    if (!token) { localStorage.setItem('padav-selected-exams', JSON.stringify(selected)); return }
+    if (!token) throw new Error('Sign in to save your exam preferences.')
     const existing = await api.myExams()
     for (const item of existing) if (!selected.includes(item.exam_id)) await api.removeExam(item.exam_id)
     const currentIds = new Set(existing.map((item) => item.exam_id))
     for (const [index, id] of selected.entries()) if (!currentIds.has(id)) await api.addExam(id, index === 0)
+    localStorage.removeItem('padav-selected-exams')
   }, onSuccess: () => navigate('/') })
   const exams = examsQuery.data || []
-  const prefilled = savedQuery.data?.map((item) => item.exam_id)
   useEffect(() => {
-    if (token && prefilled?.length && selected.length === 0) setSelected(prefilled)
-  }, [token, prefilled, selected.length])
+    if (token && savedQuery.data) setSelected(savedQuery.data.map((item) => item.exam_id))
+  }, [token, savedQuery.data])
   const filtered = useMemo(() => exams.filter((exam) => (category === 'All' || exam.category.toLowerCase().includes(category.toLowerCase())) && `${exam.name} ${exam.category}`.toLowerCase().includes(search.toLowerCase())), [exams, category, search])
   function toggle(id: string) { setSelected((value) => value.includes(id) ? value.filter((item) => item !== id) : [...value, id]) }
 
@@ -36,6 +36,6 @@ export default function ExamSelectionPage() {
     {examsQuery.isLoading ? <div className="loading-state">Loading exam options…</div> : examsQuery.error ? <div className="form-error">Couldn’t load exams: {(examsQuery.error as Error).message}</div> : <div className="exam-grid">{filtered.map((exam) => <button key={exam.id} onClick={() => toggle(exam.id)} className={`exam-card ${selected.includes(exam.id) ? 'chosen' : ''}`} aria-pressed={selected.includes(exam.id)}><span className={`exam-badge category-${exam.category.toLowerCase()}`}>{exam.category.slice(0, 3).toUpperCase()}</span><span className="exam-card-copy"><b>{exam.name}</b><small>{exam.description || 'Build a focused preparation plan for this examination.'}</small></span><span className="exam-check">{selected.includes(exam.id) && <Check size={15} />}</span></button>)}</div>}
     {examsQuery.isSuccess && filtered.length === 0 && <div className="empty-state card"><h2>No exams found</h2><p>Try a different search or category.</p></div>}
     {save.error && <div className="form-error selection-error">{(save.error as Error).message}</div>}
-    <footer className="selection-footer"><span>{selected.length} exam{selected.length === 1 ? '' : 's'} selected</span><button className="button button-primary" disabled={!selected.length || save.isPending} onClick={() => save.mutate()}>{save.isPending ? 'Saving…' : 'Save my exams'}<ArrowRight size={17} /></button></footer>
+    <footer className="selection-footer"><span>{selected.length} exam{selected.length === 1 ? '' : 's'} selected</span><button className="button button-primary" disabled={!selected.length || save.isPending || (Boolean(token) && savedQuery.isLoading)} onClick={() => save.mutate()}>{save.isPending ? 'Saving…' : 'Save my exams'}<ArrowRight size={17} /></button></footer>
   </main></div>
 }

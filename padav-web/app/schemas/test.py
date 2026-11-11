@@ -45,6 +45,7 @@ class AnswerSubmit(StrictInput):
 class AttemptSummary(ORMModel):
     id: str
     test_id: str
+    test_title: str = ""
     status: str
     started_at: datetime
     completed_at: Optional[datetime] = None
@@ -68,6 +69,9 @@ class AnswerOut(ORMModel):
 
 
 class AttemptDetail(AttemptSummary):
+    duration_minutes: int = 0
+    # Computed on the server so the client timer never depends on its own clock.
+    seconds_remaining: Optional[int] = None  # None once submitted
     answers: List[AnswerOut] = []
 
 

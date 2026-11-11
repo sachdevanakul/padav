@@ -26,6 +26,35 @@ export type PlannerBlock = {
   start_time: string; end_time: string; completed: boolean; created_at: string
 }
 
+export type TestInfo = {
+  id: string; exam_id: string; title: string; title_hi: string | null
+  description: string | null; description_hi: string | null
+  total_questions: number; duration_minutes: number; total_marks: number
+  passing_marks: number; negative_marks_per_question: number; is_free: boolean
+}
+export type QuestionOption = { id: string; key: string; text: string; text_hi: string | null }
+export type Question = {
+  id: string; subject_id: string; text: string; text_hi: string | null; difficulty: string
+  marks: number; negative_marks: number; options: QuestionOption[]
+}
+export type AttemptSummary = {
+  id: string; test_id: string; test_title: string; status: string
+  started_at: string; completed_at: string | null; total_questions: number
+  attempted_questions: number; correct_answers: number; incorrect_answers: number
+  unanswered_questions: number; score_obtained: number; max_score: number
+  accuracy: number; is_submitted: boolean
+}
+export type AttemptAnswer = { question_id: string; selected_option_key: string | null; is_correct: boolean | null; marks_obtained: number | null }
+export type AttemptDetail = AttemptSummary & { duration_minutes: number; seconds_remaining: number | null; answers: AttemptAnswer[] }
+export type SubmitResult = {
+  attempt_id: string; score_obtained: number; max_score: number; correct: number
+  incorrect: number; unanswered: number; accuracy: number; status: string
+}
+export type ReviewItem = {
+  question: Question; correct_option_key: string; selected_option_key: string | null
+  explanation: string | null; explanation_hi: string | null
+}
+
 export async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const makeRequest = (token: string | null) => {
     const headers = new Headers(init.headers)
@@ -72,6 +101,15 @@ export const api = {
   completePlannerBlock: (id: string, completed: boolean) =>
     request<PlannerBlock>(`/planner/${id}`, { method: 'PATCH', body: JSON.stringify({ completed }) }),
   deletePlannerBlock: (id: string) => request<void>(`/planner/${id}`, { method: 'DELETE' }),
+  tests: () => request<TestInfo[]>('/tests'),
+  startTest: (testId: string) => request<{ attempt_id: string }>(`/tests/${testId}/start`, { method: 'POST' }),
+  attempts: () => request<AttemptSummary[]>('/tests/attempts'),
+  attempt: (id: string) => request<AttemptDetail>(`/tests/attempts/${id}`),
+  attemptQuestions: (id: string) => request<Question[]>(`/tests/attempts/${id}/questions`),
+  saveAnswer: (id: string, question_id: string, selected_option_key: string | null) =>
+    request<{ message: string }>(`/tests/attempts/${id}/answers`, { method: 'PUT', body: JSON.stringify({ question_id, selected_option_key }) }),
+  submitAttempt: (id: string) => request<SubmitResult>(`/tests/attempts/${id}/submit`, { method: 'POST' }),
+  attemptReview: (id: string) => request<ReviewItem[]>(`/tests/attempts/${id}/review`),
   register: (body: { email: string; password: string; full_name: string }) =>
     request<TokenResponse>('/auth/register', { method: 'POST', body: JSON.stringify(body) }),
   login: (body: { email: string; password: string }) =>

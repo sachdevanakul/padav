@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter
 
 from app.core.dependencies import CatalogServiceDep, OptionalUser
 from app.schemas.course import LessonOut
