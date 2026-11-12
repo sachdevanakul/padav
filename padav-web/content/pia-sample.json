@@ -1,0 +1,370 @@
+{
+  "items": [
+    {
+      "item_code": "PIA-GF-SQ-001",
+      "version": 1,
+      "domain": "gf",
+      "subdomain": "number-sequence",
+      "item_format": "sequence",
+      "difficulty": "easy",
+      "min_age": 13,
+      "answer_key": "c",
+      "status": "draft",
+      "author": "padav-team",
+      "accessibility_notes": "Text only; screen-reader friendly.",
+      "translations": {
+        "en": {
+          "stem": "What number comes next?  3, 6, 12, 24, ?",
+          "options": [
+            {
+              "key": "a",
+              "text": "30"
+            },
+            {
+              "key": "b",
+              "text": "36"
+            },
+            {
+              "key": "c",
+              "text": "48"
+            },
+            {
+              "key": "d",
+              "text": "60"
+            }
+          ],
+          "explanation": "Each number is double the one before, so 24 doubles to 48.",
+          "distractor_rationale": "30 and 36 add a constant; 60 multiplies by 2.5."
+        },
+        "hi": {
+          "stem": "अगली संख्या क्या होगी?  3, 6, 12, 24, ?",
+          "options": [
+            {
+              "key": "a",
+              "text": "30"
+            },
+            {
+              "key": "b",
+              "text": "36"
+            },
+            {
+              "key": "c",
+              "text": "48"
+            },
+            {
+              "key": "d",
+              "text": "60"
+            }
+          ],
+          "explanation": "हर संख्या पिछली संख्या की दुगुनी है, इसलिए 24 का दुगुना 48 है।",
+          "reviewed": false
+        }
+      }
+    },
+    {
+      "item_code": "PIA-GF-SQ-002",
+      "version": 1,
+      "domain": "gf",
+      "subdomain": "number-sequence",
+      "item_format": "sequence",
+      "difficulty": "medium",
+      "min_age": 13,
+      "answer_key": "b",
+      "status": "draft",
+      "author": "padav-team",
+      "accessibility_notes": "Text only; screen-reader friendly.",
+      "translations": {
+        "en": {
+          "stem": "What number comes next?  2, 3, 5, 8, 12, ?",
+          "options": [
+            {
+              "key": "a",
+              "text": "16"
+            },
+            {
+              "key": "b",
+              "text": "17"
+            },
+            {
+              "key": "c",
+              "text": "18"
+            },
+            {
+              "key": "d",
+              "text": "20"
+            }
+          ],
+          "explanation": "The gaps grow by one each time (+1, +2, +3, +4), so the next gap is +5: 17.",
+          "distractor_rationale": "16 and 18 break the growing-gap rule."
+        },
+        "hi": {
+          "stem": "अगली संख्या क्या होगी?  2, 3, 5, 8, 12, ?",
+          "options": [
+            {
+              "key": "a",
+              "text": "16"
+            },
+            {
+              "key": "b",
+              "text": "17"
+            },
+            {
+              "key": "c",
+              "text": "18"
+            },
+            {
+              "key": "d",
+              "text": "20"
+            }
+          ],
+          "explanation": "अंतर हर बार एक बढ़ता है (+1, +2, +3, +4), इसलिए अगला अंतर +5 है: 17।",
+          "reviewed": false
+        }
+      }
+    },
+    {
+      "item_code": "PIA-GC-AN-001",
+      "version": 1,
+      "domain": "gc",
+      "subdomain": "verbal-analogy",
+      "item_format": "analogy",
+      "difficulty": "easy",
+      "min_age": 13,
+      "answer_key": "a",
+      "status": "draft",
+      "author": "padav-team",
+      "accessibility_notes": "Text only; screen-reader friendly.",
+      "translations": {
+        "en": {
+          "stem": "Book is to reading as fork is to ___.",
+          "options": [
+            {
+              "key": "a",
+              "text": "eating"
+            },
+            {
+              "key": "b",
+              "text": "cooking"
+            },
+            {
+              "key": "c",
+              "text": "washing"
+            },
+            {
+              "key": "d",
+              "text": "cutting"
+            }
+          ],
+          "explanation": "A book is used for reading; a fork is used for eating.",
+          "distractor_rationale": "Cooking and cutting suit other utensils."
+        },
+        "hi": {
+          "stem": "किताब का संबंध पढ़ने से है, तो काँटे (fork) का संबंध ___ से है।",
+          "options": [
+            {
+              "key": "a",
+              "text": "खाने"
+            },
+            {
+              "key": "b",
+              "text": "पकाने"
+            },
+            {
+              "key": "c",
+              "text": "धोने"
+            },
+            {
+              "key": "d",
+              "text": "काटने"
+            }
+          ],
+          "explanation": "किताब पढ़ने के लिए होती है; काँटा खाने के लिए।",
+          "reviewed": false
+        }
+      }
+    },
+    {
+      "item_code": "PIA-GC-CL-001",
+      "version": 1,
+      "domain": "gc",
+      "subdomain": "classification",
+      "item_format": "odd-one-out",
+      "difficulty": "medium",
+      "min_age": 13,
+      "answer_key": "d",
+      "status": "draft",
+      "author": "padav-team",
+      "accessibility_notes": "Text only; screen-reader friendly.",
+      "translations": {
+        "en": {
+          "stem": "Which word does NOT belong with the others?",
+          "options": [
+            {
+              "key": "a",
+              "text": "Sparrow"
+            },
+            {
+              "key": "b",
+              "text": "Pigeon"
+            },
+            {
+              "key": "c",
+              "text": "Crow"
+            },
+            {
+              "key": "d",
+              "text": "Bat"
+            }
+          ],
+          "explanation": "Sparrow, pigeon and crow are birds; a bat is a mammal.",
+          "distractor_rationale": "The three birds share a category."
+        },
+        "hi": {
+          "stem": "कौन-सा शब्द बाकी से अलग है?",
+          "options": [
+            {
+              "key": "a",
+              "text": "गौरैया"
+            },
+            {
+              "key": "b",
+              "text": "कबूतर"
+            },
+            {
+              "key": "c",
+              "text": "कौआ"
+            },
+            {
+              "key": "d",
+              "text": "चमगादड़"
+            }
+          ],
+          "explanation": "गौरैया, कबूतर और कौआ पक्षी हैं; चमगादड़ स्तनधारी है।",
+          "reviewed": false
+        }
+      }
+    },
+    {
+      "item_code": "PIA-GQ-NR-001",
+      "version": 1,
+      "domain": "gq",
+      "subdomain": "numerical-relationship",
+      "item_format": "arithmetic-logic",
+      "difficulty": "easy",
+      "min_age": 13,
+      "answer_key": "b",
+      "status": "draft",
+      "author": "padav-team",
+      "accessibility_notes": "Text only; screen-reader friendly.",
+      "translations": {
+        "en": {
+          "stem": "A pen costs 4 rupees more than a pencil. Together they cost 14 rupees. How much is the pencil?",
+          "options": [
+            {
+              "key": "a",
+              "text": "3"
+            },
+            {
+              "key": "b",
+              "text": "5"
+            },
+            {
+              "key": "c",
+              "text": "7"
+            },
+            {
+              "key": "d",
+              "text": "9"
+            }
+          ],
+          "explanation": "Pencil = x, pen = x + 4, so 2x + 4 = 14 and x = 5.",
+          "distractor_rationale": "7 is the common mistake of subtracting 4 only once."
+        },
+        "hi": {
+          "stem": "एक पेन पेंसिल से 4 रुपये महँगा है। दोनों मिलाकर 14 रुपये के हैं। पेंसिल कितने की है?",
+          "options": [
+            {
+              "key": "a",
+              "text": "3"
+            },
+            {
+              "key": "b",
+              "text": "5"
+            },
+            {
+              "key": "c",
+              "text": "7"
+            },
+            {
+              "key": "d",
+              "text": "9"
+            }
+          ],
+          "explanation": "पेंसिल = x, पेन = x + 4, इसलिए 2x + 4 = 14 और x = 5।",
+          "reviewed": false
+        }
+      }
+    },
+    {
+      "item_code": "PIA-GQ-NP-001",
+      "version": 1,
+      "domain": "gq",
+      "subdomain": "number-pattern",
+      "item_format": "pattern",
+      "difficulty": "hard",
+      "min_age": 13,
+      "answer_key": "c",
+      "status": "draft",
+      "author": "padav-team",
+      "accessibility_notes": "Text only; screen-reader friendly.",
+      "translations": {
+        "en": {
+          "stem": "In the series 1, 4, 9, 16, 25 the nth term is n squared. What is the 8th term?",
+          "options": [
+            {
+              "key": "a",
+              "text": "49"
+            },
+            {
+              "key": "b",
+              "text": "56"
+            },
+            {
+              "key": "c",
+              "text": "64"
+            },
+            {
+              "key": "d",
+              "text": "81"
+            }
+          ],
+          "explanation": "The nth term is n squared, so the 8th term is 64.",
+          "distractor_rationale": "49 is the 7th term."
+        },
+        "hi": {
+          "stem": "श्रृंखला 1, 4, 9, 16, 25 में n-वाँ पद n का वर्ग है। 8वाँ पद क्या है?",
+          "options": [
+            {
+              "key": "a",
+              "text": "49"
+            },
+            {
+              "key": "b",
+              "text": "56"
+            },
+            {
+              "key": "c",
+              "text": "64"
+            },
+            {
+              "key": "d",
+              "text": "81"
+            }
+          ],
+          "explanation": "n-वाँ पद n² है, इसलिए 8वाँ पद 64 है।",
+          "reviewed": false
+        }
+      }
+    }
+  ]
+}

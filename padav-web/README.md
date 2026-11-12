@@ -95,3 +95,18 @@ Foundation and initial experience include the responsive app shell, onboarding, 
 - `/profile` edits name, phone, date of birth, education level and weekly study goal (validated on client and server) and lists/removes your exams.
 - `/settings` switches language and theme (applied instantly, synced to the account best-effort) and changes the password via `POST /api/v1/auth/change-password`. A successful change signs out every other session and returns fresh tokens.
 - The dashboard trend chart, streak week and next-test card use real data (`/analytics/trends`, `/analytics/overview?tz_offset=`, `/tests`). Streak days are calculated in the browser's time zone.
+
+## Padav Intelligence Assessment (PIA)
+
+Research build of the PIA described in the master specification (v1.0). It produces **experimental raw results only**; no IQ-style score exists until norms do.
+
+- Blueprint constants (50 items, seven timed subtests, 46 min, difficulty mix, 240-item pool) live in `app/services/pia_blueprint.py`. Changing them is a formal specification revision.
+- Flow: `POST /pia/consent` → `POST /pia/sessions` → per subtest `POST .../subtests/{domain}/start`, `PUT .../answers`, `POST .../complete` → `POST .../finish` → `GET .../report`. Subtests run strictly in order, one at a time.
+- The server owns the clock: each subtest has a server-computed deadline (2 s answer grace). Late answers get 409 and the run is marked `timed_out`. An `interruption` event flags the run but does not pause the timer; exclusion/retest policy is for the analysis plan.
+- Answer keys, explanations and difficulty never leave the server. `pia_responses` and `pia_events` are append-only (the ORM refuses updates/deletes); the newest response per item is the final answer.
+- Consent is required before a session (13+; under 18 needs guardian consent). Reports carry `status: "experimental"`, `norm_version: null` and limitation notices.
+- Content: `python -m app.cli import-pia content/pia-sample.json [--activate]`. Imports are atomic and versioned (existing item versions are skipped). A form can only be activated with exactly 50 non-draft items matching the blueprint's domain and difficulty counts. `content/pia-sample.json` shows the format (six draft items, English + Hindi).
+
+### PIA screens
+
+`/pia` (intro + consent, resumes an open session) → `/pia/sessions/:id` (section list, one timed section at a time) → `/pia/sessions/:id/report`. The runner mirrors the server's countdown, saves every answer immediately (with response time), treats a 409 as "time is up", and reports offline/tab-hidden periods as interruption events. The report shows raw counts only; it never shows an IQ, percentile or label.

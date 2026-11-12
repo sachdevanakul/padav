@@ -8,7 +8,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.api.v1 import analytics, auth, bookmarks, courses, exams, lessons, planner, tests, users
+from app.api.v1 import analytics, auth, bookmarks, courses, exams, lessons, pia, planner, tests, users
 from app.core.config import settings
 from app.core.exceptions import DomainError
 from app.core.middleware import SecurityHeadersMiddleware
@@ -18,7 +18,7 @@ from app.services.seed import seed_development_data
 logger = logging.getLogger("padav")
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-ROUTERS = (auth, users, exams, courses, tests, analytics, bookmarks, lessons, planner)
+ROUTERS = (auth, users, exams, courses, tests, analytics, bookmarks, lessons, planner, pia)
 LEGACY_ASSET_DIRS = ("css", "data", "icons", "js")
 
 

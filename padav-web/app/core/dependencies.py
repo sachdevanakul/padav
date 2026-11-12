@@ -14,6 +14,7 @@ from app.services.analytics import AnalyticsService
 from app.services.assessment import TestService
 from app.services.auth import AuthService
 from app.services.catalog import CatalogService
+from app.services.pia import PiaService
 from app.services.personal import BookmarkService, PlannerService
 from app.services.users import UserService
 
@@ -68,3 +69,4 @@ TestServiceDep = Annotated[TestService, provide(TestService)]
 BookmarkServiceDep = Annotated[BookmarkService, provide(BookmarkService)]
 PlannerServiceDep = Annotated[PlannerService, provide(PlannerService)]
 AnalyticsServiceDep = Annotated[AnalyticsService, provide(AnalyticsService)]
+PiaServiceDep = Annotated[PiaService, provide(PiaService)]
