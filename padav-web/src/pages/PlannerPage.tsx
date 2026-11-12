@@ -2,6 +2,7 @@ import { useMemo, useState, type FormEvent } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ArrowLeft, ArrowRight, CalendarDays, Check, Clock3, Plus, Trash2, X } from 'lucide-react'
 import AppShell from '../layouts/AppShell'
+import { Modal } from '../components/ui/Modal'
 import { api, type PlannerBlock } from '../services/api'
 import { preferencesStore } from '../store/preferences'
 import { translations } from '../locales/translations'
@@ -74,10 +75,10 @@ export default function PlannerPage() {
 
     <section className="planner-summary card">
       <div className="planner-week-nav"><button className="icon-button" aria-label={t.previousWeek} onClick={() => setAnchor((value) => new Date(value.getFullYear(), value.getMonth(), value.getDate() - 7))}><ArrowLeft size={16} /></button><div><span>{t.thisWeek}</span><strong>{weekLabel}</strong></div><button className="icon-button" aria-label={t.nextWeek} onClick={() => setAnchor((value) => new Date(value.getFullYear(), value.getMonth(), value.getDate() + 7))}><ArrowRight size={16} /></button><button className="planner-today" onClick={() => setAnchor(new Date())}>{language === 'hi' ? 'आज' : 'Today'}</button></div>
-      <div className="planner-progress"><span className="planner-progress-icon"><Check size={15} /></span><strong>{completedCount}/{blocks.length}</strong><span>{language === 'hi' ? 'सत्र पूरे' : 'sessions complete'}</span><div><i style={{ width: `${blocks.length ? completedCount / blocks.length * 100 : 0}%` }} /></div></div>
+      <div className="planner-progress" aria-label={`${completedCount} of ${blocks.length} sessions complete`}><span className="planner-progress-icon"><Check size={15} /></span><strong>{completedCount}/{blocks.length}</strong><span>{language === 'hi' ? 'सत्र पूरे' : 'sessions complete'}</span><div role="progressbar" aria-valuemin={0} aria-valuemax={blocks.length} aria-valuenow={completedCount}><i style={{ width: `${blocks.length ? completedCount / blocks.length * 100 : 0}%` }} /></div></div>
     </section>
 
-    {query.isPending ? <div className="planner-state card">{language === 'hi' ? 'आपकी समय-सारणी लोड हो रही है…' : 'Loading your timetable…'}</div> : query.isError ? <div className="planner-state card">{query.error.message}</div> : <section className="planner-week" aria-label={t.plannerTitle}>
+    {query.isPending ? <div className="planner-week" aria-busy="true" aria-label={language === 'hi' ? 'समय-सारणी लोड हो रही है' : 'Loading timetable'}>{Array.from({ length: 7 }, (_, index) => <div key={index} className="phase6-skeleton" />)}</div> : query.isError ? <div className="planner-state card" role="alert">{query.error.message}<button className="button button-secondary" onClick={() => void query.refetch()}>{language === 'hi' ? 'फिर कोशिश करें' : 'Try again'}</button></div> : <section key={start} className="planner-week phase6-enter" aria-label={t.plannerTitle} aria-live="polite">
       {week.map((day) => {
         const dayBlocks = blocks.filter((block) => block.study_date === dateKey(day))
         const isToday = dateKey(day) === dateKey(new Date())
@@ -91,9 +92,9 @@ export default function PlannerPage() {
       })}
     </section>}
 
-    {showForm && <div className="planner-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setShowForm(false) }}><section className="planner-modal card" role="dialog" aria-modal="true" aria-labelledby="planner-form-title"><header><div><p className="eyebrow"><Clock3 size={14} /> {t.thisWeek}</p><h2 id="planner-form-title">{t.addSession}</h2></div><button className="icon-button" aria-label={t.cancel} onClick={() => setShowForm(false)}><X size={17} /></button></header>
+    <Modal isOpen={showForm} onClose={() => setShowForm(false)} title={t.addSession} ariaLabelledBy="planner-form-title" showCloseButton={false} className="planner-modal card"><header><div><p className="eyebrow"><Clock3 size={14} /> {t.thisWeek}</p><h2 id="planner-form-title">{t.addSession}</h2></div><button className="icon-button" aria-label={t.cancel} onClick={() => setShowForm(false)}><X size={17} /></button></header>
       <form onSubmit={submit}><label>{t.sessionTitle}<input name="title" required maxLength={120} placeholder={language === 'hi' ? 'जैसे: गणित अभ्यास' : 'e.g. Quantitative aptitude practice'} autoFocus /></label><label>{t.subject}<input name="subject" maxLength={80} placeholder={language === 'hi' ? 'जैसे: गणित' : 'e.g. Quantitative aptitude'} /></label><label>{t.date}<select name="study_date" defaultValue={dateKey(week.find((day) => dateKey(day) === dateKey(new Date())) ?? week[0])}>{week.map((day) => <option key={dateKey(day)} value={dateKey(day)}>{new Intl.DateTimeFormat(dateLocale, { weekday: 'long', month: 'short', day: 'numeric' }).format(day)}</option>)}</select></label><div className="planner-time-fields"><label>{t.startTime}<input name="start_time" type="time" defaultValue="09:00" required /></label><label>{t.endTime}<input name="end_time" type="time" defaultValue="10:00" required /></label></div>{error && <p className="planner-error" role="alert">{error}</p>}<footer><button className="button button-ghost" type="button" onClick={() => setShowForm(false)}>{t.cancel}</button><button className="button button-primary" type="submit" disabled={add.isPending}>{add.isPending ? (language === 'hi' ? 'जोड़ रहे हैं…' : 'Adding…') : t.saveSession}</button></footer></form>
-    </section></div>}
+    </Modal>
   </AppShell>
 }
 

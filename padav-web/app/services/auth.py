@@ -7,7 +7,7 @@ from app.core.rate_limit import LoginThrottle, login_throttle
 from app.core.security import PasswordHasher, TokenService, TokenType, password_hasher, token_service
 from app.models.user import User
 from app.repositories import RefreshTokenRepository, UserRepository
-from app.schemas.auth import Token, UserLogin, UserRegister
+from app.schemas.auth import ChangePassword, Token, UserLogin, UserRegister
 from app.services.base import BaseService
 
 _BAD_CREDENTIALS = "Incorrect email or password"
@@ -90,9 +90,25 @@ class AuthService(BaseService):
 
     def logout(self, refresh_token: str) -> None:
         stored = self.refresh_tokens.get_by_hash(self.tokens.fingerprint(refresh_token))
-        if stored is not None and stored.revoked_at is None:
-            stored.revoked_at = utcnow()
+        if stored is not None:
+            self.refresh_tokens.delete(stored)  # removed, so a later replay is just "invalid", not a theft signal
             self.commit()
+
+    def change_password(self, user: User, data: ChangePassword) -> Token:
+        """Verify the current password, set the new one and sign out every other session."""
+        key = f"pw:{user.id}"
+        self.throttle.ensure_allowed(key)
+        if not self.hasher.verify(data.current_password, user.hashed_password):
+            self.throttle.record_failure(key)
+            raise BadRequestError("Current password is incorrect")  # 400, not 401: the session itself is fine
+        if data.new_password == data.current_password:
+            raise BadRequestError("Choose a password you haven't used here before")
+        self.throttle.clear(key)
+        user.hashed_password = self.hasher.hash(data.new_password)
+        self.refresh_tokens.delete_all_for_user(user.id)
+        tokens = self._issue_tokens(user.id)  # the current device stays signed in
+        self.commit()
+        return tokens
 
     # -- helpers ----------------------------------------------------------------
     def _issue_tokens(self, user_id: str) -> Token:

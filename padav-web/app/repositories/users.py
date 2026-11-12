@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import func, select, update
+from sqlalchemy import delete, func, select, update
 
 from app.core.clock import utcnow
 from app.models.refresh_token import RefreshToken
@@ -28,6 +28,11 @@ class RefreshTokenRepository(BaseRepository[RefreshToken]):
 
     def store(self, user_id: str, token_hash: str, expires_at: datetime) -> RefreshToken:
         return self.add(RefreshToken(user_id=user_id, token_hash=token_hash, expires_at=expires_at))
+
+    def delete_all_for_user(self, user_id: str) -> None:
+        """Explicit sign-out of every session. Rows are removed (not marked revoked) so a
+        later replay is a plain "invalid token", not mistaken for theft of a rotated token."""
+        self.db.execute(delete(RefreshToken).where(RefreshToken.user_id == user_id))
 
     def revoke_all_for_user(self, user_id: str) -> None:
         self.db.execute(

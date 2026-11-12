@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Check, X } from 'lucide-react'
 import AppShell from '../layouts/AppShell'
 import { formatMarks, pickText } from '../lib/localize'
+import { useReducedMotion } from '../hooks/useReducedMotion'
 import { api, type ReviewItem } from '../services/api'
 import { translations } from '../locales/translations'
 import { preferencesStore } from '../store/preferences'
@@ -16,6 +17,28 @@ function outcome(item: ReviewItem): Exclude<Filter, 'all'> {
   return item.selected_option_key === item.correct_option_key ? 'correct' : 'incorrect'
 }
 
+function useScoreCountUp(target: number): number {
+  const [value, setValue] = useState(0)
+  const reducedMotion = useReducedMotion()
+  useEffect(() => {
+    if (reducedMotion || typeof requestAnimationFrame !== 'function') {
+      setValue(target)
+      return
+    }
+    const start = performance.now()
+    let frame = 0
+    function tick(now: number) {
+      const progress = Math.min((now - start) / 850, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setValue(Math.round(target * eased * 100) / 100)
+      if (progress < 1) frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [reducedMotion, target])
+  return value
+}
+
 export default function TestResultPage() {
   const { attemptId = '' } = useParams()
   const language = preferencesStore((state) => state.language)
@@ -23,6 +46,7 @@ export default function TestResultPage() {
   const [filter, setFilter] = useState<Filter>('all')
   const attempt = useQuery({ queryKey: ['attempt', attemptId, 'result'], queryFn: () => api.attempt(attemptId), staleTime: 0 })
   const review = useQuery({ queryKey: ['attempt-review', attemptId], queryFn: () => api.attemptReview(attemptId), enabled: attempt.data?.is_submitted === true })
+  const animatedScore = useScoreCountUp(attempt.data?.score_obtained ?? 0)
 
   if (attempt.data && !attempt.data.is_submitted) return <Navigate to={`/tests/attempts/${attemptId}`} replace />
   if (attempt.isError) return <AppShell><div className="planner-state card" role="alert">{attempt.error.message}</div></AppShell>
@@ -44,14 +68,15 @@ export default function TestResultPage() {
     <section className="page-heading"><p className="eyebrow">PADAV RESULT</p><h1>{t.resultTitle}</h1><p className="muted">{a.test_title}</p></section>
 
     <section className="tx-result card" aria-label={t.resultTitle}>
-      <div className="tx-score"><span>{t.score}</span><strong>{formatMarks(a.score_obtained)}<small> / {formatMarks(a.max_score)}</small></strong></div>
+      <div className="tx-score"><span>{t.score}</span><strong aria-label={`${formatMarks(a.score_obtained)} / ${formatMarks(a.max_score)}`}><span aria-hidden="true">{formatMarks(animatedScore)}</span><small aria-hidden="true"> / {formatMarks(a.max_score)}</small><span className="pdv-sr-only">{formatMarks(a.score_obtained)}</span></strong></div>
       <dl className="tx-stats">
         <div className="is-correct"><dt>{t.correctLabel}</dt><dd>{a.correct_answers}</dd></div>
         <div className="is-incorrect"><dt>{t.incorrectLabel}</dt><dd>{a.incorrect_answers}</dd></div>
         <div><dt>{t.unansweredLabel}</dt><dd>{a.unanswered_questions}</dd></div>
         <div><dt>{t.accuracy}</dt><dd>{Math.round(a.accuracy)}%</dd></div>
       </dl>
-      <div className="tx-result-actions"><Link className="button button-secondary" to="/tests">{t.backToTests}</Link></div>
+      <div className="tx-result-progress" role="progressbar" aria-label={t.score} aria-valuemin={0} aria-valuemax={a.max_score} aria-valuenow={a.score_obtained}><span style={{ width: `${a.max_score > 0 ? Math.max(0, Math.min(100, a.score_obtained / a.max_score * 100)) : 0}%` }} /></div>
+      <div className="tx-result-actions"><Link className="button button-primary" to="/tests">{t.retake}</Link></div>
     </section>
 
     <section className="tx-review" aria-labelledby="review-heading">
@@ -59,7 +84,7 @@ export default function TestResultPage() {
       <div className="tx-tabs" role="tablist" aria-label={t.reviewTitle}>
         {filters.map((entry) => <button key={entry.id} role="tab" aria-selected={filter === entry.id} className={filter === entry.id ? 'is-active' : ''} onClick={() => setFilter(entry.id)}>{entry.label} <small>{entry.count}</small></button>)}
       </div>
-      {review.isPending ? <div className="planner-state card">{t.loadingResult}</div> : review.isError ? <div className="planner-state card" role="alert">{review.error.message}</div> : visible.length === 0 ? <p className="muted">{t.nothingToShow}</p> : <ol className="tx-review-list">
+      {review.isPending ? <div className="tx-review-list" aria-busy="true">{[0, 1].map((item) => <div key={item} className="phase6-skeleton" />)}</div> : review.isError ? <div className="planner-state card" role="alert">{review.error.message}<button className="button button-secondary" onClick={() => void review.refetch()}>Try again</button></div> : visible.length === 0 ? <div className="empty-state card"><p>{t.nothingToShow}</p></div> : <ol className="tx-review-list">
         {visible.map(({ item, number }) => <ReviewCard key={item.question.id} item={item} number={number + 1} language={language} t={t} />)}
       </ol>}
     </section>

@@ -5,6 +5,6 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: ReactNode
 }
 
-export function Button({ variant = 'primary', icon, children, className = '', ...props }: Props) {
-  return <button className={`button button-${variant} ${className}`} {...props}>{icon}{children}</button>
+export function Button({ variant = 'primary', icon, children, className = '', type = 'button', ...props }: Props) {
+  return <button type={type} className={`button button-${variant} ${className}`} {...props}>{icon}{children}</button>
 }

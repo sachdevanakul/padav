@@ -85,6 +85,28 @@ describe('test arena', () => {
     expect(within(card).queryByRole('button', { name: /start test/i })).toBeNull()
   })
 
+  it('filters tests by actual attempt status and shows saved attempt progress', async () => {
+    const user = userEvent.setup()
+    const completedTest = { ...TEST, id: 't2', title: 'Completed test' }
+    const availableTest = { ...TEST, id: 't3', title: 'Available test' }
+    mockApi({
+      'GET /tests': [TEST, completedTest, availableTest],
+      'GET /tests/attempts': [attempt(), { ...SUBMITTED, id: 'att2', test_id: 't2', test_title: 'Completed test' }],
+    })
+    renderAt('/tests')
+
+    const grid = await screen.findByRole('region', { name: /test arena/i })
+    expect(within(grid).getAllByRole('heading')).toHaveLength(3)
+    expect(screen.getByRole('progressbar', { name: /question progress/i })).toHaveAttribute('aria-valuenow', '0')
+
+    await user.click(screen.getByRole('button', { name: /^submitted$/i }))
+    expect(within(grid).getByRole('heading', { name: 'Completed test' })).toBeInTheDocument()
+    expect(within(grid).queryByRole('heading', { name: 'Practice Test 1' })).toBeNull()
+
+    await user.click(screen.getByRole('button', { name: /^available$/i }))
+    expect(within(grid).getByRole('heading', { name: 'Available test' })).toBeInTheDocument()
+  })
+
   it('saves answers as JSON, tracks the palette, and submits after confirmation', async () => {
     const user = userEvent.setup()
     const calls = mockApi({

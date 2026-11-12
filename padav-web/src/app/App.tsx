@@ -2,14 +2,18 @@ import { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import AppShell from '../layouts/AppShell'
+import AnalyticsPage from '../pages/AnalyticsPage'
 import AuthPage from '../pages/AuthPage'
 import ExamSelectionPage from '../pages/ExamSelectionPage'
 import OnboardingPage from '../pages/OnboardingPage'
 import PlannerPage from '../pages/PlannerPage'
 import TestsPage from '../pages/TestsPage'
+import ProfilePage from '../pages/ProfilePage'
+import SettingsPage from '../pages/SettingsPage'
 import { api } from '../services/api'
 import { authStore } from '../store/auth'
 import { preferencesStore } from '../store/preferences'
+import ToastProvider from '../components/ui/Toast'
 
 const DashboardPage = lazy(() => import('../pages/DashboardPage'))
 const TestRunnerPage = lazy(() => import('../pages/TestRunnerPage'))
@@ -48,7 +52,7 @@ export default function App() {
     document.documentElement.lang = language
   }, [theme, language])
 
-  return <Routes>
+  return <ToastProvider><Routes>
     <Route path="/onboarding" element={<OnboardingPage />} />
     <Route path="/auth/login" element={<AuthPage mode="login" />} />
     <Route path="/auth/register" element={<AuthPage mode="register" />} />
@@ -60,11 +64,11 @@ export default function App() {
       <Route path="/tests" element={<TestsPage />} />
       <Route path="/tests/attempts/:attemptId" element={<Suspense fallback={<div className="page-loading">Preparing your test…</div>}><TestRunnerPage /></Suspense>} />
       <Route path="/tests/attempts/:attemptId/result" element={<Suspense fallback={<div className="page-loading">Loading your result…</div>}><TestResultPage /></Suspense>} />
-      <Route path="/analytics" element={<WorkspacePage title="Your analytics" />} />
+      <Route path="/analytics" element={<AnalyticsPage />} />
       <Route path="/bookmarks" element={<WorkspacePage title="Your bookmarks" />} />
-      <Route path="/profile" element={<WorkspacePage title="Your profile" />} />
-      <Route path="/settings" element={<WorkspacePage title="Settings" />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/settings" element={<SettingsPage />} />
     </Route>
     <Route path="*" element={<Navigate to="/" replace />} />
-  </Routes>
+  </Routes></ToastProvider>
 }

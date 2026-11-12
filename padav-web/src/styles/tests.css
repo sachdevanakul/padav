@@ -18,6 +18,7 @@
 .tx-attempts h2,.tx-review h2{margin:0 0 14px;font-family:var(--head);font-size:16px}
 .tx-attempt-list{display:grid}
 .tx-attempt-row{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:16px;padding:14px 18px;border-bottom:1px solid var(--border)}
+.tx-attempt-row{grid-template-columns:minmax(0,1fr) auto minmax(90px,130px) auto auto}
 .tx-attempt-row:last-child{border-bottom:0}
 .tx-attempt-row strong{display:block;font-size:13px}
 .tx-attempt-row small{color:var(--muted);font-size:10.5px}

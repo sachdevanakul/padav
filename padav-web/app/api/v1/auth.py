@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 
 from app.core.dependencies import AuthServiceDep, ClientId, CurrentUser
 from app.core.rate_limit import auth_rate_limit
-from app.schemas.auth import LogoutRequest, RefreshRequest, Token, UserLogin, UserOut, UserRegister
+from app.schemas.auth import ChangePassword, LogoutRequest, RefreshRequest, Token, UserLogin, UserOut, UserRegister
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 throttled = [Depends(auth_rate_limit)]
@@ -31,6 +31,12 @@ def logout(token_in: LogoutRequest, service: AuthServiceDep):
     """Revoke the supplied refresh token."""
     service.logout(token_in.refresh_token)
     return {"message": "Successfully logged out"}
+
+
+@router.post("/change-password", response_model=Token, dependencies=throttled)
+def change_password(data: ChangePassword, current_user: CurrentUser, service: AuthServiceDep):
+    """Change password; all other sessions are revoked and fresh tokens are returned."""
+    return service.change_password(current_user, data)
 
 
 @router.get("/me", response_model=UserOut)

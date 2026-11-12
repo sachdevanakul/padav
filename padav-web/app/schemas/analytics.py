@@ -9,6 +9,7 @@ class AnalyticsOverview(ORMModel):
     total_study_hours: float
     current_streak: int
     total_questions_attempted: int
+    active_dates: list[str] = []  # ISO dates with study activity in the last 7 days
 
 
 class SubjectPerformance(ORMModel):

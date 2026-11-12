@@ -30,7 +30,8 @@ class UserService(BaseService):
     def get_profile(self, user: User) -> UserProfile:
         profile = self.profiles.get_for_user(user.id)
         if profile is None:
-            raise NotFoundError.for_resource("Profile")
+            profile = self.profiles.add(UserProfile(user_id=user.id))
+            self.commit()
         return profile
 
     def update_profile(self, user: User, data: UserProfileUpdate) -> UserProfile:

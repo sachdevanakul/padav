@@ -125,3 +125,45 @@ def test_profile_validation(client, user):
     assert client.put(f"{API}/users/me/profile", headers=h, json={"study_goal_hours_per_week": 9999}).status_code == 422
     assert client.put(f"{API}/users/me/profile", headers=h, json={"date_of_birth": "3000-01-01"}).status_code == 422
     assert client.put(f"{API}/users/me/profile", headers=h, json={"phone": "+91 98765 43210", "date_of_birth": "2000-01-31"}).status_code == 200
+
+
+def test_change_password_revokes_other_sessions(client):
+    tokens = register(client)
+    other_device = client.post(f"{API}/auth/login", json={"email": "user@example.com", "password": PASSWORD}).json()
+    h = auth_headers(tokens)
+    bad = client.post(f"{API}/auth/change-password", headers=h, json={"current_password": "wrong-password", "new_password": "a-brand-new-pass-9"})
+    assert bad.status_code == 400
+    same = client.post(f"{API}/auth/change-password", headers=h, json={"current_password": PASSWORD, "new_password": PASSWORD})
+    assert same.status_code == 400
+    weak = client.post(f"{API}/auth/change-password", headers=h, json={"current_password": PASSWORD, "new_password": "short"})
+    assert weak.status_code == 422
+
+    ok = client.post(f"{API}/auth/change-password", headers=h, json={"current_password": PASSWORD, "new_password": "a-brand-new-pass-9"})
+    assert ok.status_code == 200
+    # the other device's refresh token and the old one are dead; the returned tokens work
+    assert client.post(f"{API}/auth/refresh", json={"refresh_token": other_device["refresh_token"]}).status_code == 401
+    assert client.post(f"{API}/auth/refresh", json={"refresh_token": tokens["refresh_token"]}).status_code == 401
+    assert client.post(f"{API}/auth/refresh", json={"refresh_token": ok.json()["refresh_token"]}).status_code == 200
+    assert client.post(f"{API}/auth/login", json={"email": "user@example.com", "password": PASSWORD}).status_code == 401
+    assert client.post(f"{API}/auth/login", json={"email": "user@example.com", "password": "a-brand-new-pass-9"}).status_code == 200
+
+
+def test_change_password_requires_auth_and_is_throttled(client):
+    assert client.post(f"{API}/auth/change-password", json={"current_password": "x", "new_password": "a-brand-new-pass-9"}).status_code == 401
+    tokens = register(client)
+    codes = [client.post(f"{API}/auth/change-password", headers=auth_headers(tokens),
+                         json={"current_password": "wrong-password", "new_password": "a-brand-new-pass-9"}).status_code for _ in range(6)]
+    assert codes[:5] == [400] * 5 and codes[5] == 429
+
+
+def test_profile_is_created_empty_on_first_read(client, user):
+    r = client.get(f"{API}/users/me/profile", headers=user["headers"])
+    assert r.status_code == 200 and r.json()["phone"] is None
+
+
+def test_replaying_a_signed_out_token_does_not_kill_the_new_session(client):
+    first = register(client)
+    other = client.post(f"{API}/auth/login", json={"email": "user@example.com", "password": PASSWORD}).json()
+    client.post(f"{API}/auth/logout", json={"refresh_token": first["refresh_token"]})
+    assert client.post(f"{API}/auth/refresh", json={"refresh_token": first["refresh_token"]}).status_code == 401  # replay: rejected ...
+    assert client.post(f"{API}/auth/refresh", json={"refresh_token": other["refresh_token"]}).status_code == 200  # ... but nobody else is affected

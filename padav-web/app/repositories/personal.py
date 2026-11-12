@@ -29,6 +29,11 @@ class PlannerBlockRepository(OwnedRepository[PlannerBlock]):
             .order_by(PlannerBlock.study_date, PlannerBlock.start_time)
         ).all()
 
+    def completed_dates(self, user_id: str) -> set[date]:
+        return set(self.db.scalars(
+            select(PlannerBlock.study_date).where(PlannerBlock.user_id == user_id, PlannerBlock.completed.is_(True)).distinct()
+        ))
+
     def has_overlap(self, user_id: str, day: date, start: time, end: time) -> bool:
         return self.db.scalars(
             select(PlannerBlock.id).where(

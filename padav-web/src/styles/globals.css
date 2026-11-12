@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./phase6.css";
 :root{font-family:Inter,"Noto Sans Devanagari",sans-serif;--bg:#061224;--surface:#0b1a2d;--raised:#102642;--primary:#39d9ff;--blue:#6aa2ff;--mint:#54d6b1;--mint-soft:#36e0c21a;--on-mint:#06251f;--purple:#b7a4ff;--purple-soft:#725cff22;--orange:#ffb86b;--orange-fill:#a95200;--orange-soft:#ff96301c;--sky:#80d5ff;--sky-soft:#36b9ff1c;--danger:#ff9eae;--danger-soft:#ff667f12;--danger-border:#ff667f66;--text:#f4f8ff;--muted:#b1c2d4;--border:#52708e;--grid:#304a65;--hover-bg:#ffffff12;--active-bg:#725cff22;--head:"Space Grotesk","Noto Sans Devanagari",sans-serif;color:var(--text);background:var(--bg);color-scheme:dark}
 :root[data-theme=light]{--bg:#f1f5fa;--surface:#ffffff;--raised:#e8f0f8;--primary:#006e96;--blue:#245bb5;--mint:#08785f;--mint-soft:#08785f14;--on-mint:#ffffff;--purple:#6246b8;--purple-soft:#6246b814;--orange:#995000;--orange-fill:#995000;--orange-soft:#99500012;--sky:#126b91;--sky-soft:#126b9112;--danger:#a51f36;--danger-soft:#a51f360d;--danger-border:#a51f3666;--text:#142235;--muted:#4a6078;--border:#728aa3;--grid:#c7d4e1;--hover-bg:#1422350b;--active-bg:#6246b814;color-scheme:light}
 *{box-sizing:border-box}html,body,#root{min-width:320px;min-height:100%;margin:0}body{min-height:100vh;background:radial-gradient(ellipse at 82% 4%,color-mix(in srgb,var(--blue) 13%,transparent),transparent 33%),radial-gradient(ellipse at 12% 30%,color-mix(in srgb,var(--primary) 8%,transparent),transparent 35%),var(--bg);color:var(--text);transition:background .2s,color .2s}button,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{color:inherit}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:var(--head)}.muted{color:var(--muted)}.eyebrow{margin:0 0 8px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.16em}
@@ -37,3 +38,1039 @@
 .auth-visual{color:#f4f8ff}
 .auth-visual .brand,.auth-visual .brand small,.auth-visual-content h2,.auth-visual-content>p:not(.eyebrow),.auth-proof,.auth-visual-foot{color:#f4f8ff}
 .auth-visual .brand small,.auth-visual-content>p:not(.eyebrow),.auth-proof,.auth-visual-foot{color:#d5deeb}
+
+/* ==========================================================================
+   PADAV DESIGN SYSTEM — CSS Variables (--pdv- prefix, no collisions)
+   ========================================================================== */
+
+:root {
+  --pdv-space-px: 1px;
+  --pdv-space-0: 0;
+  --pdv-space-1: 4px;
+  --pdv-space-2: 8px;
+  --pdv-space-3: 12px;
+  --pdv-space-4: 16px;
+  --pdv-space-5: 20px;
+  --pdv-space-6: 24px;
+  --pdv-space-8: 32px;
+  --pdv-space-10: 40px;
+  --pdv-space-12: 48px;
+  --pdv-space-16: 64px;
+  --pdv-space-20: 80px;
+  --pdv-space-24: 96px;
+  --pdv-space-32: 128px;
+
+  --pdv-radius-none: 0;
+  --pdv-radius-sm: 4px;
+  --pdv-radius: 8px;
+  --pdv-radius-md: 12px;
+  --pdv-radius-lg: 16px;
+  --pdv-radius-xl: 20px;
+  --pdv-radius-2xl: 24px;
+  --pdv-radius-full: 9999px;
+
+  --pdv-border-width: 1px;
+
+  --pdv-shadow-sm: 0 1px 2px 0 color-mix(in srgb, var(--text) 8%, transparent);
+  --pdv-shadow: 0 4px 6px -1px color-mix(in srgb, var(--text) 10%, transparent), 0 2px 4px -2px color-mix(in srgb, var(--text) 4%, transparent);
+  --pdv-shadow-md: 0 10px 15px -3px color-mix(in srgb, var(--text) 10%, transparent), 0 4px 6px -4px color-mix(in srgb, var(--text) 4%, transparent);
+  --pdv-shadow-lg: 0 20px 25px -5px color-mix(in srgb, var(--text) 10%, transparent), 0 8px 10px -6px color-mix(in srgb, var(--text) 4%, transparent);
+  --pdv-shadow-xl: 0 32px 64px -12px color-mix(in srgb, var(--text) 12%, transparent);
+
+  --pdv-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --pdv-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --pdv-transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --pdv-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --pdv-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --pdv-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --pdv-text-xs: 0.75rem;
+  --pdv-text-sm: 0.875rem;
+  --pdv-text-base: 1rem;
+  --pdv-text-lg: 1.125rem;
+  --pdv-text-xl: 1.25rem;
+  --pdv-text-2xl: 1.5rem;
+  --pdv-text-3xl: 1.875rem;
+  --pdv-text-4xl: 2.25rem;
+
+  --pdv-leading-none: 1;
+  --pdv-leading-tight: 1.25;
+  --pdv-leading-snug: 1.375;
+  --pdv-leading-normal: 1.5;
+  --pdv-leading-relaxed: 1.625;
+
+  --pdv-z-0: 0;
+  --pdv-z-10: 10;
+  --pdv-z-20: 20;
+  --pdv-z-30: 30;
+  --pdv-z-40: 40;
+  --pdv-z-50: 50;
+}
+
+:root[data-theme=light] {
+  --pdv-shadow-sm: 0 1px 2px 0 color-mix(in srgb, var(--text) 12%, transparent);
+  --pdv-shadow: 0 4px 6px -1px color-mix(in srgb, var(--text) 15%, transparent), 0 2px 4px -2px color-mix(in srgb, var(--text) 6%, transparent);
+  --pdv-shadow-md: 0 10px 15px -3px color-mix(in srgb, var(--text) 15%, transparent), 0 4px 6px -4px color-mix(in srgb, var(--text) 6%, transparent);
+  --pdv-shadow-lg: 0 20px 25px -5px color-mix(in srgb, var(--text) 15%, transparent), 0 8px 10px -6px color-mix(in srgb, var(--text) 6%, transparent);
+  --pdv-shadow-xl: 0 32px 64px -12px color-mix(in srgb, var(--text) 18%, transparent);
+}
+
+/* ==========================================================================
+   PADAV DESIGN SYSTEM — Animation Keyframes
+   All animations respect prefers-reduced-motion.
+   ========================================================================== */
+
+@keyframes pdv-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pdv-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes pdv-slide-in-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pdv-slide-in-down {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pdv-slide-in-left {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pdv-slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pdv-scale-in {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pdv-scale-out {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.95); opacity: 0; }
+}
+
+@keyframes pdv-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes pdv-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes pdv-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pdv-bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 0.75; }
+  70% { transform: scale(0.9); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   PADAV DESIGN SYSTEM — Utility Classes (.pdv- prefix, no Tailwind collisions)
+   ========================================================================== */
+
+/* --- Animation utilities --- */
+.pdv-animate-fade-in { animation: pdv-fade-in var(--pdv-transition-base) both; }
+.pdv-animate-fade-out { animation: pdv-fade-out var(--pdv-transition-base) both; }
+.pdv-animate-slide-in-up { animation: pdv-slide-in-up var(--pdv-transition-slow) both; }
+.pdv-animate-slide-in-down { animation: pdv-slide-in-down var(--pdv-transition-slow) both; }
+.pdv-animate-slide-in-left { animation: pdv-slide-in-left var(--pdv-transition-base) both; }
+.pdv-animate-slide-in-right { animation: pdv-slide-in-right var(--pdv-transition-base) both; }
+.pdv-animate-scale-in { animation: pdv-scale-in var(--pdv-transition-base) both; }
+.pdv-animate-pulse { animation: pdv-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.pdv-animate-spin { animation: pdv-spin 1s linear infinite; }
+.pdv-animate-bounce-in { animation: pdv-bounce-in var(--pdv-transition-slow) both; }
+
+/* --- Layout utilities --- */
+.pdv-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--pdv-space-4);
+}
+.pdv-flex { display: flex; }
+.pdv-flex-col { display: flex; flex-direction: column; }
+.pdv-grid { display: grid; }
+.pdv-block { display: block; }
+.pdv-inline-flex { display: inline-flex; }
+.pdv-inline-block { display: inline-block; }
+.pdv-hidden { display: none; }
+.pdv-inline { display: inline; }
+.pdv-wrap { flex-wrap: wrap; }
+.pdv-nowrap { flex-wrap: nowrap; }
+
+.pdv-items-start { align-items: flex-start; }
+.pdv-items-center { align-items: center; }
+.pdv-items-end { align-items: flex-end; }
+.pdv-items-baseline { align-items: baseline; }
+.pdv-items-stretch { align-items: stretch; }
+
+.pdv-justify-start { justify-content: flex-start; }
+.pdv-justify-center { justify-content: center; }
+.pdv-justify-end { justify-content: flex-end; }
+.pdv-justify-between { justify-content: space-between; }
+.pdv-justify-around { justify-content: space-around; }
+.pdv-justify-evenly { justify-content: space-evenly; }
+
+.pdv-gap-1 { gap: var(--pdv-space-1); }
+.pdv-gap-2 { gap: var(--pdv-space-2); }
+.pdv-gap-3 { gap: var(--pdv-space-3); }
+.pdv-gap-4 { gap: var(--pdv-space-4); }
+.pdv-gap-6 { gap: var(--pdv-space-6); }
+.pdv-gap-8 { gap: var(--pdv-space-8); }
+
+/* --- Spacing utilities --- */
+.pdv-p-1 { padding: var(--pdv-space-1); }
+.pdv-p-2 { padding: var(--pdv-space-2); }
+.pdv-p-3 { padding: var(--pdv-space-3); }
+.pdv-p-4 { padding: var(--pdv-space-4); }
+.pdv-p-6 { padding: var(--pdv-space-6); }
+.pdv-p-8 { padding: var(--pdv-space-8); }
+.pdv-px-4 { padding-left: var(--pdv-space-4); padding-right: var(--pdv-space-4); }
+.pdv-py-4 { padding-top: var(--pdv-space-4); padding-bottom: var(--pdv-space-4); }
+.pdv-px-6 { padding-left: var(--pdv-space-6); padding-right: var(--pdv-space-6); }
+.pdv-py-6 { padding-top: var(--pdv-space-6); padding-bottom: var(--pdv-space-6); }
+
+.pdv-m-1 { margin: var(--pdv-space-1); }
+.pdv-m-2 { margin: var(--pdv-space-2); }
+.pdv-m-3 { margin: var(--pdv-space-3); }
+.pdv-m-4 { margin: var(--pdv-space-4); }
+.pdv-m-6 { margin: var(--pdv-space-6); }
+.pdv-m-8 { margin: var(--pdv-space-8); }
+.pdv-mx-auto { margin-left: auto; margin-right: auto; }
+.pdv-my-4 { margin-top: var(--pdv-space-4); margin-bottom: var(--pdv-space-4); }
+.pdv-mt-4 { margin-top: var(--pdv-space-4); }
+.pdv-mb-4 { margin-bottom: var(--pdv-space-4); }
+.pdv-ml-4 { margin-left: var(--pdv-space-4); }
+.pdv-mr-4 { margin-right: var(--pdv-space-4); }
+
+/* --- Typography utilities --- */
+.pdv-text-xs { font-size: var(--pdv-text-xs); }
+.pdv-text-sm { font-size: var(--pdv-text-sm); }
+.pdv-text-base { font-size: var(--pdv-text-base); }
+.pdv-text-lg { font-size: var(--pdv-text-lg); }
+.pdv-text-xl { font-size: var(--pdv-text-xl); }
+.pdv-text-2xl { font-size: var(--pdv-text-2xl); }
+.pdv-text-3xl { font-size: var(--pdv-text-3xl); }
+.pdv-text-4xl { font-size: var(--pdv-text-4xl); }
+
+.pdv-font-normal { font-weight: 400; }
+.pdv-font-medium { font-weight: 500; }
+.pdv-font-semibold { font-weight: 600; }
+.pdv-font-bold { font-weight: 700; }
+
+.pdv-leading-none { line-height: var(--pdv-leading-none); }
+.pdv-leading-tight { line-height: var(--pdv-leading-tight); }
+.pdv-leading-normal { line-height: var(--pdv-leading-normal); }
+.pdv-leading-relaxed { line-height: var(--pdv-leading-relaxed); }
+
+.pdv-text-left { text-align: left; }
+.pdv-text-center { text-align: center; }
+.pdv-text-right { text-align: right; }
+.pdv-text-justify { text-align: justify; }
+
+.pdv-text-inherit { color: inherit; }
+.pdv-text-current { color: currentColor; }
+
+.pdv-underline { text-decoration: underline; }
+.pdv-no-underline { text-decoration: none; }
+.pdv-line-through { text-decoration: line-through; }
+
+/* --- Border & radius utilities --- */
+.pdv-rounded { border-radius: var(--pdv-radius); }
+.pdv-rounded-sm { border-radius: var(--pdv-radius-sm); }
+.pdv-rounded-md { border-radius: var(--pdv-radius-md); }
+.pdv-rounded-lg { border-radius: var(--pdv-radius-lg); }
+.pdv-rounded-xl { border-radius: var(--pdv-radius-xl); }
+.pdv-rounded-2xl { border-radius: var(--pdv-radius-2xl); }
+.pdv-rounded-full { border-radius: var(--pdv-radius-full); }
+
+.pdv-border { border: var(--pdv-border-width) solid var(--border); }
+.pdv-border-0 { border: 0; }
+.pdv-border-t { border-top: var(--pdv-border-width) solid var(--border); }
+.pdv-border-b { border-bottom: var(--pdv-border-width) solid var(--border); }
+
+/* --- Shadow utilities --- */
+.pdv-shadow-sm { box-shadow: var(--pdv-shadow-sm); }
+.pdv-shadow { box-shadow: var(--pdv-shadow); }
+.pdv-shadow-md { box-shadow: var(--pdv-shadow-md); }
+.pdv-shadow-lg { box-shadow: var(--pdv-shadow-lg); }
+.pdv-shadow-xl { box-shadow: var(--pdv-shadow-xl); }
+.pdv-shadow-none { box-shadow: none; }
+
+/* --- Background color utilities (theme-aware) --- */
+.pdv-bg-bg { background-color: var(--bg); }
+.pdv-bg-surface { background-color: var(--surface); }
+.pdv-bg-raised { background-color: var(--raised); }
+.pdv-bg-hover-bg { background-color: var(--hover-bg); }
+.pdv-bg-active-bg { background-color: var(--active-bg); }
+
+.pdv-bg-primary { background-color: var(--primary); }
+.pdv-bg-blue { background-color: var(--blue); }
+.pdv-bg-mint { background-color: var(--mint); }
+.pdv-bg-purple { background-color: var(--purple); }
+.pdv-bg-orange { background-color: var(--orange); }
+.pdv-bg-sky { background-color: var(--sky); }
+.pdv-bg-danger { background-color: var(--danger); }
+
+/* --- Text color utilities (theme-aware) --- */
+.pdv-text-primary { color: var(--primary); }
+.pdv-text-text { color: var(--text); }
+.pdv-text-muted { color: var(--muted); }
+.pdv-text-blue { color: var(--blue); }
+.pdv-text-mint { color: var(--mint); }
+.pdv-text-purple { color: var(--purple); }
+.pdv-text-orange { color: var(--orange); }
+.pdv-text-sky { color: var(--sky); }
+.pdv-text-danger { color: var(--danger); }
+
+/* --- Border color utilities (theme-aware) --- */
+.pdv-border-primary { border-color: var(--primary); }
+.pdv-border-blue { border-color: var(--blue); }
+.pdv-border-mint { border-color: var(--mint); }
+.pdv-border-purple { border-color: var(--purple); }
+.pdv-border-orange { border-color: var(--orange); }
+.pdv-border-sky { border-color: var(--sky); }
+.pdv-border-danger { border-color: var(--danger); }
+
+/* --- Transition utilities --- */
+.pdv-transition { transition: var(--pdv-transition-base); }
+.pdv-transition-fast { transition: var(--pdv-transition-fast); }
+.pdv-transition-slow { transition: var(--pdv-transition-slow); }
+.pdv-transition-colors { transition: background-color var(--pdv-transition-base), border-color var(--pdv-transition-base), color var(--pdv-transition-base); }
+.pdv-transition-opacity { transition: opacity var(--pdv-transition-base); }
+.pdv-transition-transform { transition: transform var(--pdv-transition-base); }
+.pdv-transition-none { transition: none; }
+
+/* ==========================================================================
+   PADAV DESIGN SYSTEM — Enhanced Interaction States
+   ========================================================================== */
+
+/* --- Focus ring (complements existing focus-visible styles) --- */
+.pdv-focus-ring:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* --- Base button enhancement --- */
+.pdv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pdv-space-2);
+  padding: var(--pdv-space-2) var(--pdv-space-4);
+  font-size: var(--pdv-text-base);
+  font-weight: 600;
+  border-radius: var(--pdv-radius);
+  border: var(--pdv-border-width) solid transparent;
+  cursor: pointer;
+  transition: var(--pdv-transition-colors);
+  text-decoration: none;
+  font-family: inherit;
+}
+.pdv-btn:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.pdv-btn:active {
+  transform: translateY(0);
+}
+.pdv-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --- Button variants --- */
+.pdv-btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+.pdv-btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.pdv-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pdv-btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.pdv-btn-secondary:hover:not(:disabled) {
+  background: var(--hover-bg);
+  border-color: var(--muted);
+}
+
+.pdv-btn-ghost {
+  background: transparent;
+  color: var(--muted);
+}
+.pdv-btn-ghost:hover:not(:disabled) {
+  background: var(--hover-bg);
+  color: var(--text);
+}
+
+.pdv-btn-danger {
+  background: var(--danger);
+  color: #ffffff;
+}
+.pdv-btn-danger:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+/* --- Card enhancement --- */
+.pdv-card {
+  background: var(--surface);
+  border: var(--pdv-border-width) solid var(--border);
+  border-radius: var(--pdv-radius-lg);
+  padding: var(--pdv-space-6);
+  transition: var(--pdv-transition-base);
+}
+.pdv-card:hover {
+  border-color: color-mix(in srgb, var(--border) 70%, var(--primary));
+  box-shadow: var(--pdv-shadow-md);
+}
+.pdv-card:active {
+  transform: translateY(-1px);
+}
+
+/* --- Interaction state utilities --- */
+.pdv-hover-scale:hover { transform: scale(1.02); }
+.pdv-hover-lift:hover { transform: translateY(-2px); }
+.pdv-hover-bg:hover { background: var(--hover-bg); }
+.pdv-active-scale:active { transform: scale(0.98); }
+
+/* --- Disabled state container --- */
+.pdv-disabled,
+.pdv-disabled button,
+.pdv-disabled input,
+.pdv-disabled select,
+.pdv-disabled a {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* --- Loading state --- */
+.pdv-loading {
+  position: relative;
+  overflow: hidden;
+}
+.pdv-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--text) 10%, transparent), transparent);
+  animation: pdv-shimmer 2s infinite;
+}
+
+/* --- Screen reader only --- */
+.pdv-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ==========================================================================
+   PADAV DESIGN SYSTEM — Prefers-reduced-motion Overrides
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .pdv-animate-fade-in,
+  .pdv-animate-fade-out,
+  .pdv-animate-slide-in-up,
+  .pdv-animate-slide-in-down,
+  .pdv-animate-slide-in-left,
+  .pdv-animate-slide-in-right,
+  .pdv-animate-scale-in,
+  .pdv-animate-pulse,
+  .pdv-animate-spin,
+  .pdv-animate-bounce-in {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pdv-loading::after {
+    animation: none !important;
+    display: none !important;
+  }
+
+  .pdv-hover-scale:hover,
+  .pdv-hover-lift:hover,
+  .pdv-card:hover,
+  .pdv-btn-primary:hover:not(:disabled),
+  .pdv-btn-secondary:hover:not(:disabled) {
+    transform: none !important;
+  }
+
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   PADAV PHASE 3 — Color variable aliases (--color-* -> existing tokens)
+   Existing Dashboard code references --color-*; map them to defined tokens.
+   ========================================================================== */
+
+:root {
+  --color-primary: var(--primary);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-grid: var(--grid);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-elevated: var(--raised);
+  --color-danger: var(--danger);
+  --color-blue: var(--blue);
+  --color-mint: var(--mint);
+  --color-purple: var(--purple);
+  --color-orange: var(--orange);
+  --color-sky: var(--sky);
+}
+
+:root[data-theme=light] {
+  --color-primary: var(--primary);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-grid: var(--grid);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-elevated: var(--raised);
+  --color-danger: var(--danger);
+  --color-blue: var(--blue);
+  --color-mint: var(--mint);
+  --color-purple: var(--purple);
+  --color-orange: var(--orange);
+  --color-sky: var(--sky);
+}
+
+/* ==========================================================================
+   PADAV PHASE 3 — Skeleton loading states
+   ========================================================================== */
+
+.pdv-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-elevated);
+  border-radius: var(--pdv-radius);
+  color: transparent;
+  pointer-events: none;
+}
+.pdv-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--text) 8%, transparent), transparent);
+  animation: pdv-shimmer 1.5s infinite;
+}
+.pdv-skeleton-circle {
+  border-radius: 50%;
+}
+.pdv-skeleton-text {
+  height: 1em;
+  margin-bottom: var(--pdv-space-2);
+}
+.pdv-skeleton-text.pdv-skeleton-lg { height: 1.25em; width: 60%; }
+.pdv-skeleton-text.pdv-skeleton-md { height: 1em; width: 45%; }
+.pdv-skeleton-text.pdv-skeleton-sm { height: 0.875em; width: 30%; }
+
+/* Skeleton pulse variant (non-shimmer) */
+@keyframes pdv-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pdv-skeleton-pulse {
+  animation: pdv-skeleton-pulse 1.5s ease-in-out infinite;
+  background: var(--color-elevated);
+}
+
+/* ==========================================================================
+   PADAV PHASE 3 — Additional dashboard utilities
+   ========================================================================== */
+
+.pdv-uppercase { text-transform: uppercase; }
+.pdv-overflow-hidden { overflow: hidden; }
+.pdv-line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.pdv-w-full { width: 100%; }
+.pdv-h-2 { height: 0.5rem; }
+.pdv-h-full { height: 100%; }
+.pdv-p-1-5 { padding: 0.375rem; }
+.pdv-mb-2 { margin-bottom: 0.5rem; }
+.pdv-mt-1 { margin-top: 0.25rem; }
+.pdv-duration-500 { transition-duration: 500ms; }
+.pdv-transition-all { transition: all var(--pdv-transition-base); }
+
+/* ==========================================================================
+   PADAV PHASE 3 — Dashboard card enhancements
+   ========================================================================== */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--pdv-space-6);
+}
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.stat-cards-row {
+  grid-template-columns: repeat(1, 1fr);
+  grid-column: 1 / -1;
+}
+@media (min-width: 768px) {
+  .stat-cards-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.stat-card {
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--blue));
+  opacity: 0;
+  transition: opacity var(--pdv-transition-base);
+}
+.stat-card:hover::before {
+  opacity: 1;
+}
+.stat-header { margin-bottom: var(--pdv-space-2); }
+.stat-kicker { letter-spacing: 0.05em; }
+.stat-delta { margin-top: var(--pdv-space-1); }
+.stat-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+.stat-value { letter-spacing: -0.02em; }
+.stat-label { line-height: 1.4; }
+
+.mission-action.done {
+  background: var(--mint);
+  color: var(--on-mint);
+  border-color: var(--mint);
+}
+.mission-action.done:hover {
+  opacity: 0.9;
+}
+.ring-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--mint) 20%, transparent) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--pdv-transition-base);
+}
+.ring-glow.done {
+  opacity: 1;
+}
+
+.course-card {
+  position: relative;
+  overflow: hidden;
+}
+.course-art {
+  position: relative;
+  height: 120px;
+  border-radius: var(--pdv-radius-lg);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pdv-space-2);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+}
+.course-art-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--pdv-radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.course-art-orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--pdv-radius-lg);
+  border: 1px dashed color-mix(in srgb, var(--text) 15%, transparent);
+  animation: pdv-spin 20s linear infinite;
+}
+.course-art-name {
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 14px;
+}
+.course-art-subject {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.course-card-body { padding: var(--pdv-space-4); }
+.course-continue {
+  margin-top: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .course-art-orbit {
+    animation: none;
+  }
+  .stat-card::before {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   PADAV PHASE 2 — AppShell Enhancements
+   Mobile drawer, backdrop, sidebar collapse, theme toggle animation
+   ========================================================================== */
+
+/* Mobile drawer backdrop */
+.pdv-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: color-mix(in srgb, var(--text) 35%, transparent);
+  backdrop-filter: blur(4px);
+  animation: pdv-fade-in var(--pdv-transition-base) both;
+}
+
+/* Mobile sidebar drawer behavior */
+@media (max-width: 900px) {
+  .sidebar.mobile-drawer {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 280px;
+    max-width: 82vw;
+    transform: translateX(-100%);
+    transition: transform var(--pdv-transition-base) ease-in-out;
+    z-index: 50;
+    box-shadow: var(--pdv-shadow-xl);
+  }
+  .sidebar.mobile-drawer.drawer-open {
+    transform: translateX(0);
+  }
+}
+
+/* Sidebar collapsed state (desktop only) */
+.sidebar-collapsed {
+  width: 72px !important;
+  overflow-x: hidden;
+}
+
+.nav-item-collapsed span {
+  display: none;
+}
+
+/* Active nav indicator transition */
+.nav-item.active::before {
+  transition: height var(--pdv-transition-base) ease-in-out, background-color var(--pdv-transition-base);
+}
+
+/* Theme toggle icon rotation */
+.theme-toggle-icon {
+  display: inline-flex;
+  transition: transform var(--pdv-transition-base) ease-in-out;
+}
+.theme-toggle-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Notification badge */
+.notification-badge {
+  position: relative;
+}
+.notification-badge::after {
+  content: attr(data-count);
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 16px;
+  height: 16px;
+  background: var(--danger);
+  color: #ffffff;
+  border-radius: var(--pdv-radius-full);
+  font-size: var(--pdv-text-xs);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pdv-pulse 2s infinite;
+}
+
+/* Notification dot (empty state) */
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+/* ==========================================================================
+   PADAV PHASE 4 — Chart & Analytics Styling
+   ========================================================================== */
+
+/* Chart container */
+.pdv-chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--pdv-radius-lg);
+  padding: var(--pdv-space-6);
+  transition: var(--pdv-transition-base);
+}
+.pdv-chart-card:hover {
+  border-color: color-mix(in srgb, var(--border) 70%, var(--primary));
+  box-shadow: var(--pdv-shadow-md);
+}
+
+/* Chart header */
+.pdv-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--pdv-space-4);
+}
+.pdv-chart-title {
+  font-size: var(--pdv-text-lg);
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--head);
+}
+.pdv-chart-subtitle {
+  font-size: var(--pdv-text-sm);
+  color: var(--muted);
+}
+
+/* Chart grid wrapper */
+.pdv-chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  min-height: 200px;
+}
+
+/* Responsive chart heights */
+@media (min-width: 768px) {
+  .pdv-chart-wrap {
+    height: 320px;
+  }
+}
+
+/* Donut chart container */
+.pdv-donut-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+.pdv-donut-center {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.pdv-donut-value {
+  font-size: var(--pdv-text-2xl);
+  font-weight: 800;
+  color: var(--text);
+  font-family: var(--head);
+}
+.pdv-donut-label {
+  font-size: var(--pdv-text-xs);
+  color: var(--muted);
+  margin-top: var(--pdv-space-1);
+}
+
+/* Circular progress */
+.pdv-circular-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--pdv-space-4);
+}
+.pdv-circular-value {
+  font-size: var(--pdv-text-3xl);
+  font-weight: 800;
+  color: var(--text);
+}
+.pdv-circular-label {
+  font-size: var(--pdv-text-sm);
+  color: var(--muted);
+  margin-top: var(--pdv-space-2);
+}
+
+/* Legend */
+.pdv-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pdv-space-3);
+  margin-top: var(--pdv-space-4);
+  justify-content: center;
+}
+.pdv-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--pdv-space-1);
+  font-size: var(--pdv-text-xs);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--pdv-transition-base);
+}
+.pdv-legend-item:hover {
+  color: var(--text);
+}
+.pdv-legend-item.active {
+  color: var(--primary);
+}
+.pdv-legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--pdv-radius-full);
+}
+
+/* Filter chips */
+.pdv-filter-chips {
+  display: flex;
+  gap: var(--pdv-space-2);
+  margin-bottom: var(--pdv-space-4);
+  flex-wrap: wrap;
+}
+.pdv-filter-chip {
+  font-size: var(--pdv-text-xs);
+  font-weight: 600;
+  padding: var(--pdv-space-1) var(--pdv-space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--pdv-radius-full);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all var(--pdv-transition-base);
+}
+.pdv-filter-chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.pdv-filter-chip.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* Chart loading state */
+.pdv-chart-skeleton {
+  width: 100%;
+  height: 280px;
+  background: var(--raised);
+  border-radius: var(--pdv-radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+.pdv-chart-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--text) 8%, transparent), transparent);
+  animation: pdv-shimmer 1.5s infinite;
+}
+
+/* Chart empty state */
+.pdv-chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--muted);
+  text-align: center;
+}
+.pdv-chart-empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--pdv-space-2);
+  opacity: 0.5;
+}
+
+/* Date range selector */
+.pdv-date-range {
+  display: flex;
+  align-items: center;
+  gap: var(--pdv-space-2);
+  margin-bottom: var(--pdv-space-4);
+}
+.pdv-date-label {
+  font-size: var(--pdv-text-sm);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Tooltip styling overrides for Recharts */
+.recharts-tooltip-wrapper {
+  z-index: 50;
+}
+
+/* Respect prefers-reduced-motion for charts */
+@media (prefers-reduced-motion: reduce) {
+  .pdv-chart-skeleton::after {
+    animation: none;
+    display: none;
+  }
+  .recharts-curve, .recharts-area, .recharts-line, .recharts-bar, .recharts-pie-sector {
+    transition: none !important;
+    animation: none !important;
+  }
+}

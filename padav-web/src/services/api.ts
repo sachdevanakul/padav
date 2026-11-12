@@ -20,7 +20,14 @@ export type Course = {
 export type Overview = {
   total_tests_taken: number; average_score: number; overall_accuracy: number
   total_study_hours: number; current_streak: number; total_questions_attempted: number
+  active_dates: string[]
 }
+export type TrendPoint = { date: string; score: number; accuracy: number; questions_attempted: number }
+export type Profile = {
+  id: string; user_id: string; phone: string | null; date_of_birth: string | null
+  education_level: string | null; target_exams: string | null; study_goal_hours_per_week: number | null
+}
+export type ProfileUpdate = Partial<Pick<Profile, 'phone' | 'date_of_birth' | 'education_level' | 'study_goal_hours_per_week'>>
 export type PlannerBlock = {
   id: string; title: string; subject: string | null; study_date: string
   start_time: string; end_time: string; completed: boolean; created_at: string
@@ -63,7 +70,7 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
     return fetch(`${API_ROOT}${path}`, { ...init, headers })
   }
   let response = await makeRequest(authStore.getState().accessToken)
-  if (response.status === 401 && authStore.getState().refreshToken && !path.startsWith('/auth/')) {
+  if (response.status === 401 && authStore.getState().refreshToken && !['/auth/login', '/auth/register', '/auth/refresh'].includes(path)) {
     if (!refreshPromise) {
       refreshPromise = (async () => {
         const refreshToken = authStore.getState().refreshToken
@@ -94,7 +101,15 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
 export const api = {
   exams: () => request<Exam[]>('/exams'),
   courses: () => request<Course[]>('/courses'),
-  overview: () => request<Overview>('/analytics/overview'),
+  // tz_offset lets the server count streak days in the learner's own timezone
+  overview: () => request<Overview>(`/analytics/overview?tz_offset=${-new Date().getTimezoneOffset()}`),
+  trends: () => request<TrendPoint[]>('/analytics/trends'),
+  profile: () => request<Profile>('/users/me/profile'),
+  updateProfile: (body: ProfileUpdate) => request<Profile>('/users/me/profile', { method: 'PUT', body: JSON.stringify(body) }),
+  updateMe: (body: { full_name?: string; language?: 'en' | 'hi'; theme?: 'dark' | 'light' }) =>
+    request<User>('/users/me', { method: 'PUT', body: JSON.stringify(body) }),
+  changePassword: (current_password: string, new_password: string) =>
+    request<TokenResponse>('/auth/change-password', { method: 'POST', body: JSON.stringify({ current_password, new_password }) }),
   planner: (start: string, end: string) => request<PlannerBlock[]>(`/planner?start_date=${start}&end_date=${end}`),
   addPlannerBlock: (body: Pick<PlannerBlock, 'title' | 'subject' | 'study_date' | 'start_time' | 'end_time'>) =>
     request<PlannerBlock>('/planner', { method: 'POST', body: JSON.stringify(body) }),

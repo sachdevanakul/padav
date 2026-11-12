@@ -46,6 +46,11 @@ class UserRegister(StrictInput):
     full_name: str = Field(min_length=1, max_length=120)
 
 
+class ChangePassword(StrictInput):
+    current_password: LoginPassword
+    new_password: NewPassword
+
+
 class UserLogin(StrictInput):
     email: EmailStr
     password: LoginPassword

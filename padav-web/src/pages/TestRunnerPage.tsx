@@ -3,6 +3,7 @@ import { Navigate, useNavigate, useParams, Link } from 'react-router-dom'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { AlertTriangle, ArrowLeft, ArrowRight, Check, Clock3, Flag, Loader2, Send } from 'lucide-react'
 import { QuestionPalette } from '../components/tests/QuestionPalette'
+import { Modal } from '../components/ui/Modal'
 import { useCountdown } from '../hooks/useCountdown'
 import { formatClock } from '../lib/dates'
 import { formatMarks, pickText } from '../lib/localize'
@@ -154,7 +155,7 @@ function Runner({ attempt, questions }: { attempt: AttemptDetail; questions: Que
     </header>
 
     <div className="tx-runner-body">
-      <section className="tx-question card" aria-labelledby="tx-qtext">
+      <section key={question.id} className="tx-question card" aria-labelledby="tx-qtext">
         <header className="tx-question-meta">
           <strong>{t.question} {index + 1} {t.of} {questions.length}</strong>
           <span>+{formatMarks(question.marks)}{question.negative_marks > 0 ? ` / −${formatMarks(question.negative_marks)}` : ''}</span>
@@ -201,8 +202,7 @@ function Runner({ attempt, questions }: { attempt: AttemptDetail; questions: Que
       </aside>
     </div>
 
-    {phase !== 'running' && <div className="tx-modal-backdrop" role="presentation">
-      <section className="tx-modal card" role="alertdialog" aria-modal="true" aria-labelledby="tx-modal-title">
+    <Modal isOpen={phase !== 'running'} onClose={() => setPhase('running')} title={phase === 'timeup' ? t.timeUp : t.confirmSubmitTitle} ariaLabelledBy="tx-modal-title" role="alertdialog" dismissible={phase === 'confirm' && !submitting} showCloseButton={false} className="tx-modal card">
         <h2 id="tx-modal-title">{phase === 'timeup' ? t.timeUp : t.confirmSubmitTitle}</h2>
         {phase === 'confirm' && <>
           <ul className="tx-summary">
@@ -217,7 +217,6 @@ function Runner({ attempt, questions }: { attempt: AttemptDetail; questions: Que
           {phase === 'confirm' && <button className="button button-ghost" onClick={() => setPhase('running')} disabled={submitting}>{t.keepWorking}</button>}
           <button className="button button-primary" onClick={() => void submit(phase === 'timeup')} disabled={submitting}>{submitting ? t.submitting : t.submitTest}</button>
         </footer>
-      </section>
-    </div>}
+    </Modal>
   </div>
 }
