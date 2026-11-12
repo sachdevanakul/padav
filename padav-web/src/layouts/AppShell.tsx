@@ -6,6 +6,7 @@ import {
   Bell,
   Bookmark,
   BookOpen,
+  Brain,
   CalendarDays,
   ChevronDown,
   Command,
@@ -31,6 +32,7 @@ const links = [
   { to: '/learn', key: 'learn', icon: BookOpen },
   { to: '/planner', key: 'planner', icon: CalendarDays },
   { to: '/tests', key: 'tests', icon: Target },
+  { to: '/pia', key: 'pia', icon: Brain },
   { to: '/analytics', key: 'analytics', icon: Activity },
   { to: '/bookmarks', key: 'bookmarks', icon: Bookmark },
 ]

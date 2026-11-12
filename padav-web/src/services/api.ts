@@ -92,10 +92,38 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
   }
   if (!response.ok) {
     const body = await response.json().catch(() => null) as { detail?: string } | null
-    throw new Error(body?.detail || `Request failed (${response.status})`)
+    throw new ApiError(body?.detail || `Request failed (${response.status})`, response.status)
   }
   if (response.status === 204) return undefined as T
   return response.json() as Promise<T>
+}
+
+export class ApiError extends Error {
+  status: number
+  constructor(message: string, status: number) { super(message); this.status = status }
+}
+
+export type PiaRun = {
+  domain: string; label: string; description: string; sequence: number
+  status: 'pending' | 'in_progress' | 'completed' | 'timed_out'
+  question_count: number; time_limit_seconds: number; seconds_remaining: number | null
+}
+export type PiaSession = {
+  id: string; status: 'in_progress' | 'completed'; language: string; created_at: string; completed_at: string | null
+  total_questions: number; total_minutes: number; runs: PiaRun[]
+}
+export type PiaItem = {
+  item_code: string; position: number; stem: string; options: { key: string; text: string }[]
+  stimulus_type: string; asset_id: string | null; selected_key: string | null
+}
+export type PiaDomainScore = {
+  domain: string; label: string; questions: number; correct: number; omitted: number; accuracy: number
+  median_response_ms: number | null; timed_out: boolean; interrupted: boolean
+}
+export type PiaReport = {
+  session_id: string; status: 'experimental'; form_code: string; form_version: number
+  scoring_model_version: string; norm_version: string | null; total_questions: number; total_correct: number
+  total_omitted: number; raw_accuracy: number; domains: PiaDomainScore[]; notices: string[]; created_at: string
 }
 
 export const api = {
@@ -135,6 +163,21 @@ export const api = {
     request('/users/me/exams', { method: 'POST', body: JSON.stringify({ exam_id, is_primary }) }),
   removeExam: (exam_id: string) =>
     request(`/users/me/exams/${exam_id}`, { method: 'DELETE' }),
+  piaConsent: (age: number, guardian_consent: boolean) =>
+    request<{ id: string }>('/pia/consent', { method: 'POST', body: JSON.stringify({ accepted: true, age, guardian_consent }) }),
+  piaStart: (language: 'en' | 'hi') => request<PiaSession>('/pia/sessions', { method: 'POST', body: JSON.stringify({ language }) }),
+  piaSession: (id: string) => request<PiaSession>(`/pia/sessions/${id}`),
+  piaStartSubtest: (id: string, domain: string) => request<PiaItem[]>(`/pia/sessions/${id}/subtests/${domain}/start`, { method: 'POST' }),
+  piaItems: (id: string, domain: string) => request<PiaItem[]>(`/pia/sessions/${id}/subtests/${domain}/items`),
+  piaAnswer: (id: string, domain: string, item_code: string, selected_key: string | null, client_response_ms?: number) =>
+    request<{ saved: boolean; seconds_remaining: number }>(`/pia/sessions/${id}/subtests/${domain}/answers`, {
+      method: 'PUT', body: JSON.stringify({ item_code, selected_key, client_response_ms }),
+    }),
+  piaEvent: (id: string, domain: string, event_type: 'interruption' | 'resume', payload?: Record<string, string>) =>
+    request<void>(`/pia/sessions/${id}/subtests/${domain}/events`, { method: 'POST', body: JSON.stringify({ event_type, payload }) }),
+  piaComplete: (id: string, domain: string) => request<PiaSession>(`/pia/sessions/${id}/subtests/${domain}/complete`, { method: 'POST' }),
+  piaFinish: (id: string) => request<PiaReport>(`/pia/sessions/${id}/finish`, { method: 'POST' }),
+  piaReport: (id: string) => request<PiaReport>(`/pia/sessions/${id}/report`),
   logout: (refresh_token: string) =>
     request<{ message: string }>('/auth/logout', { method: 'POST', body: JSON.stringify({ refresh_token }) }),
 }

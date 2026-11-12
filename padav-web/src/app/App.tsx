@@ -10,6 +10,7 @@ import PlannerPage from '../pages/PlannerPage'
 import TestsPage from '../pages/TestsPage'
 import ProfilePage from '../pages/ProfilePage'
 import SettingsPage from '../pages/SettingsPage'
+import PiaPage from '../pages/PiaPage'
 import { api } from '../services/api'
 import { authStore } from '../store/auth'
 import { preferencesStore } from '../store/preferences'
@@ -18,6 +19,8 @@ import ToastProvider from '../components/ui/Toast'
 const DashboardPage = lazy(() => import('../pages/DashboardPage'))
 const TestRunnerPage = lazy(() => import('../pages/TestRunnerPage'))
 const TestResultPage = lazy(() => import('../pages/TestResultPage'))
+const PiaSessionPage = lazy(() => import('../pages/PiaSessionPage'))
+const PiaReportPage = lazy(() => import('../pages/PiaReportPage'))
 
 function WorkspacePage({ title }: { title: string }) {
   return <AppShell><section className="page-heading"><p className="eyebrow">PADAV WORKSPACE</p><h1>{title}</h1><p className="muted">This part of your learning workspace is being prepared.</p></section><div className="empty-state card"><span className="empty-icon">✦</span><h2>Good things are taking shape</h2><p>We’re connecting this space to your learning data. Your dashboard and exam setup are ready to use now.</p></div></AppShell>
@@ -64,6 +67,9 @@ export default function App() {
       <Route path="/tests" element={<TestsPage />} />
       <Route path="/tests/attempts/:attemptId" element={<Suspense fallback={<div className="page-loading">Preparing your test…</div>}><TestRunnerPage /></Suspense>} />
       <Route path="/tests/attempts/:attemptId/result" element={<Suspense fallback={<div className="page-loading">Loading your result…</div>}><TestResultPage /></Suspense>} />
+      <Route path="/pia" element={<PiaPage />} />
+      <Route path="/pia/sessions/:sessionId" element={<Suspense fallback={<div className="page-loading">Loading…</div>}><PiaSessionPage /></Suspense>} />
+      <Route path="/pia/sessions/:sessionId/report" element={<Suspense fallback={<div className="page-loading">Loading…</div>}><PiaReportPage /></Suspense>} />
       <Route path="/analytics" element={<AnalyticsPage />} />
       <Route path="/bookmarks" element={<WorkspacePage title="Your bookmarks" />} />
       <Route path="/profile" element={<ProfilePage />} />
