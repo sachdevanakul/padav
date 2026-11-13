@@ -204,4 +204,4 @@ class TestService(BaseService):
         # Legacy tests without explicit membership: fall back to section subjects.
         allowed = self.tests.section_subject_ids(attempt.test_id)
         if allowed and question.subject_id not in allowed:
-            raise BadRequestError("Question is not part of this test")
+            raise BadRequestError("This question is not part of the test")

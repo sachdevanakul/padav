@@ -93,7 +93,7 @@ class LoginThrottle:
             bucket = self._prune(key, now)
             if len(bucket) >= self._max:
                 raise RateLimitedError(int(self._lockout - (now - bucket[0])) + 1,
-                                       "Too many failed sign-in attempts. Try again later.")
+                                       "Try Again 😒, Too Many Requests.")
 
     def record_failure(self, key: str) -> None:
         with self._lock:
