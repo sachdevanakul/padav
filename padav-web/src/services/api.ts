@@ -114,7 +114,8 @@ export type PiaSession = {
 }
 export type PiaItem = {
   item_code: string; position: number; stem: string; options: { key: string; text: string }[]
-  stimulus_type: string; asset_id: string | null; selected_key: string | null
+  stimulus_type: string; asset_id: string | null; asset_data_uri: string | null
+  stimulus: string | null; stimulus_display_seconds: number | null; stimulus_seen: boolean; selected_key: string | null
 }
 export type PiaDomainScore = {
   domain: string; label: string; questions: number; correct: number; omitted: number; accuracy: number
@@ -168,6 +169,8 @@ export const api = {
   piaStart: (language: 'en' | 'hi') => request<PiaSession>('/pia/sessions', { method: 'POST', body: JSON.stringify({ language }) }),
   piaSession: (id: string) => request<PiaSession>(`/pia/sessions/${id}`),
   piaStartSubtest: (id: string, domain: string) => request<PiaItem[]>(`/pia/sessions/${id}/subtests/${domain}/start`, { method: 'POST' }),
+  piaStimulus: (id: string, domain: string, item_code: string) =>
+    request<{ item_code: string; stimulus: string; display_seconds: number }>(`/pia/sessions/${id}/subtests/${domain}/items/${item_code}/stimulus`, { method: 'POST' }),
   piaItems: (id: string, domain: string) => request<PiaItem[]>(`/pia/sessions/${id}/subtests/${domain}/items`),
   piaAnswer: (id: string, domain: string, item_code: string, selected_key: string | null, client_response_ms?: number) =>
     request<{ saved: boolean; seconds_remaining: number }>(`/pia/sessions/${id}/subtests/${domain}/answers`, {

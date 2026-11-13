@@ -345,3 +345,76 @@ def test_other_users_cannot_touch_a_session(client, user, other_user, pia_form):
     ]
     assert [c.status_code for c in checks] == [404] * len(checks)
     assert client.get(base(sid)).status_code == 401
+
+
+# ---- timed stimuli and images -------------------------------------------------------------------------------
+def with_stimuli(tmp_path, monkeypatch):
+    from app.core.config import settings
+    monkeypatch.setattr(settings, "pia_asset_dir", tmp_path)
+    (tmp_path / "fig-1.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"/>')
+    content = build_content()
+    first = content.items[0]  # gf item 1: image
+    first.asset_id = "fig-1"
+    memory = next(i for i in content.items if i.item_code == "PIA-GWM-TT-001")
+    memory.stimulus_display_seconds = 5
+    for text in memory.translations.values():
+        text.stimulus = "7 3 9 1"
+    static = next(i for i in content.items if i.item_code == "PIA-GC-TT-001")
+    static.translations["en"].stimulus = "Read: The sun rises in the east."
+    return content
+
+
+def test_timed_stimulus_is_withheld_released_once_and_gates_answers(client, user, db, tmp_path, monkeypatch):
+    PiaContentImporter(db).import_content(with_stimuli(tmp_path, monkeypatch), activate=True)
+    h, sid = user["headers"], begin(client, user["headers"])["id"]
+    for domain in ("gf", "gc", "gv"):
+        client.post(f"{base(sid, domain)}/start", headers=h)
+        client.post(f"{base(sid, domain)}/complete", headers=h)
+    items = client.post(f"{base(sid, 'gwm')}/start", headers=h).json()
+    first = items[0]
+    assert first["stimulus"] is None and first["stimulus_display_seconds"] == 5 and first["stimulus_seen"] is False
+    assert "7 3 9 1" not in client.get(f"{base(sid, 'gwm')}/items", headers=h).text  # never in the list
+    assert answer(client, h, sid, "gwm", "PIA-GWM-TT-001", "b").status_code == 409  # must view first
+    r = client.post(f"{base(sid, 'gwm')}/items/PIA-GWM-TT-001/stimulus", headers=h)
+    assert r.status_code == 200 and r.json() == {"item_code": "PIA-GWM-TT-001", "stimulus": "7 3 9 1", "display_seconds": 5}
+    assert client.post(f"{base(sid, 'gwm')}/items/PIA-GWM-TT-001/stimulus", headers=h).status_code == 409  # no replay
+    again = client.get(f"{base(sid, 'gwm')}/items", headers=h).json()[0]
+    assert again["stimulus"] is None and again["stimulus_seen"] is True
+    assert answer(client, h, sid, "gwm", "PIA-GWM-TT-001", "b").status_code == 200
+    assert client.post(f"{base(sid, 'gwm')}/items/PIA-GWM-TT-002/stimulus", headers=h).status_code == 404  # untimed item
+    events = [e for e in db.scalars(select(PiaEvent)) if e.event_type == "encoding_start"]
+    assert len(events) == 1 and events[0].payload["item_code"] == "PIA-GWM-TT-001"
+
+
+def test_stimulus_release_is_owner_only_and_needs_a_running_subtest(client, user, other_user, db, tmp_path, monkeypatch):
+    PiaContentImporter(db).import_content(with_stimuli(tmp_path, monkeypatch), activate=True)
+    h, sid = user["headers"], begin(client, user["headers"])["id"]
+    path = f"{base(sid, 'gwm')}/items/PIA-GWM-TT-001/stimulus"
+    assert client.post(path, headers=h).status_code == 409  # not started
+    assert client.post(path, headers=other_user["headers"]).status_code == 404
+
+
+def test_static_stimulus_and_embedded_image(client, user, db, tmp_path, monkeypatch):
+    PiaContentImporter(db).import_content(with_stimuli(tmp_path, monkeypatch), activate=True)
+    h, sid = user["headers"], begin(client, user["headers"])["id"]
+    gf = client.post(f"{base(sid, 'gf')}/start", headers=h).json()
+    assert gf[0]["asset_id"] == "fig-1" and gf[0]["asset_data_uri"].startswith("data:image/svg+xml;base64,")
+    assert gf[1]["asset_data_uri"] is None
+    client.post(f"{base(sid, 'gf')}/complete", headers=h)
+    gc = client.post(f"{base(sid, 'gc')}/start", headers=h).json()
+    assert gc[0]["stimulus"] == "Read: The sun rises in the east."  # always-visible material is delivered
+
+
+def test_importer_checks_assets_and_stimulus_rules(db, tmp_path, monkeypatch):
+    from app.core.config import settings
+    monkeypatch.setattr(settings, "pia_asset_dir", tmp_path)
+    content = build_content(form=False)
+    content.items[0].asset_id = "missing"
+    with pytest.raises(BadRequestError, match="not found"):
+        PiaContentImporter(db).import_content(content)
+    db.rollback()
+    ok = build_content(form=False).items[0].model_dump()
+    with pytest.raises(ValidationError, match="needs a stimulus"):
+        ContentItem.model_validate({**ok, "stimulus_display_seconds": 5})
+    with pytest.raises(ValidationError):
+        ContentItem.model_validate({**ok, "asset_id": "../etc/passwd"})

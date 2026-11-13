@@ -1,0 +1,3366 @@
+{
+ "items": [
+  {
+   "item_code": "PIA-GF-MX-001",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "figure-matrix",
+   "item_format": "matrix",
+   "stimulus_type": "image",
+   "asset_id": "pia-gf-mx-001",
+   "difficulty": "easy",
+   "min_age": 13,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Look at the picture. Which option (A–D) completes the pattern in the empty cell?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Each row uses one shape, and the number of shapes grows by one across the row: 1, 2, then 3. The bottom row uses triangles, so the answer is 3 triangles.",
+     "distractor_rationale": "Other options change the shape or the count.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "चित्र देखिए। कौन-सा विकल्प (A–D) खाली खाने में पैटर्न को पूरा करता है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "हर पंक्ति में एक ही आकृति है और पंक्ति में आकृतियों की संख्या 1, 2, फिर 3 होती है। निचली पंक्ति में त्रिभुज हैं, इसलिए उत्तर 3 त्रिभुज है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-SQ-001",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "number-sequence",
+   "item_format": "sequence",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "What number comes next?  3, 6, 12, 24, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "48"
+      },
+      {
+       "key": "b",
+       "text": "60"
+      },
+      {
+       "key": "c",
+       "text": "30"
+      },
+      {
+       "key": "d",
+       "text": "36"
+      }
+     ],
+     "explanation": "Each number is double the one before, so 24 doubles to 48.",
+     "distractor_rationale": "30 and 36 add a constant; 60 multiplies by 2.5.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "अगली संख्या क्या होगी?  3, 6, 12, 24, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "48"
+      },
+      {
+       "key": "b",
+       "text": "60"
+      },
+      {
+       "key": "c",
+       "text": "30"
+      },
+      {
+       "key": "d",
+       "text": "36"
+      }
+     ],
+     "explanation": "हर संख्या पिछली संख्या की दुगुनी है, इसलिए 24 का दुगुना 48 है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-SQ-002",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "number-sequence",
+   "item_format": "sequence",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "What number comes next?  5, 9, 13, 17, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "22"
+      },
+      {
+       "key": "b",
+       "text": "20"
+      },
+      {
+       "key": "c",
+       "text": "19"
+      },
+      {
+       "key": "d",
+       "text": "21"
+      }
+     ],
+     "explanation": "The numbers go up by 4 each time, so 17 + 4 = 21.",
+     "distractor_rationale": "20 and 22 break the constant step of 4.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "अगली संख्या क्या होगी?  5, 9, 13, 17, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "22"
+      },
+      {
+       "key": "b",
+       "text": "20"
+      },
+      {
+       "key": "c",
+       "text": "19"
+      },
+      {
+       "key": "d",
+       "text": "21"
+      }
+     ],
+     "explanation": "संख्याएँ हर बार 4 बढ़ती हैं, इसलिए 17 + 4 = 21।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-MX-002",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "figure-matrix",
+   "item_format": "matrix",
+   "stimulus_type": "image",
+   "asset_id": "pia-gf-mx-002",
+   "difficulty": "medium",
+   "min_age": 13,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Look at the picture. Which option (A–D) completes the pattern in the empty cell?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "The arrow turns 90° clockwise from left to right in every row, and each row starts 90° further round. The bottom-right arrow completes a full turn and points up.",
+     "distractor_rationale": "The other options are the other three arrow directions.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "चित्र देखिए। कौन-सा विकल्प (A–D) खाली खाने में पैटर्न को पूरा करता है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "हर पंक्ति में तीर बाएँ से दाएँ 90° घड़ी की दिशा में घूमता है और हर पंक्ति पिछली से 90° आगे शुरू होती है। निचला दायाँ तीर पूरा चक्कर लगाकर ऊपर की ओर होता है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-RI-001",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "rule-induction",
+   "item_format": "rule-induction",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Find the rule.  2 → 6,  3 → 12,  4 → 20,  5 → ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "36"
+      },
+      {
+       "key": "b",
+       "text": "30"
+      },
+      {
+       "key": "c",
+       "text": "28"
+      },
+      {
+       "key": "d",
+       "text": "25"
+      }
+     ],
+     "explanation": "Each result is the number multiplied by the next number: 2×3, 3×4, 4×5, so 5×6 = 30.",
+     "distractor_rationale": "25 squares the input; 28 and 36 follow other partial patterns.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "नियम खोजिए।  2 → 6,  3 → 12,  4 → 20,  5 → ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "36"
+      },
+      {
+       "key": "b",
+       "text": "30"
+      },
+      {
+       "key": "c",
+       "text": "28"
+      },
+      {
+       "key": "d",
+       "text": "25"
+      }
+     ],
+     "explanation": "हर परिणाम संख्या और उसके अगले अंक का गुणनफल है: 2×3, 3×4, 4×5, इसलिए 5×6 = 30।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-SQ-003",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "number-sequence",
+   "item_format": "sequence",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "What number comes next?  2, 3, 5, 8, 12, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "18"
+      },
+      {
+       "key": "b",
+       "text": "16"
+      },
+      {
+       "key": "c",
+       "text": "15"
+      },
+      {
+       "key": "d",
+       "text": "17"
+      }
+     ],
+     "explanation": "The gaps grow by one each time (+1, +2, +3, +4), so the next gap is +5: 12 + 5 = 17.",
+     "distractor_rationale": "15, 16 and 18 break the growing-gap rule.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "अगली संख्या क्या होगी?  2, 3, 5, 8, 12, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "18"
+      },
+      {
+       "key": "b",
+       "text": "16"
+      },
+      {
+       "key": "c",
+       "text": "15"
+      },
+      {
+       "key": "d",
+       "text": "17"
+      }
+     ],
+     "explanation": "अंतर हर बार एक बढ़ता है (+1, +2, +3, +4), इसलिए अगला अंतर +5 है: 12 + 5 = 17।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-MX-003",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "figure-matrix",
+   "item_format": "matrix",
+   "stimulus_type": "image",
+   "asset_id": "pia-gf-mx-003",
+   "difficulty": "hard",
+   "min_age": 13,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Look at the picture. Which option (A–D) completes the pattern in the empty cell?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Every row and every column contains a circle, a square and a triangle once each. The bottom row has a triangle and a circle, so the missing shape is a square.",
+     "distractor_rationale": "A circle or triangle would repeat in the row or column; a diamond never appears.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "चित्र देखिए। कौन-सा विकल्प (A–D) खाली खाने में पैटर्न को पूरा करता है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "हर पंक्ति और हर स्तंभ में वृत्त, वर्ग और त्रिभुज एक-एक बार आते हैं। निचली पंक्ति में त्रिभुज और वृत्त हैं, इसलिए छूटी आकृति वर्ग है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-RI-002",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "rule-induction",
+   "item_format": "rule-induction",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Find the rule.  (2, 3) → 7,  (4, 1) → 9,  (5, 2) → ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "10"
+      },
+      {
+       "key": "b",
+       "text": "14"
+      },
+      {
+       "key": "c",
+       "text": "12"
+      },
+      {
+       "key": "d",
+       "text": "11"
+      }
+     ],
+     "explanation": "Double the first number and add the second: 2×2+3 = 7, 2×4+1 = 9, so 2×5+2 = 12.",
+     "distractor_rationale": "10 and 11 come from partial versions of the rule; 14 doubles the second number instead.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "नियम खोजिए।  (2, 3) → 7,  (4, 1) → 9,  (5, 2) → ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "10"
+      },
+      {
+       "key": "b",
+       "text": "14"
+      },
+      {
+       "key": "c",
+       "text": "12"
+      },
+      {
+       "key": "d",
+       "text": "11"
+      }
+     ],
+     "explanation": "पहली संख्या को दुगुना करके दूसरी संख्या जोड़िए: 2×2+3 = 7, 2×4+1 = 9, इसलिए 2×5+2 = 12।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-SQ-004",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "number-sequence",
+   "item_format": "sequence",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "What number comes next?  2, 5, 4, 10, 8, 20, 16, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "32"
+      },
+      {
+       "key": "b",
+       "text": "30"
+      },
+      {
+       "key": "c",
+       "text": "36"
+      },
+      {
+       "key": "d",
+       "text": "40"
+      }
+     ],
+     "explanation": "Two patterns are mixed. Numbers in odd places double (2, 4, 8, 16) and numbers in even places double (5, 10, 20). The next is in an even place: 20 × 2 = 40.",
+     "distractor_rationale": "32 continues the odd-place pattern only.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "अगली संख्या क्या होगी?  2, 5, 4, 10, 8, 20, 16, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "32"
+      },
+      {
+       "key": "b",
+       "text": "30"
+      },
+      {
+       "key": "c",
+       "text": "36"
+      },
+      {
+       "key": "d",
+       "text": "40"
+      }
+     ],
+     "explanation": "दो पैटर्न मिले हैं। विषम स्थानों की संख्याएँ दुगुनी होती हैं (2, 4, 8, 16) और सम स्थानों की भी (5, 10, 20)। अगली संख्या सम स्थान पर है: 20 × 2 = 40।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GF-MX-004",
+   "version": 1,
+   "domain": "gf",
+   "subdomain": "figure-matrix",
+   "item_format": "matrix",
+   "stimulus_type": "image",
+   "asset_id": "pia-gf-mx-004",
+   "difficulty": "expert",
+   "min_age": 13,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Look at the picture. Which option (A–D) completes the pattern in the empty cell?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "In each row, the third picture keeps only the squares that appear in exactly one of the first two pictures. Squares that appear in both cancel out.",
+     "distractor_rationale": "One distractor keeps every square from either picture; another keeps only shared squares; another is one square off.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "चित्र देखिए। कौन-सा विकल्प (A–D) खाली खाने में पैटर्न को पूरा करता है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "हर पंक्ति में तीसरे चित्र में केवल वे वर्ग रहते हैं जो पहले दो चित्रों में से ठीक एक में हैं। जो दोनों में हैं, वे हट जाते हैं।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GC-AN-001",
+   "version": 1,
+   "domain": "gc",
+   "subdomain": "verbal-analogy",
+   "item_format": "analogy",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Hot is to cold as day is to ___.",
+     "options": [
+      {
+       "key": "a",
+       "text": "Sun"
+      },
+      {
+       "key": "b",
+       "text": "Morning"
+      },
+      {
+       "key": "c",
+       "text": "Night"
+      },
+      {
+       "key": "d",
+       "text": "Light"
+      }
+     ],
+     "explanation": "Hot and cold are opposites; the opposite of day is night.",
+     "distractor_rationale": "Sun, light and morning go with day rather than against it.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "गर्म का संबंध ठंडे से है, तो दिन का संबंध ___ से है।",
+     "options": [
+      {
+       "key": "a",
+       "text": "सूरज"
+      },
+      {
+       "key": "b",
+       "text": "सुबह"
+      },
+      {
+       "key": "c",
+       "text": "रात"
+      },
+      {
+       "key": "d",
+       "text": "रोशनी"
+      }
+     ],
+     "explanation": "गर्म और ठंडा विपरीत हैं; दिन का विपरीत रात है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GC-CL-001",
+   "version": 1,
+   "domain": "gc",
+   "subdomain": "classification",
+   "item_format": "odd-one-out",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Which word does NOT belong with the others?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Table"
+      },
+      {
+       "key": "b",
+       "text": "Bench"
+      },
+      {
+       "key": "c",
+       "text": "Apple"
+      },
+      {
+       "key": "d",
+       "text": "Chair"
+      }
+     ],
+     "explanation": "Table, chair and bench are furniture; an apple is a fruit.",
+     "distractor_rationale": "The three furniture words share a category.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कौन-सा शब्द बाकी से अलग है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "मेज़"
+      },
+      {
+       "key": "b",
+       "text": "बेंच"
+      },
+      {
+       "key": "c",
+       "text": "सेब"
+      },
+      {
+       "key": "d",
+       "text": "कुर्सी"
+      }
+     ],
+     "explanation": "मेज़, कुर्सी और बेंच फ़र्नीचर हैं; सेब फल है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GC-AN-002",
+   "version": 1,
+   "domain": "gc",
+   "subdomain": "verbal-analogy",
+   "item_format": "analogy",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Which pair has the same relationship as  Thermometer : Temperature ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Pen : Paper"
+      },
+      {
+       "key": "b",
+       "text": "Clock : Time"
+      },
+      {
+       "key": "c",
+       "text": "Scale : Fish"
+      },
+      {
+       "key": "d",
+       "text": "Ruler : Wood"
+      }
+     ],
+     "explanation": "A thermometer is an instrument that measures temperature; a clock is an instrument that measures time.",
+     "distractor_rationale": "The other pairs relate a tool to its material, to an unrelated object, or to a surface.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "किस जोड़ी में वही संबंध है जो  थर्मामीटर : तापमान  में है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "कलम : काग़ज़"
+      },
+      {
+       "key": "b",
+       "text": "घड़ी : समय"
+      },
+      {
+       "key": "c",
+       "text": "तराज़ू : मछली"
+      },
+      {
+       "key": "d",
+       "text": "स्केल : लकड़ी"
+      }
+     ],
+     "explanation": "थर्मामीटर तापमान मापने का उपकरण है; घड़ी समय मापने का उपकरण है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GC-VR-001",
+   "version": 1,
+   "domain": "gc",
+   "subdomain": "verbal-reasoning",
+   "item_format": "syllogism",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "All cats are animals. All animals need food. Which statement must be true?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Some animals do not need food."
+      },
+      {
+       "key": "b",
+       "text": "All cats need food."
+      },
+      {
+       "key": "c",
+       "text": "All animals are cats."
+      },
+      {
+       "key": "d",
+       "text": "Cats are the only animals."
+      }
+     ],
+     "explanation": "Cats are animals, and animals need food, so cats need food.",
+     "distractor_rationale": "The other statements reverse or contradict the given facts.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "सभी बिल्लियाँ जानवर हैं। सभी जानवरों को भोजन चाहिए। कौन-सा कथन अवश्य सत्य है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "कुछ जानवरों को भोजन नहीं चाहिए।"
+      },
+      {
+       "key": "b",
+       "text": "सभी बिल्लियों को भोजन चाहिए।"
+      },
+      {
+       "key": "c",
+       "text": "सभी जानवर बिल्लियाँ हैं।"
+      },
+      {
+       "key": "d",
+       "text": "बिल्लियाँ ही एकमात्र जानवर हैं।"
+      }
+     ],
+     "explanation": "बिल्लियाँ जानवर हैं और जानवरों को भोजन चाहिए, इसलिए बिल्लियों को भोजन चाहिए।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GC-WR-001",
+   "version": 1,
+   "domain": "gc",
+   "subdomain": "word-relationship",
+   "item_format": "opposites",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Choose the word that means the OPPOSITE of  scarce.",
+     "options": [
+      {
+       "key": "a",
+       "text": "Rare"
+      },
+      {
+       "key": "b",
+       "text": "Plentiful"
+      },
+      {
+       "key": "c",
+       "text": "Costly"
+      },
+      {
+       "key": "d",
+       "text": "Tiny"
+      }
+     ],
+     "explanation": "Scarce means hard to find or in short supply. Plentiful means there is a lot.",
+     "distractor_rationale": "Rare is a synonym of scarce.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "उस शब्द को चुनिए जिसका अर्थ  अल्प  का विलोम है।",
+     "options": [
+      {
+       "key": "a",
+       "text": "दुर्लभ"
+      },
+      {
+       "key": "b",
+       "text": "प्रचुर"
+      },
+      {
+       "key": "c",
+       "text": "महँगा"
+      },
+      {
+       "key": "d",
+       "text": "छोटा"
+      }
+     ],
+     "explanation": "अल्प का अर्थ है बहुत कम। प्रचुर का अर्थ है बहुत अधिक।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GC-VR-002",
+   "version": 1,
+   "domain": "gc",
+   "subdomain": "verbal-reasoning",
+   "item_format": "ordering",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Mira is taller than Sana. Sana is taller than Tara. Rohan is shorter than Tara. Neha is taller than Sana but shorter than Mira. Who is the second tallest?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Mira"
+      },
+      {
+       "key": "b",
+       "text": "Tara"
+      },
+      {
+       "key": "c",
+       "text": "Neha"
+      },
+      {
+       "key": "d",
+       "text": "Sana"
+      }
+     ],
+     "explanation": "The order from tallest is Mira, Neha, Sana, Tara, Rohan. Neha is second.",
+     "distractor_rationale": "Mira is tallest; Sana is third.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "मीरा सना से लंबी है। सना तारा से लंबी है। रोहन तारा से छोटा है। नेहा सना से लंबी है पर मीरा से छोटी। दूसरी सबसे लंबी कौन है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "मीरा"
+      },
+      {
+       "key": "b",
+       "text": "तारा"
+      },
+      {
+       "key": "c",
+       "text": "नेहा"
+      },
+      {
+       "key": "d",
+       "text": "सना"
+      }
+     ],
+     "explanation": "सबसे लंबे से क्रम: मीरा, नेहा, सना, तारा, रोहन। नेहा दूसरे स्थान पर है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GC-VR-003",
+   "version": 1,
+   "domain": "gc",
+   "subdomain": "verbal-reasoning",
+   "item_format": "conditional-logic",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "expert",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Only members can enter the club. Students are not allowed to bring a guest. Ravi entered the club and brought a guest. Which must be true?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Ravi is a member and a student."
+      },
+      {
+       "key": "b",
+       "text": "Ravi is not a member."
+      },
+      {
+       "key": "c",
+       "text": "Ravi is a member and not a student."
+      },
+      {
+       "key": "d",
+       "text": "Ravi is a student."
+      }
+     ],
+     "explanation": "Ravi entered, so he is a member. He brought a guest, so he cannot be a student.",
+     "distractor_rationale": "Each wrong option contradicts one of the two facts.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "क्लब में केवल सदस्य ही प्रवेश कर सकते हैं। विद्यार्थियों को मेहमान लाने की अनुमति नहीं है। रवि क्लब में गया और मेहमान को भी ले गया। कौन-सा कथन अवश्य सत्य है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "रवि सदस्य है और विद्यार्थी भी है।"
+      },
+      {
+       "key": "b",
+       "text": "रवि सदस्य नहीं है।"
+      },
+      {
+       "key": "c",
+       "text": "रवि सदस्य है और विद्यार्थी नहीं है।"
+      },
+      {
+       "key": "d",
+       "text": "रवि विद्यार्थी है।"
+      }
+     ],
+     "explanation": "रवि क्लब में गया, इसलिए वह सदस्य है। वह मेहमान लाया, इसलिए विद्यार्थी नहीं हो सकता।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GV-MR-001",
+   "version": 1,
+   "domain": "gv",
+   "subdomain": "figure-transformation",
+   "item_format": "mirror-image",
+   "stimulus_type": "image",
+   "asset_id": "pia-gv-mr-001",
+   "difficulty": "easy",
+   "min_age": 13,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Which option is the MIRROR IMAGE of the target shape (flipped left to right, not turned)?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "A mirror image reverses left and right. Turned copies of the original cannot match it.",
+     "distractor_rationale": "The other options are turned copies of the original shape.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कौन-सा विकल्प लक्ष्य आकृति का दर्पण-प्रतिबिंब है (बाएँ-दाएँ पलटा हुआ, घुमाया हुआ नहीं)?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "दर्पण-प्रतिबिंब में बायाँ-दायाँ उलट जाता है। मूल आकृति के घुमाए रूप उससे नहीं मिलते।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GV-RT-001",
+   "version": 1,
+   "domain": "gv",
+   "subdomain": "mental-rotation",
+   "item_format": "mental-rotation",
+   "stimulus_type": "image",
+   "asset_id": "pia-gv-rt-001",
+   "difficulty": "easy",
+   "min_age": 13,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "One option shows the target shape turned (rotated) but not flipped. Which one?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Turning a shape never changes which way it 'leans'. The other options are mirror images, which no turn can produce.",
+     "distractor_rationale": "Mirror images look similar but cannot be matched by turning.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "एक विकल्प में लक्ष्य आकृति को केवल घुमाया गया है, पलटा नहीं गया है। कौन-सा?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "घुमाने से आकृति का रूप नहीं बदलता। बाकी विकल्प दर्पण-प्रतिबिंब हैं, जो घुमाने से नहीं बन सकते।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GV-FT-001",
+   "version": 1,
+   "domain": "gv",
+   "subdomain": "spatial-matching",
+   "item_format": "piece-fit",
+   "stimulus_type": "image",
+   "asset_id": "pia-gv-ft-001",
+   "difficulty": "medium",
+   "min_age": 13,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Which piece exactly fills the gap in the board? Pieces may be turned but not flipped.",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Only one piece has exactly the shape of the gap once it is turned.",
+     "distractor_rationale": "The other pieces have the same number of squares but a different shape.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कौन-सा टुकड़ा बोर्ड की खाली जगह को ठीक-ठीक भरता है? टुकड़ों को घुमाया जा सकता है, पलटा नहीं जा सकता।",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "घुमाने पर केवल एक टुकड़े का आकार खाली जगह जैसा होता है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GV-RT-002",
+   "version": 1,
+   "domain": "gv",
+   "subdomain": "mental-rotation",
+   "item_format": "mental-rotation",
+   "stimulus_type": "image",
+   "asset_id": "pia-gv-rt-002",
+   "difficulty": "medium",
+   "min_age": 13,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "One option shows the target shape turned (rotated) but not flipped. Which one?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Turning a shape never changes which way it 'leans'. The other options are mirror images, which no turn can produce.",
+     "distractor_rationale": "Mirror images look similar but cannot be matched by turning.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "एक विकल्प में लक्ष्य आकृति को केवल घुमाया गया है, पलटा नहीं गया है। कौन-सा?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "घुमाने से आकृति का रूप नहीं बदलता। बाकी विकल्प दर्पण-प्रतिबिंब हैं, जो घुमाने से नहीं बन सकते।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GV-FT-002",
+   "version": 1,
+   "domain": "gv",
+   "subdomain": "spatial-matching",
+   "item_format": "piece-fit",
+   "stimulus_type": "image",
+   "asset_id": "pia-gv-ft-002",
+   "difficulty": "hard",
+   "min_age": 13,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Which piece exactly fills the gap in the board? Pieces may be turned but not flipped.",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Only one piece has exactly the shape of the gap once it is turned.",
+     "distractor_rationale": "The other pieces have the same number of squares but a different shape.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कौन-सा टुकड़ा बोर्ड की खाली जगह को ठीक-ठीक भरता है? टुकड़ों को घुमाया जा सकता है, पलटा नहीं जा सकता।",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "घुमाने पर केवल एक टुकड़े का आकार खाली जगह जैसा होता है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GV-MR-002",
+   "version": 1,
+   "domain": "gv",
+   "subdomain": "figure-transformation",
+   "item_format": "mirror-image",
+   "stimulus_type": "image",
+   "asset_id": "pia-gv-mr-002",
+   "difficulty": "hard",
+   "min_age": 13,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Which option is a MIRROR IMAGE of the target shape? (It may also be turned.)",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Only one option is flipped; the rest are plain turns of the original.",
+     "distractor_rationale": "Turned copies of the original are not mirror images.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कौन-सा विकल्प लक्ष्य आकृति का दर्पण-प्रतिबिंब है? (वह घुमाया हुआ भी हो सकता है।)",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "केवल एक विकल्प पलटा हुआ है; बाकी मूल आकृति के सादे घुमाव हैं।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GV-RT-003",
+   "version": 1,
+   "domain": "gv",
+   "subdomain": "mental-rotation",
+   "item_format": "mental-rotation",
+   "stimulus_type": "image",
+   "asset_id": "pia-gv-rt-003",
+   "difficulty": "hard",
+   "min_age": 13,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "One option shows the target shape turned (rotated) but not flipped. Which one?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Turning a shape never changes which way it 'leans'. The other options are mirror images, which no turn can produce.",
+     "distractor_rationale": "Mirror images look similar but cannot be matched by turning.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "एक विकल्प में लक्ष्य आकृति को केवल घुमाया गया है, पलटा नहीं गया है। कौन-सा?",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "घुमाने से आकृति का रूप नहीं बदलता। बाकी विकल्प दर्पण-प्रतिबिंब हैं, जो घुमाने से नहीं बन सकते।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GV-FT-003",
+   "version": 1,
+   "domain": "gv",
+   "subdomain": "spatial-matching",
+   "item_format": "piece-fit",
+   "stimulus_type": "image",
+   "asset_id": "pia-gv-ft-003",
+   "difficulty": "expert",
+   "min_age": 13,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Requires vision. A non-visual accommodation must be designed before operational release.",
+   "translations": {
+    "en": {
+     "stem": "Which piece exactly fills the gap in the board? Pieces may be turned but not flipped.",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "Only one piece has exactly the shape of the gap once it is turned.",
+     "distractor_rationale": "The other pieces have the same number of squares but a different shape.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कौन-सा टुकड़ा बोर्ड की खाली जगह को ठीक-ठीक भरता है? टुकड़ों को घुमाया जा सकता है, पलटा नहीं जा सकता।",
+     "options": [
+      {
+       "key": "a",
+       "text": "A"
+      },
+      {
+       "key": "b",
+       "text": "B"
+      },
+      {
+       "key": "c",
+       "text": "C"
+      },
+      {
+       "key": "d",
+       "text": "D"
+      }
+     ],
+     "explanation": "घुमाने पर केवल एक टुकड़े का आकार खाली जगह जैसा होता है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GWM-DS-001",
+   "version": 1,
+   "domain": "gwm",
+   "subdomain": "forward-span",
+   "item_format": "forward-span",
+   "stimulus_type": "timed-text",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": 4,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users.",
+   "translations": {
+    "en": {
+     "stem": "Which sequence is exactly the numbers you saw, in the same order?",
+     "options": [
+      {
+       "key": "a",
+       "text": "4 9 7 2"
+      },
+      {
+       "key": "b",
+       "text": "4 9 2 7"
+      },
+      {
+       "key": "c",
+       "text": "4 2 9 7"
+      },
+      {
+       "key": "d",
+       "text": "7 2 9 4"
+      }
+     ],
+     "explanation": "The numbers shown were 4 9 2 7.",
+     "distractor_rationale": "Distractors swap neighbouring numbers or reverse the order.",
+     "reviewed": false,
+     "stimulus": "4 9 2 7"
+    },
+    "hi": {
+     "stem": "आपने जो संख्याएँ देखीं, उन्हीं का ठीक वही क्रम कौन-सा है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "4 9 7 2"
+      },
+      {
+       "key": "b",
+       "text": "4 9 2 7"
+      },
+      {
+       "key": "c",
+       "text": "4 2 9 7"
+      },
+      {
+       "key": "d",
+       "text": "7 2 9 4"
+      }
+     ],
+     "explanation": "दिखाई गई संख्याएँ 4 9 2 7 थीं।",
+     "distractor_rationale": null,
+     "reviewed": false,
+     "stimulus": "4 9 2 7"
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GWM-DB-001",
+   "version": 1,
+   "domain": "gwm",
+   "subdomain": "backward-span",
+   "item_format": "backward-span",
+   "stimulus_type": "timed-text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": 4,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users.",
+   "translations": {
+    "en": {
+     "stem": "Which sequence is the numbers you saw, in REVERSE order (last number first)?",
+     "options": [
+      {
+       "key": "a",
+       "text": "9 5 2"
+      },
+      {
+       "key": "b",
+       "text": "5 2 9"
+      },
+      {
+       "key": "c",
+       "text": "2 9 5"
+      },
+      {
+       "key": "d",
+       "text": "9 2 5"
+      }
+     ],
+     "explanation": "The numbers shown were 5 2 9. Reversed: 9 2 5.",
+     "distractor_rationale": "Distractors swap neighbouring numbers or reverse the order.",
+     "reviewed": false,
+     "stimulus": "5 2 9"
+    },
+    "hi": {
+     "stem": "आपने जो संख्याएँ देखीं, उनका उलटा क्रम (अंतिम संख्या पहले) कौन-सा है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "9 5 2"
+      },
+      {
+       "key": "b",
+       "text": "5 2 9"
+      },
+      {
+       "key": "c",
+       "text": "2 9 5"
+      },
+      {
+       "key": "d",
+       "text": "9 2 5"
+      }
+     ],
+     "explanation": "दिखाई गई संख्याएँ 5 2 9 थीं। उलटा क्रम: 9 2 5।",
+     "distractor_rationale": null,
+     "reviewed": false,
+     "stimulus": "5 2 9"
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GWM-DB-002",
+   "version": 1,
+   "domain": "gwm",
+   "subdomain": "backward-span",
+   "item_format": "backward-span",
+   "stimulus_type": "timed-text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": 5,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users.",
+   "translations": {
+    "en": {
+     "stem": "Which sequence is the numbers you saw, in REVERSE order (last number first)?",
+     "options": [
+      {
+       "key": "a",
+       "text": "3 8 1 6"
+      },
+      {
+       "key": "b",
+       "text": "6 1 8 3"
+      },
+      {
+       "key": "c",
+       "text": "6 8 1 3"
+      },
+      {
+       "key": "d",
+       "text": "1 6 8 3"
+      }
+     ],
+     "explanation": "The numbers shown were 3 8 1 6. Reversed: 6 1 8 3.",
+     "distractor_rationale": "Distractors swap neighbouring numbers or reverse the order.",
+     "reviewed": false,
+     "stimulus": "3 8 1 6"
+    },
+    "hi": {
+     "stem": "आपने जो संख्याएँ देखीं, उनका उलटा क्रम (अंतिम संख्या पहले) कौन-सा है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "3 8 1 6"
+      },
+      {
+       "key": "b",
+       "text": "6 1 8 3"
+      },
+      {
+       "key": "c",
+       "text": "6 8 1 3"
+      },
+      {
+       "key": "d",
+       "text": "1 6 8 3"
+      }
+     ],
+     "explanation": "दिखाई गई संख्याएँ 3 8 1 6 थीं। उलटा क्रम: 6 1 8 3।",
+     "distractor_rationale": null,
+     "reviewed": false,
+     "stimulus": "3 8 1 6"
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GWM-DS-002",
+   "version": 1,
+   "domain": "gwm",
+   "subdomain": "forward-span",
+   "item_format": "forward-span",
+   "stimulus_type": "timed-text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": 5,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users.",
+   "translations": {
+    "en": {
+     "stem": "Which sequence is exactly the numbers you saw, in the same order?",
+     "options": [
+      {
+       "key": "a",
+       "text": "5 1 6 3 8"
+      },
+      {
+       "key": "b",
+       "text": "8 3 6 5 1"
+      },
+      {
+       "key": "c",
+       "text": "8 3 1 6 5"
+      },
+      {
+       "key": "d",
+       "text": "8 3 6 1 5"
+      }
+     ],
+     "explanation": "The numbers shown were 8 3 6 1 5.",
+     "distractor_rationale": "Distractors swap neighbouring numbers or reverse the order.",
+     "reviewed": false,
+     "stimulus": "8 3 6 1 5"
+    },
+    "hi": {
+     "stem": "आपने जो संख्याएँ देखीं, उन्हीं का ठीक वही क्रम कौन-सा है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "5 1 6 3 8"
+      },
+      {
+       "key": "b",
+       "text": "8 3 6 5 1"
+      },
+      {
+       "key": "c",
+       "text": "8 3 1 6 5"
+      },
+      {
+       "key": "d",
+       "text": "8 3 6 1 5"
+      }
+     ],
+     "explanation": "दिखाई गई संख्याएँ 8 3 6 1 5 थीं।",
+     "distractor_rationale": null,
+     "reviewed": false,
+     "stimulus": "8 3 6 1 5"
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GWM-DS-003",
+   "version": 1,
+   "domain": "gwm",
+   "subdomain": "forward-span",
+   "item_format": "forward-span",
+   "stimulus_type": "timed-text",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": 6,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users.",
+   "translations": {
+    "en": {
+     "stem": "Which sequence is exactly the numbers you saw, in the same order?",
+     "options": [
+      {
+       "key": "a",
+       "text": "8 1 4 9 2 7"
+      },
+      {
+       "key": "b",
+       "text": "7 2 9 4 1 8"
+      },
+      {
+       "key": "c",
+       "text": "7 2 4 9 1 8"
+      },
+      {
+       "key": "d",
+       "text": "7 2 9 1 4 8"
+      }
+     ],
+     "explanation": "The numbers shown were 7 2 9 4 1 8.",
+     "distractor_rationale": "Distractors swap neighbouring numbers or reverse the order.",
+     "reviewed": false,
+     "stimulus": "7 2 9 4 1 8"
+    },
+    "hi": {
+     "stem": "आपने जो संख्याएँ देखीं, उन्हीं का ठीक वही क्रम कौन-सा है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "8 1 4 9 2 7"
+      },
+      {
+       "key": "b",
+       "text": "7 2 9 4 1 8"
+      },
+      {
+       "key": "c",
+       "text": "7 2 4 9 1 8"
+      },
+      {
+       "key": "d",
+       "text": "7 2 9 1 4 8"
+      }
+     ],
+     "explanation": "दिखाई गई संख्याएँ 7 2 9 4 1 8 थीं।",
+     "distractor_rationale": null,
+     "reviewed": false,
+     "stimulus": "7 2 9 4 1 8"
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GWM-UP-001",
+   "version": 1,
+   "domain": "gwm",
+   "subdomain": "sequence-updating",
+   "item_format": "updating",
+   "stimulus_type": "timed-text",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": 8,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users.",
+   "translations": {
+    "en": {
+     "stem": "Starting with the first number, apply each change in order. What is the final number?",
+     "options": [
+      {
+       "key": "a",
+       "text": "11"
+      },
+      {
+       "key": "b",
+       "text": "12"
+      },
+      {
+       "key": "c",
+       "text": "10"
+      },
+      {
+       "key": "d",
+       "text": "9"
+      }
+     ],
+     "explanation": "5 + 3 = 8; 8 − 2 = 6; 6 + 4 = 10.",
+     "distractor_rationale": "9 and 11 drop or repeat one step.",
+     "reviewed": false,
+     "stimulus": "5, then +3, then −2, then +4"
+    },
+    "hi": {
+     "stem": "पहली संख्या से शुरू करके हर बदलाव को क्रम से लागू कीजिए। अंतिम संख्या क्या है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "11"
+      },
+      {
+       "key": "b",
+       "text": "12"
+      },
+      {
+       "key": "c",
+       "text": "10"
+      },
+      {
+       "key": "d",
+       "text": "9"
+      }
+     ],
+     "explanation": "5 + 3 = 8; 8 − 2 = 6; 6 + 4 = 10।",
+     "distractor_rationale": null,
+     "reviewed": false,
+     "stimulus": "5, फिर +3, फिर −2, फिर +4"
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GWM-MN-001",
+   "version": 1,
+   "domain": "gwm",
+   "subdomain": "mental-manipulation",
+   "item_format": "manipulation",
+   "stimulus_type": "timed-text",
+   "asset_id": null,
+   "difficulty": "expert",
+   "min_age": 13,
+   "stimulus_display_seconds": 6,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users.",
+   "translations": {
+    "en": {
+     "stem": "Put the letters you saw in alphabetical order. Which letter is third?",
+     "options": [
+      {
+       "key": "a",
+       "text": "K"
+      },
+      {
+       "key": "b",
+       "text": "R"
+      },
+      {
+       "key": "c",
+       "text": "M"
+      },
+      {
+       "key": "d",
+       "text": "T"
+      }
+     ],
+     "explanation": "In alphabetical order the letters are B, K, M, R, T. The third is M.",
+     "distractor_rationale": "K, R and T are the 2nd, 4th and 5th letters.",
+     "reviewed": false,
+     "stimulus": "R   K   T   B   M"
+    },
+    "hi": {
+     "stem": "आपने जो अक्षर देखे उन्हें अंग्रेज़ी वर्णमाला (A–Z) के क्रम में रखिए। तीसरा अक्षर कौन-सा है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "K"
+      },
+      {
+       "key": "b",
+       "text": "R"
+      },
+      {
+       "key": "c",
+       "text": "M"
+      },
+      {
+       "key": "d",
+       "text": "T"
+      }
+     ],
+     "explanation": "वर्णमाला क्रम में अक्षर B, K, M, R, T हैं। तीसरा M है।",
+     "distractor_rationale": null,
+     "reviewed": false,
+     "stimulus": "R   K   T   B   M"
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GS-CP-001",
+   "version": 1,
+   "domain": "gs",
+   "subdomain": "timed-comparison",
+   "item_format": "pair-match",
+   "stimulus_type": "symbols",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Which pair of numbers is IDENTICAL?",
+     "options": [
+      {
+       "key": "a",
+       "text": "26394 — 26349"
+      },
+      {
+       "key": "b",
+       "text": "70851 — 70815"
+      },
+      {
+       "key": "c",
+       "text": "91564 — 91564"
+      },
+      {
+       "key": "d",
+       "text": "48372 — 48732"
+      }
+     ],
+     "explanation": "Only 91564 — 91564 matches digit for digit.",
+     "distractor_rationale": "The other pairs swap two neighbouring digits.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "संख्याओं की कौन-सी जोड़ी बिल्कुल एक जैसी है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "26394 — 26349"
+      },
+      {
+       "key": "b",
+       "text": "70851 — 70815"
+      },
+      {
+       "key": "c",
+       "text": "91564 — 91564"
+      },
+      {
+       "key": "d",
+       "text": "48372 — 48732"
+      }
+     ],
+     "explanation": "केवल 91564 — 91564 अंक-दर-अंक मेल खाती है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GS-VS-001",
+   "version": 1,
+   "domain": "gs",
+   "subdomain": "visual-search",
+   "item_format": "count",
+   "stimulus_type": "symbols",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Symbols may need a text alternative for screen readers.",
+   "translations": {
+    "en": {
+     "stem": "How many ▲ are in this row?   ▲ ● ▲ ■ ▲ ●",
+     "options": [
+      {
+       "key": "a",
+       "text": "5"
+      },
+      {
+       "key": "b",
+       "text": "4"
+      },
+      {
+       "key": "c",
+       "text": "3"
+      },
+      {
+       "key": "d",
+       "text": "2"
+      }
+     ],
+     "explanation": "▲ appears 3 times.",
+     "distractor_rationale": "Counting slips are the usual error.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "इस पंक्ति में कितने ▲ हैं?   ▲ ● ▲ ■ ▲ ●",
+     "options": [
+      {
+       "key": "a",
+       "text": "5"
+      },
+      {
+       "key": "b",
+       "text": "4"
+      },
+      {
+       "key": "c",
+       "text": "3"
+      },
+      {
+       "key": "d",
+       "text": "2"
+      }
+     ],
+     "explanation": "▲ 3 बार आता है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GS-VS-002",
+   "version": 1,
+   "domain": "gs",
+   "subdomain": "visual-search",
+   "item_format": "odd-one-out",
+   "stimulus_type": "symbols",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Which one is different?   ■ ■ ■ □ ■",
+     "options": [
+      {
+       "key": "a",
+       "text": "1st"
+      },
+      {
+       "key": "b",
+       "text": "3rd"
+      },
+      {
+       "key": "c",
+       "text": "5th"
+      },
+      {
+       "key": "d",
+       "text": "4th"
+      }
+     ],
+     "explanation": "The 4th symbol is an empty square; the rest are filled.",
+     "distractor_rationale": "Positions 1, 3 and 5 are filled squares.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कौन-सा अलग है?   ■ ■ ■ □ ■",
+     "options": [
+      {
+       "key": "a",
+       "text": "पहला"
+      },
+      {
+       "key": "b",
+       "text": "तीसरा"
+      },
+      {
+       "key": "c",
+       "text": "पाँचवाँ"
+      },
+      {
+       "key": "d",
+       "text": "चौथा"
+      }
+     ],
+     "explanation": "चौथा चिह्न खाली वर्ग है; बाकी भरे हुए हैं।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GS-CD-001",
+   "version": 1,
+   "domain": "gs",
+   "subdomain": "coding",
+   "item_format": "symbol-digit",
+   "stimulus_type": "symbols",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Use the key to turn the symbols into numbers.   ▲=1  ●=2  ■=3  ◆=4      ● ▲ ◆ ■",
+     "options": [
+      {
+       "key": "a",
+       "text": "2134"
+      },
+      {
+       "key": "b",
+       "text": "1243"
+      },
+      {
+       "key": "c",
+       "text": "2143"
+      },
+      {
+       "key": "d",
+       "text": "2413"
+      }
+     ],
+     "explanation": "● is 2, ▲ is 1, ◆ is 4, ■ is 3, giving 2143.",
+     "distractor_rationale": "Distractors swap two digits.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कुंजी की मदद से चिह्नों को संख्याओं में बदलिए।   ▲=1  ●=2  ■=3  ◆=4      ● ▲ ◆ ■",
+     "options": [
+      {
+       "key": "a",
+       "text": "2134"
+      },
+      {
+       "key": "b",
+       "text": "1243"
+      },
+      {
+       "key": "c",
+       "text": "2143"
+      },
+      {
+       "key": "d",
+       "text": "2413"
+      }
+     ],
+     "explanation": "● = 2, ▲ = 1, ◆ = 4, ■ = 3, यानी 2143।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GS-VS-003",
+   "version": 1,
+   "domain": "gs",
+   "subdomain": "visual-search",
+   "item_format": "count",
+   "stimulus_type": "symbols",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "How many times does the digit 7 appear?   3 7 1 7 7 4 9 7 2 7",
+     "options": [
+      {
+       "key": "a",
+       "text": "4"
+      },
+      {
+       "key": "b",
+       "text": "3"
+      },
+      {
+       "key": "c",
+       "text": "5"
+      },
+      {
+       "key": "d",
+       "text": "6"
+      }
+     ],
+     "explanation": "7 appears 5 times.",
+     "distractor_rationale": "Counting slips are the usual error.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "अंक 7 कितनी बार आता है?   3 7 1 7 7 4 9 7 2 7",
+     "options": [
+      {
+       "key": "a",
+       "text": "4"
+      },
+      {
+       "key": "b",
+       "text": "3"
+      },
+      {
+       "key": "c",
+       "text": "5"
+      },
+      {
+       "key": "d",
+       "text": "6"
+      }
+     ],
+     "explanation": "7 पाँच बार आता है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GS-CD-002",
+   "version": 1,
+   "domain": "gs",
+   "subdomain": "coding",
+   "item_format": "symbol-digit",
+   "stimulus_type": "symbols",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Use the key.   ▲=3  ●=8  ■=5  ◆=1  ★=9      ◆ ● ★ ▲ ■ ● ◆ ★",
+     "options": [
+      {
+       "key": "a",
+       "text": "18935819"
+      },
+      {
+       "key": "b",
+       "text": "18395819"
+      },
+      {
+       "key": "c",
+       "text": "81935819"
+      },
+      {
+       "key": "d",
+       "text": "18935891"
+      }
+     ],
+     "explanation": "Translate each symbol in order: 18935819.",
+     "distractor_rationale": "Distractors swap neighbouring digits.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "कुंजी का उपयोग कीजिए।   ▲=3  ●=8  ■=5  ◆=1  ★=9      ◆ ● ★ ▲ ■ ● ◆ ★",
+     "options": [
+      {
+       "key": "a",
+       "text": "18935819"
+      },
+      {
+       "key": "b",
+       "text": "18395819"
+      },
+      {
+       "key": "c",
+       "text": "81935819"
+      },
+      {
+       "key": "d",
+       "text": "18935891"
+      }
+     ],
+     "explanation": "हर चिह्न को क्रम से बदलिए: 18935819।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GS-CP-002",
+   "version": 1,
+   "domain": "gs",
+   "subdomain": "timed-comparison",
+   "item_format": "difference-count",
+   "stimulus_type": "symbols",
+   "asset_id": null,
+   "difficulty": "expert",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "In how many places do the two rows differ?\nRow 1:  4 7 2 9 1 5 8 3 6 0 2 7\nRow 2:  4 7 3 9 1 5 8 8 6 0 5 7",
+     "options": [
+      {
+       "key": "a",
+       "text": "5"
+      },
+      {
+       "key": "b",
+       "text": "3"
+      },
+      {
+       "key": "c",
+       "text": "2"
+      },
+      {
+       "key": "d",
+       "text": "4"
+      }
+     ],
+     "explanation": "They differ in the 3rd, 8th and 11th places: 3 differences.",
+     "distractor_rationale": "Missing one place or counting one extra are the usual errors.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "दोनों पंक्तियाँ कितनी जगह अलग हैं?\nपंक्ति 1:  4 7 2 9 1 5 8 3 6 0 2 7\nपंक्ति 2:  4 7 3 9 1 5 8 8 6 0 5 7",
+     "options": [
+      {
+       "key": "a",
+       "text": "5"
+      },
+      {
+       "key": "b",
+       "text": "3"
+      },
+      {
+       "key": "c",
+       "text": "2"
+      },
+      {
+       "key": "d",
+       "text": "4"
+      }
+     ],
+     "explanation": "वे तीसरे, आठवें और ग्यारहवें स्थान पर अलग हैं: 3 अंतर।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GQ-AR-001",
+   "version": 1,
+   "domain": "gq",
+   "subdomain": "applied-numerical",
+   "item_format": "arithmetic",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "easy",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "A notebook costs 12 rupees. How much do 5 notebooks cost, in rupees?",
+     "options": [
+      {
+       "key": "a",
+       "text": "17"
+      },
+      {
+       "key": "b",
+       "text": "60"
+      },
+      {
+       "key": "c",
+       "text": "72"
+      },
+      {
+       "key": "d",
+       "text": "48"
+      }
+     ],
+     "explanation": "5 × 12 = 60.",
+     "distractor_rationale": "17 adds instead of multiplying.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "एक कॉपी 12 रुपये की है। 5 कॉपियों की कीमत कितने रुपये होगी?",
+     "options": [
+      {
+       "key": "a",
+       "text": "17"
+      },
+      {
+       "key": "b",
+       "text": "60"
+      },
+      {
+       "key": "c",
+       "text": "72"
+      },
+      {
+       "key": "d",
+       "text": "48"
+      }
+     ],
+     "explanation": "5 × 12 = 60।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GQ-NP-001",
+   "version": 1,
+   "domain": "gq",
+   "subdomain": "number-pattern",
+   "item_format": "pattern",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "What number comes next?  2, 6, 12, 20, 30, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "44"
+      },
+      {
+       "key": "b",
+       "text": "42"
+      },
+      {
+       "key": "c",
+       "text": "36"
+      },
+      {
+       "key": "d",
+       "text": "40"
+      }
+     ],
+     "explanation": "The gaps are 4, 6, 8, 10, so the next gap is 12: 30 + 12 = 42.",
+     "distractor_rationale": "36, 40 and 44 do not continue the growing gaps.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "अगली संख्या क्या होगी?  2, 6, 12, 20, 30, ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "44"
+      },
+      {
+       "key": "b",
+       "text": "42"
+      },
+      {
+       "key": "c",
+       "text": "36"
+      },
+      {
+       "key": "d",
+       "text": "40"
+      }
+     ],
+     "explanation": "अंतर 4, 6, 8, 10 हैं, इसलिए अगला अंतर 12 है: 30 + 12 = 42।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GQ-NR-001",
+   "version": 1,
+   "domain": "gq",
+   "subdomain": "numerical-relationship",
+   "item_format": "arithmetic-logic",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "A pen costs 4 rupees more than a pencil. Together they cost 14 rupees. How much is the pencil, in rupees?",
+     "options": [
+      {
+       "key": "a",
+       "text": "7"
+      },
+      {
+       "key": "b",
+       "text": "9"
+      },
+      {
+       "key": "c",
+       "text": "3"
+      },
+      {
+       "key": "d",
+       "text": "5"
+      }
+     ],
+     "explanation": "Pencil = x, pen = x + 4, so 2x + 4 = 14 and x = 5.",
+     "distractor_rationale": "7 is the common mistake of removing 4 only once.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "एक पेन पेंसिल से 4 रुपये महँगा है। दोनों मिलाकर 14 रुपये के हैं। पेंसिल कितने रुपये की है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "7"
+      },
+      {
+       "key": "b",
+       "text": "9"
+      },
+      {
+       "key": "c",
+       "text": "3"
+      },
+      {
+       "key": "d",
+       "text": "5"
+      }
+     ],
+     "explanation": "पेंसिल = x, पेन = x + 4, इसलिए 2x + 4 = 14 और x = 5।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GQ-QA-001",
+   "version": 1,
+   "domain": "gq",
+   "subdomain": "quantitative-analogy",
+   "item_format": "analogy",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "3 : 27  as  4 : ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "16"
+      },
+      {
+       "key": "b",
+       "text": "12"
+      },
+      {
+       "key": "c",
+       "text": "64"
+      },
+      {
+       "key": "d",
+       "text": "48"
+      }
+     ],
+     "explanation": "27 is 3 × 3 × 3 (3 cubed), so 4 cubed is 64.",
+     "distractor_rationale": "12 and 48 multiply instead of cubing; 16 squares.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "3 : 27  वैसे ही जैसे  4 : ?",
+     "options": [
+      {
+       "key": "a",
+       "text": "16"
+      },
+      {
+       "key": "b",
+       "text": "12"
+      },
+      {
+       "key": "c",
+       "text": "64"
+      },
+      {
+       "key": "d",
+       "text": "48"
+      }
+     ],
+     "explanation": "27 = 3 × 3 × 3 (3 का घन), इसलिए 4 का घन 64 है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GQ-AR-002",
+   "version": 1,
+   "domain": "gq",
+   "subdomain": "applied-numerical",
+   "item_format": "rate",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "A train travels 60 km in 45 minutes. At the same speed, how far does it travel in 2 hours, in km?",
+     "options": [
+      {
+       "key": "a",
+       "text": "160"
+      },
+      {
+       "key": "b",
+       "text": "120"
+      },
+      {
+       "key": "c",
+       "text": "180"
+      },
+      {
+       "key": "d",
+       "text": "135"
+      }
+     ],
+     "explanation": "60 km in 45 min is 80 km per hour, so 2 hours gives 160 km.",
+     "distractor_rationale": "120 assumes 60 km per hour.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "एक ट्रेन 45 मिनट में 60 किमी चलती है। उसी गति से 2 घंटे में वह कितने किमी चलेगी?",
+     "options": [
+      {
+       "key": "a",
+       "text": "160"
+      },
+      {
+       "key": "b",
+       "text": "120"
+      },
+      {
+       "key": "c",
+       "text": "180"
+      },
+      {
+       "key": "d",
+       "text": "135"
+      }
+     ],
+     "explanation": "45 मिनट में 60 किमी का अर्थ है 80 किमी प्रति घंटा, इसलिए 2 घंटे में 160 किमी।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GQ-AR-003",
+   "version": 1,
+   "domain": "gq",
+   "subdomain": "applied-numerical",
+   "item_format": "average",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "The average of five numbers is 12. Four of them are 10, 11, 13 and 14. What is the fifth number?",
+     "options": [
+      {
+       "key": "a",
+       "text": "12"
+      },
+      {
+       "key": "b",
+       "text": "13"
+      },
+      {
+       "key": "c",
+       "text": "11"
+      },
+      {
+       "key": "d",
+       "text": "10"
+      }
+     ],
+     "explanation": "The total must be 5 × 12 = 60. The four known numbers add to 48, so the fifth is 12.",
+     "distractor_rationale": "Other options come from slips in the total.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "पाँच संख्याओं का औसत 12 है। उनमें से चार संख्याएँ 10, 11, 13 और 14 हैं। पाँचवीं संख्या क्या है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "12"
+      },
+      {
+       "key": "b",
+       "text": "13"
+      },
+      {
+       "key": "c",
+       "text": "11"
+      },
+      {
+       "key": "d",
+       "text": "10"
+      }
+     ],
+     "explanation": "कुल योग 5 × 12 = 60 होना चाहिए। चार ज्ञात संख्याओं का योग 48 है, इसलिए पाँचवीं संख्या 12 है।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GQ-NR-002",
+   "version": 1,
+   "domain": "gq",
+   "subdomain": "numerical-relationship",
+   "item_format": "algebraic-logic",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "expert",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Text only; compatible with screen readers.",
+   "translations": {
+    "en": {
+     "stem": "Ravi is twice as old as Meena. In 6 years the sum of their ages will be 48. How old is Meena now?",
+     "options": [
+      {
+       "key": "a",
+       "text": "16"
+      },
+      {
+       "key": "b",
+       "text": "10"
+      },
+      {
+       "key": "c",
+       "text": "14"
+      },
+      {
+       "key": "d",
+       "text": "12"
+      }
+     ],
+     "explanation": "Meena = m, Ravi = 2m. In 6 years: (2m + 6) + (m + 6) = 48, so 3m = 36 and m = 12.",
+     "distractor_rationale": "Other options forget to add 6 to both ages.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "रवि की आयु मीना से दुगुनी है। 6 वर्ष बाद उनकी आयु का योग 48 होगा। मीना की आयु अभी कितनी है?",
+     "options": [
+      {
+       "key": "a",
+       "text": "16"
+      },
+      {
+       "key": "b",
+       "text": "10"
+      },
+      {
+       "key": "c",
+       "text": "14"
+      },
+      {
+       "key": "d",
+       "text": "12"
+      }
+     ],
+     "explanation": "मीना = m, रवि = 2m। 6 वर्ष बाद: (2m + 6) + (m + 6) = 48, इसलिए 3m = 36 और m = 12।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GLR-PA-001",
+   "version": 1,
+   "domain": "glr",
+   "subdomain": "paired-associate",
+   "item_format": "paired-associate-learning",
+   "stimulus_type": "timed-text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": 45,
+   "answer_key": "c",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users. Retrieval items depend on item 1's study list.",
+   "translations": {
+    "en": {
+     "stem": "Study the list of pairs. After it disappears: which object was paired with Karan?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Bell"
+      },
+      {
+       "key": "b",
+       "text": "Umbrella"
+      },
+      {
+       "key": "c",
+       "text": "Lamp"
+      },
+      {
+       "key": "d",
+       "text": "Cup"
+      }
+     ],
+     "explanation": "Karan was paired with the lamp.",
+     "distractor_rationale": "Other objects belong to other names in the list.",
+     "reviewed": false,
+     "stimulus": "Anil – Umbrella\nMeera – Clock\nKaran – Lamp\nDiya – Kite\nRohan – Bell\nNeha – Cup"
+    },
+    "hi": {
+     "stem": "जोड़ियों की सूची ध्यान से देखिए। सूची हटने के बाद: करण के साथ कौन-सी वस्तु थी?",
+     "options": [
+      {
+       "key": "a",
+       "text": "घंटी"
+      },
+      {
+       "key": "b",
+       "text": "छाता"
+      },
+      {
+       "key": "c",
+       "text": "दीया"
+      },
+      {
+       "key": "d",
+       "text": "प्याला"
+      }
+     ],
+     "explanation": "करण के साथ दीया था।",
+     "distractor_rationale": null,
+     "reviewed": false,
+     "stimulus": "अनिल – छाता\nमीरा – घड़ी\nकरण – दीया\nदिया – पतंग\nरोहन – घंटी\nनेहा – प्याला"
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GLR-PA-002",
+   "version": 1,
+   "domain": "glr",
+   "subdomain": "paired-associate",
+   "item_format": "delayed-association-recall",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "medium",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "a",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users. Retrieval items depend on item 1's study list.",
+   "translations": {
+    "en": {
+     "stem": "From the list of pairs you studied earlier: which object was paired with Diya?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Kite"
+      },
+      {
+       "key": "b",
+       "text": "Clock"
+      },
+      {
+       "key": "c",
+       "text": "Lamp"
+      },
+      {
+       "key": "d",
+       "text": "Cup"
+      }
+     ],
+     "explanation": "Diya was paired with the kite.",
+     "distractor_rationale": "Other objects belong to other names.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "आपने पहले जो जोड़ियाँ देखी थीं, उनमें दिया के साथ कौन-सी वस्तु थी?",
+     "options": [
+      {
+       "key": "a",
+       "text": "पतंग"
+      },
+      {
+       "key": "b",
+       "text": "घड़ी"
+      },
+      {
+       "key": "c",
+       "text": "दीया"
+      },
+      {
+       "key": "d",
+       "text": "प्याला"
+      }
+     ],
+     "explanation": "दिया के साथ पतंग थी।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GLR-PA-003",
+   "version": 1,
+   "domain": "glr",
+   "subdomain": "paired-associate",
+   "item_format": "delayed-association-recall",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "hard",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "d",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users. Retrieval items depend on item 1's study list.",
+   "translations": {
+    "en": {
+     "stem": "From the list you studied earlier: who was paired with the Clock?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Anil"
+      },
+      {
+       "key": "b",
+       "text": "Karan"
+      },
+      {
+       "key": "c",
+       "text": "Rohan"
+      },
+      {
+       "key": "d",
+       "text": "Meera"
+      }
+     ],
+     "explanation": "The clock was paired with Meera.",
+     "distractor_rationale": "Other names belong to other objects.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "आपने पहले जो सूची देखी थी, उसमें घड़ी के साथ कौन था?",
+     "options": [
+      {
+       "key": "a",
+       "text": "अनिल"
+      },
+      {
+       "key": "b",
+       "text": "करण"
+      },
+      {
+       "key": "c",
+       "text": "रोहन"
+      },
+      {
+       "key": "d",
+       "text": "मीरा"
+      }
+     ],
+     "explanation": "घड़ी के साथ मीरा थी।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  },
+  {
+   "item_code": "PIA-GLR-PA-004",
+   "version": 1,
+   "domain": "glr",
+   "subdomain": "paired-associate",
+   "item_format": "recognition-of-pairs",
+   "stimulus_type": "text",
+   "asset_id": null,
+   "difficulty": "expert",
+   "min_age": 13,
+   "stimulus_display_seconds": null,
+   "answer_key": "b",
+   "status": "draft",
+   "author": "padav-team (AI-drafted prototype; pending expert review)",
+   "accessibility_notes": "Timed display needs an accommodation (longer display) for some users. Retrieval items depend on item 1's study list.",
+   "translations": {
+    "en": {
+     "stem": "Which of these pairs was in the list you studied?",
+     "options": [
+      {
+       "key": "a",
+       "text": "Neha – Bell"
+      },
+      {
+       "key": "b",
+       "text": "Rohan – Bell"
+      },
+      {
+       "key": "c",
+       "text": "Karan – Kite"
+      },
+      {
+       "key": "d",
+       "text": "Rohan – Cup"
+      }
+     ],
+     "explanation": "Rohan was paired with the bell. The others recombine names and objects that were in the list.",
+     "distractor_rationale": "Each wrong pair mixes a real name with a real object from a different pair.",
+     "reviewed": false
+    },
+    "hi": {
+     "stem": "इनमें से कौन-सी जोड़ी आपकी देखी हुई सूची में थी?",
+     "options": [
+      {
+       "key": "a",
+       "text": "नेहा – घंटी"
+      },
+      {
+       "key": "b",
+       "text": "रोहन – घंटी"
+      },
+      {
+       "key": "c",
+       "text": "करण – पतंग"
+      },
+      {
+       "key": "d",
+       "text": "रोहन – प्याला"
+      }
+     ],
+     "explanation": "रोहन के साथ घंटी थी। बाकी जोड़ियों में सूची के नाम और वस्तुएँ आपस में मिला दी गई हैं।",
+     "distractor_rationale": null,
+     "reviewed": false
+    }
+   }
+  }
+ ],
+ "form": {
+  "code": "PIA-MASTER",
+  "version": 1,
+  "name": "PIA 50-question master form v1 (draft prototype)",
+  "status": "draft",
+  "items": [
+   "PIA-GF-MX-001",
+   "PIA-GF-SQ-001",
+   "PIA-GF-SQ-002",
+   "PIA-GF-MX-002",
+   "PIA-GF-RI-001",
+   "PIA-GF-SQ-003",
+   "PIA-GF-MX-003",
+   "PIA-GF-RI-002",
+   "PIA-GF-SQ-004",
+   "PIA-GF-MX-004",
+   "PIA-GC-AN-001",
+   "PIA-GC-CL-001",
+   "PIA-GC-AN-002",
+   "PIA-GC-VR-001",
+   "PIA-GC-WR-001",
+   "PIA-GC-VR-002",
+   "PIA-GC-VR-003",
+   "PIA-GV-MR-001",
+   "PIA-GV-RT-001",
+   "PIA-GV-FT-001",
+   "PIA-GV-RT-002",
+   "PIA-GV-FT-002",
+   "PIA-GV-MR-002",
+   "PIA-GV-RT-003",
+   "PIA-GV-FT-003",
+   "PIA-GWM-DS-001",
+   "PIA-GWM-DB-001",
+   "PIA-GWM-DB-002",
+   "PIA-GWM-DS-002",
+   "PIA-GWM-DS-003",
+   "PIA-GWM-UP-001",
+   "PIA-GWM-MN-001",
+   "PIA-GS-CP-001",
+   "PIA-GS-VS-001",
+   "PIA-GS-VS-002",
+   "PIA-GS-CD-001",
+   "PIA-GS-VS-003",
+   "PIA-GS-CD-002",
+   "PIA-GS-CP-002",
+   "PIA-GQ-AR-001",
+   "PIA-GQ-NP-001",
+   "PIA-GQ-NR-001",
+   "PIA-GQ-QA-001",
+   "PIA-GQ-AR-002",
+   "PIA-GQ-AR-003",
+   "PIA-GQ-NR-002",
+   "PIA-GLR-PA-001",
+   "PIA-GLR-PA-002",
+   "PIA-GLR-PA-003",
+   "PIA-GLR-PA-004"
+  ]
+ }
+}

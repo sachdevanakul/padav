@@ -6,21 +6,23 @@ server. The client only ever receives item content, never keys, and the final re
 """
 from __future__ import annotations
 
+import base64
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from statistics import median
 
 from app.core.clock import utcnow
+from app.core.config import settings
 from app.core.exceptions import BadRequestError, ConflictError, NotFoundError, PermissionDeniedError
-from app.models.pia import PiaConsent, PiaEvent, PiaResponse, PiaScoreReport, PiaSession, PiaSubtestRun
+from app.models.pia import PiaConsent, PiaEvent, PiaResponse, PiaScoreReport, PiaSession, PiaStimulusView, PiaSubtestRun
 from app.models.user import User
 from app.repositories import (
     PiaConsentRepository, PiaEventRepository, PiaFormRepository, PiaReportRepository,
-    PiaResponseRepository, PiaSessionRepository,
+    PiaResponseRepository, PiaSessionRepository, PiaStimulusRepository,
 )
 from app.schemas.pia import (
     AnswerIn, AnswerOut, BlueprintOut, ConsentIn, EventIn, ItemOption, PiaItemPublic, ReportOut, RunOut,
-    SessionCreate, SessionOut,
+    SessionCreate, SessionOut, StimulusOut,
 )
 from app.services.base import BaseService
 from app.services.pia_blueprint import (
@@ -91,6 +93,7 @@ class PiaService(BaseService):
         self.sessions = PiaSessionRepository(db)
         self.responses = PiaResponseRepository(db)
         self.events = PiaEventRepository(db)
+        self.stimuli = PiaStimulusRepository(db)
         self.reports = PiaReportRepository(db)
         self.scorer = scorer or RawScorer()
 
@@ -163,6 +166,8 @@ class PiaService(BaseService):
         entry = next((e for e in self.forms.form_items(session.form_id, domain) if e.item.item_code == data.item_code), None)
         if entry is None:
             raise NotFoundError.for_resource("Item")
+        if entry.item.stimulus_display_seconds and entry.item_id not in self.stimuli.seen_item_ids(session.id):
+            raise ConflictError("View the question material before answering")
         if data.selected_key is not None:
             translation = entry.item.translation("en")
             if data.selected_key not in {o["key"] for o in translation.options}:
@@ -174,6 +179,24 @@ class PiaService(BaseService):
         ))
         self.commit()
         return AnswerOut(seconds_remaining=self._remaining(run, now))
+
+    def release_stimulus(self, user: User, session_id: str, domain: str, item_code: str) -> StimulusOut:
+        """Returns a timed stimulus exactly once; the unique row is the 'no replay' rule."""
+        session = self._settle_session(self.sessions.require_owned(session_id, user.id))
+        run = self._run(session, domain)
+        if run.status != "in_progress":
+            raise ConflictError("This subtest is not in progress")
+        entry = next((e for e in self.forms.form_items(session.form_id, domain) if e.item.item_code == item_code), None)
+        if entry is None or not entry.item.stimulus_display_seconds:
+            raise NotFoundError.for_resource("Stimulus")
+        if entry.item_id in self.stimuli.seen_item_ids(session.id):
+            raise ConflictError("This material has already been shown")
+        translation = entry.item.translation(session.language)
+        self.stimuli.add(PiaStimulusView(session_id=session.id, item_id=entry.item_id))
+        self.events.add(PiaEvent(session_id=session.id, run_id=run.id, event_type="encoding_start",
+                                 payload={"item_code": item_code, "seconds": entry.item.stimulus_display_seconds}))
+        self.commit()
+        return StimulusOut(item_code=item_code, stimulus=translation.stimulus or "", display_seconds=entry.item.stimulus_display_seconds)
 
     def record_event(self, user: User, session_id: str, domain: str, data: EventIn) -> None:
         session = self._settle_session(self.sessions.require_owned(session_id, user.id))
@@ -255,6 +278,7 @@ class PiaService(BaseService):
     def _items(self, session: PiaSession, run: PiaSubtestRun) -> list[PiaItemPublic]:
         latest = self.responses.latest_per_item(session.id)
         saved = {item_id: response.selected_key for item_id, response in latest.items()}
+        seen = self.stimuli.seen_item_ids(session.id)
         out = []
         for entry in self.forms.form_items(session.form_id, run.domain):
             translation = entry.item.translation(session.language)
@@ -262,9 +286,22 @@ class PiaService(BaseService):
                 item_code=entry.item.item_code, position=entry.position, stem=translation.stem,
                 options=[ItemOption(key=o["key"], text=o["text"]) for o in translation.options],
                 stimulus_type=entry.item.stimulus_type, asset_id=entry.item.asset_id,
+                asset_data_uri=self._asset_uri(entry.item.asset_id),
+                stimulus=None if entry.item.stimulus_display_seconds else translation.stimulus,
+                stimulus_display_seconds=entry.item.stimulus_display_seconds,
+                stimulus_seen=entry.item_id in seen,
                 selected_key=saved.get(entry.item_id),
             ))
         return out
+
+    @staticmethod
+    def _asset_uri(asset_id: str | None) -> str | None:
+        if not asset_id:
+            return None
+        path = settings.pia_asset_dir / f"{asset_id}.svg"
+        if not path.is_file():
+            return None
+        return "data:image/svg+xml;base64," + base64.b64encode(path.read_bytes()).decode("ascii")
 
     def _session_out(self, session: PiaSession) -> SessionOut:
         now = utcnow()

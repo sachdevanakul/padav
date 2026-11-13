@@ -81,6 +81,8 @@ class Settings:
         self.bcrypt_rounds = env.integer("BCRYPT_ROUNDS", 12, minimum=10)
 
         # Database
+        # PIA image stimuli (SVG files named <asset_id>.svg)
+        self.pia_asset_dir = Path(env.text("PIA_ASSET_DIR", str(Path(__file__).resolve().parents[2] / "content" / "pia-assets")))
         self.database_url = env.text("DATABASE_URL", "sqlite:///./padav.db")
 
         # HTTP surface

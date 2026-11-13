@@ -7,7 +7,7 @@ from app.models.lesson import Lesson
 from app.models.notification import Notification
 from app.models.pia import (
     PiaConsent, PiaEvent, PiaForm, PiaFormItem, PiaItem, PiaItemTranslation, PiaResponse,
-    PiaScoreReport, PiaSession, PiaSubtestRun,
+    PiaScoreReport, PiaSession, PiaStimulusView, PiaSubtestRun,
 )
 from app.models.planner_block import PlannerBlock
 from app.models.question import Question
@@ -27,6 +27,6 @@ from app.models.user_profile import UserProfile
 __all__ = [
     "Achievement", "Bookmark", "Chapter", "Course", "Exam", "Lesson", "Notification", "PlannerBlock",
     "PiaConsent", "PiaEvent", "PiaForm", "PiaFormItem", "PiaItem", "PiaItemTranslation", "PiaResponse",
-    "PiaScoreReport", "PiaSession", "PiaSubtestRun", "Question", "QuestionOption", "RefreshToken", "StudySession", "Subject", "Test",
+    "PiaScoreReport", "PiaSession", "PiaStimulusView", "PiaSubtestRun", "Question", "QuestionOption", "RefreshToken", "StudySession", "Subject", "Test",
     "TestAnswer", "TestAttempt", "TestQuestion", "TestSection", "User", "UserExam", "UserProfile",
 ]

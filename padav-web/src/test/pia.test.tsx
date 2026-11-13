@@ -183,4 +183,72 @@ describe('session overview and runner', () => {
     renderAt('/pia/sessions/s1')
     expect(await screen.findByRole('heading', { name: new RegExp(translations.hi.piaDomain_gf) })).toBeInTheDocument()
   })
+
+  it('releases timed material once, hides it, then unlocks the options', async () => {
+    const u = userEvent.setup()
+    const timedItem = { ...ITEMS[0], item_code: 'PIA-GWM-DS-001', stem: 'Which sequence did you see?', stimulus: null, stimulus_display_seconds: 1, stimulus_seen: false,
+      options: [{ key: 'a', text: '4 9 2 7' }, { key: 'b', text: '4 2 9 7' }] }
+    const calls = mockApi({
+      ...shell,
+      'GET /pia/sessions/s1': session([run({ domain: 'gwm', status: 'in_progress', seconds_remaining: 300 })]),
+      'GET /pia/sessions/s1/subtests/gwm/items': [timedItem],
+      'POST /pia/sessions/s1/subtests/gwm/items/PIA-GWM-DS-001/stimulus': { item_code: 'PIA-GWM-DS-001', stimulus: '4 9 2 7', display_seconds: 1 },
+      'PUT /pia/sessions/s1/subtests/gwm/answers': { saved: true, seconds_remaining: 200 },
+    })
+    renderAt('/pia/sessions/s1')
+    await screen.findByRole('button', { name: /show the material/i })
+    expect(screen.queryAllByRole('radio')).toHaveLength(0) // choices stay hidden: they would give the answer away
+    await u.click(screen.getByRole('button', { name: /show the material/i }))
+    expect(await screen.findByText('4 9 2 7', { selector: 'pre' })).toBeInTheDocument()
+    expect(screen.queryAllByRole('radio')).toHaveLength(0) // and stay hidden while the material is visible
+    await waitFor(() => expect(screen.queryByText('4 9 2 7', { selector: 'pre' })).not.toBeInTheDocument(), { timeout: 3000 })
+    expect(screen.getByText(/material is hidden/i)).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /show the material/i })).not.toBeInTheDocument() // no replay
+    await waitFor(() => expect(screen.getByRole('radio', { name: /4 9 2 7/ })).toBeEnabled())
+    await u.click(screen.getByRole('radio', { name: /4 9 2 7/ }))
+    await waitFor(() => expect(calls.some((c) => c.method === 'PUT')).toBe(true))
+    expect(calls.filter((c) => c.url.endsWith('/stimulus'))).toHaveLength(1)
+  })
+
+  it('shows an already-released timed item as hidden after a reload', async () => {
+    const timedItem = { ...ITEMS[0], stimulus: null, stimulus_display_seconds: 5, stimulus_seen: true }
+    mockApi({
+      ...shell,
+      'GET /pia/sessions/s1': session([run({ status: 'in_progress', seconds_remaining: 300 })]),
+      'GET /pia/sessions/s1/subtests/gf/items': [timedItem],
+    })
+    renderAt('/pia/sessions/s1')
+    expect(await screen.findByText(/material is hidden/i)).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /show the material/i })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('radio')[0]).toBeEnabled()
+  })
+
+  it('draws image items with the picture and letter-only choices, plus static material', async () => {
+    const uri = 'data:image/svg+xml;base64,PHN2Zy8+'
+    const figure = { ...ITEMS[0], asset_id: 'pia-gv-rt-001', asset_data_uri: uri, stimulus: 'Read this first.', options: ['a', 'b', 'c', 'd'].map((k) => ({ key: k, text: k.toUpperCase() })) }
+    mockApi({
+      ...shell,
+      'GET /pia/sessions/s1': session([run({ status: 'in_progress', seconds_remaining: 300 })]),
+      'GET /pia/sessions/s1/subtests/gf/items': [figure],
+    })
+    renderAt('/pia/sessions/s1')
+    const img = await screen.findByRole('img', { name: /answer options A to D/i })
+    expect(img).toHaveAttribute('src', uri)
+    expect(screen.getByText('Read this first.')).toBeInTheDocument()
+    expect(screen.getAllByRole('radio')).toHaveLength(4)
+  })
+
+  it('does not end the section when the server only says to view the material first', async () => {
+    const u = userEvent.setup()
+    mockApi({
+      ...shell,
+      'GET /pia/sessions/s1': session([run({ status: 'in_progress', seconds_remaining: 300 })]),
+      'GET /pia/sessions/s1/subtests/gf/items': ITEMS,
+      'PUT /pia/sessions/s1/subtests/gf/answers': () => fail(409, 'View the question material before answering'),
+    })
+    renderAt('/pia/sessions/s1')
+    await u.click(await screen.findByRole('radio', { name: /24/ }))
+    expect(await screen.findByText(/couldn.t save|save failed|not saved/i)).toBeInTheDocument()
+    expect(screen.getByRole('timer')).toBeInTheDocument() // still in the runner
+  })
 })

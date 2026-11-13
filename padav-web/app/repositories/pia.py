@@ -2,7 +2,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import selectinload
 
 from app.models.pia import (
-    PiaConsent, PiaEvent, PiaForm, PiaFormItem, PiaItem, PiaResponse, PiaScoreReport, PiaSession,
+    PiaConsent, PiaEvent, PiaForm, PiaFormItem, PiaItem, PiaResponse, PiaScoreReport, PiaSession, PiaStimulusView,
 )
 from app.repositories.base import BaseRepository, OwnedRepository
 
@@ -83,6 +83,13 @@ class PiaResponseRepository(BaseRepository[PiaResponse]):
 
 class PiaEventRepository(BaseRepository[PiaEvent]):
     model = PiaEvent
+
+
+class PiaStimulusRepository(BaseRepository[PiaStimulusView]):
+    model = PiaStimulusView
+
+    def seen_item_ids(self, session_id: str) -> set[str]:
+        return set(self.db.scalars(select(PiaStimulusView.item_id).where(PiaStimulusView.session_id == session_id)))
 
 
 class PiaReportRepository(BaseRepository[PiaScoreReport]):

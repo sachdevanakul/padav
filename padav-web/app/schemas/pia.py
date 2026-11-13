@@ -61,7 +61,17 @@ class PiaItemPublic(BaseModel):
     options: list[ItemOption]
     stimulus_type: str
     asset_id: str | None = None
+    asset_data_uri: str | None = None  # SVG embedded as a data URI so <img> needs no extra authenticated request
+    stimulus: str | None = None  # always-visible material (withheld when the stimulus is timed)
+    stimulus_display_seconds: int | None = None  # set => release via the stimulus endpoint, once
+    stimulus_seen: bool = False
     selected_key: str | None = None  # the caller's own saved answer, for resume
+
+
+class StimulusOut(BaseModel):
+    item_code: str
+    stimulus: str
+    display_seconds: int
 
 
 class RunOut(BaseModel):
@@ -143,6 +153,7 @@ class ContentOption(StrictInput):
 
 class ContentTranslation(StrictInput):
     stem: str = Field(min_length=1)
+    stimulus: str | None = None
     options: list[ContentOption] = Field(min_length=2, max_length=8)
     explanation: str | None = None
     distractor_rationale: str | None = None
@@ -163,10 +174,11 @@ class ContentItem(StrictInput):
     subdomain: str = Field(min_length=1, max_length=60)
     item_format: str = Field(min_length=1, max_length=60)
     stimulus_type: str = "text"
-    asset_id: str | None = None
+    asset_id: str | None = Field(default=None, pattern=r"^[a-z0-9][a-z0-9_-]{0,78}$")
     difficulty: Literal[DIFFICULTIES]  # type: ignore[valid-type]
     min_age: int = Field(default=13, ge=13)
     time_allowance_seconds: int | None = Field(default=None, ge=1)
+    stimulus_display_seconds: int | None = Field(default=None, ge=1, le=300)
     answer_key: str = Field(min_length=1, max_length=20)
     status: Literal[ITEM_STATUSES] = "draft"  # type: ignore[valid-type]
     author: str | None = None
@@ -178,6 +190,10 @@ class ContentItem(StrictInput):
     def _check(self):
         if "en" not in self.translations:
             raise ValueError("an English version is required")
+        if self.stimulus_display_seconds is not None:
+            for language, text in self.translations.items():
+                if not text.stimulus:
+                    raise ValueError(f"'{language}' needs a stimulus when stimulus_display_seconds is set")
         for language, text in self.translations.items():
             if self.answer_key not in {o.key for o in text.options}:
                 raise ValueError(f"answer_key '{self.answer_key}' is not an option in '{language}'")

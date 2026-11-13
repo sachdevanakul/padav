@@ -24,6 +24,9 @@ export function PiaRunner({ sessionId, run, onDone }: { sessionId: string; run: 
   const [confirm, setConfirm] = useState(false)
   const [timeUp, setTimeUp] = useState(false)
   const [offline, setOffline] = useState(false)
+  const [released, setReleased] = useState<Record<string, string | null>>({}) // item_code -> stimulus text while visible, null once hidden
+  const [viewLeft, setViewLeft] = useState(0)
+  const [viewError, setViewError] = useState('')
   const [initialSeconds] = useState(run.seconds_remaining)
   const shownAt = useRef(performance.now())
   const queue = useRef(Promise.resolve())
@@ -58,7 +61,7 @@ export function PiaRunner({ sessionId, run, onDone }: { sessionId: string; run: 
         await api.piaAnswer(sessionId, run.domain, item.item_code, key, elapsed)
         setSave('saved')
       } catch (error) {
-        if (error instanceof ApiError && error.status === 409) { setTimeUp(true); void finish() } // server says time is up
+        if (error instanceof ApiError && error.status === 409 && /time is up|not in progress/i.test(error.message)) { setTimeUp(true); void finish() } // server says time is up
         else setSave('error')
       }
     })
@@ -79,11 +82,32 @@ export function PiaRunner({ sessionId, run, onDone }: { sessionId: string; run: 
     }
   }, [run.domain, sessionId])
 
+  const viewing = items.data ? Object.entries(released).find(([, text]) => text !== null) : undefined
+  const release = useCallback(async (code: string) => {
+    setViewError('')
+    try {
+      const result = await api.piaStimulus(sessionId, run.domain, code)
+      setReleased((prev) => ({ ...prev, [code]: result.stimulus }))
+      setViewLeft(result.display_seconds)
+      const endsAt = performance.now() + result.display_seconds * 1000
+      const timer = window.setInterval(() => {
+        const left = Math.max(0, Math.ceil((endsAt - performance.now()) / 1000))
+        setViewLeft(left)
+        if (left === 0) { window.clearInterval(timer); setReleased((prev) => ({ ...prev, [code]: null })) }
+      }, 250)
+    } catch (error) { setViewError((error as Error).message) }
+  }, [run.domain, sessionId])
+
   if (items.isError) return <div className="tx-fullpage"><div className="tx-state card" role="alert"><AlertTriangle size={22} /><p>{t.piaLoadFailed}</p><button className="button button-secondary" onClick={onDone}>{t.piaBackToAssessment}</button></div></div>
   if (!items.data || !seeded) return <div className="tx-fullpage"><div className="tx-state card"><Loader2 className="tx-spin" size={22} /></div></div>
   const item = items.data[index]
   if (!item) return null
   const selected = answers[item.item_code] ?? null
+  const timed = Boolean(item.stimulus_display_seconds)
+  const seenNow = item.stimulus_seen || item.item_code in released
+  const visibleText = released[item.item_code] ?? null
+  const locked = timed && (!seenNow || visibleText !== null) // answers wait until the material has been shown and hidden
+  const busyViewing = Boolean(viewing)
   const unanswered = items.data.filter((i) => !answers[i.item_code]).length
   const low = left !== null && left <= 60
   const title = t[`piaDomain_${run.domain}`] ?? run.label
@@ -100,27 +124,32 @@ export function PiaRunner({ sessionId, run, onDone }: { sessionId: string; run: 
     <div className="pia-runner-body">
       <section key={item.item_code} className="tx-question card" aria-labelledby="pia-stem">
         <header className="tx-question-meta"><strong>{t.question} {index + 1} {t.of} {items.data.length}</strong></header>
+        {item.stimulus && <pre className="pia-stimulus">{item.stimulus}</pre>}
+        {timed && !seenNow && <div className="pia-material"><p>{t.piaMaterialNote}</p><button className="button button-secondary" onClick={() => void release(item.item_code)} disabled={busyViewing}>{t.piaViewMaterial} ({item.stimulus_display_seconds}s)</button>{viewError && <p className="tx-error" role="alert">{viewError}</p>}</div>}
+        {visibleText !== null && <div className="pia-material is-live" role="status"><small>{t.piaMaterialVisible} · {viewLeft}{t.piaSecondsLeft}</small><pre className="pia-stimulus is-timed">{visibleText}</pre></div>}
+        {timed && seenNow && visibleText === null && <p className="pia-hidden-note">{t.piaMaterialGone}</p>}
+        {item.asset_data_uri && <img className="pia-figure" src={item.asset_data_uri} alt={t.piaFigureAlt} />}
         <h2 id="pia-stem" className="tx-qtext">{item.stem}</h2>
-        <fieldset className="tx-options" disabled={timeUp}>
-          <legend className="tx-sr">{t.question} {index + 1}</legend>
-          {item.options.map((option, position) => <label key={option.key} className={`tx-option ${selected === option.key ? 'is-selected' : ''}`}>
-            <input type="radio" name={`pia-${item.item_code}`} value={option.key} checked={selected === option.key} onChange={() => choose(option.key)} />
-            <span className="tx-key" aria-hidden="true">{String.fromCharCode(65 + position)}</span>
-            <span className="tx-option-text">{option.text}</span>
-            {selected === option.key && <Check size={16} aria-hidden="true" />}
-          </label>)}
-        </fieldset>
+        {!locked && <fieldset className={`tx-options ${item.asset_data_uri ? 'pia-letters' : ''}`} disabled={timeUp}>
+            <legend className="tx-sr">{item.asset_data_uri ? t.piaPickLetter : `${t.question} ${index + 1}`}</legend>
+            {item.options.map((option, position) => <label key={option.key} className={`tx-option ${selected === option.key ? 'is-selected' : ''}`}>
+              <input type="radio" name={`pia-${item.item_code}`} value={option.key} checked={selected === option.key} onChange={() => choose(option.key)} />
+              <span className="tx-key" aria-hidden="true">{String.fromCharCode(65 + position)}</span>
+              <span className={item.asset_data_uri ? 'tx-sr' : 'tx-option-text'}>{option.text}</span>
+              {selected === option.key && <Check size={16} aria-hidden="true" />}
+            </label>)}
+          </fieldset>}
         <footer className="tx-question-actions">
-          <button className="button button-ghost" onClick={() => choose(null)} disabled={selected === null || timeUp}>{t.clearResponse}</button>
+          <button className="button button-ghost" onClick={() => choose(null)} disabled={selected === null || timeUp || locked}>{t.clearResponse}</button>
           <span className="tx-spacer" />
-          <button className="button button-secondary" onClick={() => setIndex(index - 1)} disabled={index === 0}><ArrowLeft size={15} />{t.previous}</button>
-          <button className="button button-primary" onClick={() => setIndex(index + 1)} disabled={index === items.data.length - 1}>{t.next}<ArrowRight size={15} /></button>
+          <button className="button button-secondary" onClick={() => setIndex(index - 1)} disabled={index === 0 || busyViewing}><ArrowLeft size={15} />{t.previous}</button>
+          <button className="button button-primary" onClick={() => setIndex(index + 1)} disabled={index === items.data.length - 1 || busyViewing}>{t.next}<ArrowRight size={15} /></button>
         </footer>
         <p className={`tx-save is-${save}`} role="status">{save === 'saving' && t.saving}{save === 'saved' && t.saved}{save === 'error' && t.saveFailed}</p>
       </section>
 
       <nav className="card pia-dots" aria-label={t.palette}>
-        {items.data.map((entry, i) => <button key={entry.item_code} className={`pia-dot ${i === index ? 'is-current' : ''} ${answers[entry.item_code] ? 'is-answered' : ''}`} onClick={() => setIndex(i)} aria-label={`${t.question} ${i + 1}: ${answers[entry.item_code] ? t.answered : t.notAnswered}`} aria-current={i === index}>{i + 1}</button>)}
+        {items.data.map((entry, i) => <button key={entry.item_code} className={`pia-dot ${i === index ? 'is-current' : ''} ${answers[entry.item_code] ? 'is-answered' : ''}`} onClick={() => setIndex(i)} disabled={busyViewing} aria-label={`${t.question} ${i + 1}: ${answers[entry.item_code] ? t.answered : t.notAnswered}`} aria-current={i === index}>{i + 1}</button>)}
       </nav>
     </div>
 

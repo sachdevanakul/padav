@@ -110,3 +110,12 @@ Research build of the PIA described in the master specification (v1.0). It produ
 ### PIA screens
 
 `/pia` (intro + consent, resumes an open session) → `/pia/sessions/:id` (section list, one timed section at a time) → `/pia/sessions/:id/report`. The runner mirrors the server's countdown, saves every answer immediately (with response time), treats a 409 as "time is up", and reports offline/tab-hidden periods as interruption events. The report shows raw counts only; it never shows an IQ, percentile or label.
+
+### PIA master form v1 (draft prototype)
+
+`content/pia-master-v1.json` holds the 50-item master form (English + Hindi) with 12 generated figures in `content/pia-assets/`. Regenerate with `python content/pia/build_master.py`; the builder computes or asserts every answer key (and a test checks the committed files match a fresh build).
+
+- Blueprint: Gf 10, Gc 7, Gv 8, Gwm 7, Gs 7, Gq 7, Glr 4; difficulty 12 / 18 / 13 / 7.
+- All items are **draft** (AI-drafted, original). They need expert review, bilingual review and cognitive interviews before use with real participants. A draft form can only be activated for development: `python -m app.cli import-pia content/pia-master-v1.json --activate --allow-draft`.
+- Timed material (working memory, long-term retrieval) is withheld from the item list and released once via `POST .../items/{code}/stimulus`; the release is logged (`encoding_start`) and the answer choices stay hidden until the material has been shown and hidden. Answers are refused until the material has been released.
+- Known limits: the Glr "delay" is only the time spent on the items in between (a true delayed retrieval after other subtests is not built); memory items use recognition choices, not free recall; visual items need a non-visual accommodation before release; speeded items are timed by the section clock, not per item.

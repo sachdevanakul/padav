@@ -25,10 +25,10 @@ def import_content(path: Path) -> int:
     return 0
 
 
-def import_pia(path: Path, activate: bool) -> int:
+def import_pia(path: Path, activate: bool, allow_draft: bool) -> int:
     with SessionLocal() as db:
         try:
-            report = PiaContentImporter(db).import_file(path, activate=activate)
+            report = PiaContentImporter(db).import_file(path, activate=activate, allow_draft=allow_draft)
         except ValidationError as error:
             print(f"Invalid PIA content file:\n{error}", file=sys.stderr)
             return 1
@@ -47,9 +47,12 @@ def main(argv: list[str] | None = None) -> int:
     pia = commands.add_parser("import-pia", help="Import PIA items and optionally a form from a JSON file")
     pia.add_argument("path", type=Path)
     pia.add_argument("--activate", action="store_true", help="Make the file's form the live form (needs a valid 50-item blueprint)")
+    pia.add_argument("--allow-draft", action="store_true", help="DEVELOPMENT ONLY: allow activating a form of unreviewed draft items")
     args = parser.parse_args(argv)
     if args.command == "import-pia":
-        return import_pia(args.path, args.activate)
+        if args.allow_draft:
+            print("WARNING: activating unreviewed draft items. Do not use for real participants.", file=sys.stderr)
+        return import_pia(args.path, args.activate, args.allow_draft)
     return import_content(args.path)
 
 

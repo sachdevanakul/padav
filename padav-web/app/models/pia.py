@@ -34,6 +34,8 @@ class PiaItem(Base):
     min_age: Mapped[int] = mapped_column(Integer, default=13)
     scoring_rule: Mapped[str] = mapped_column(String(40), default="binary")
     time_allowance_seconds: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    # Set => the stimulus is withheld from the item list and released once, for this many seconds (e.g. memory tasks).
+    stimulus_display_seconds: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     answer_key: Mapped[str] = mapped_column(String(20), nullable=False)  # never serialised to clients
     status: Mapped[str] = mapped_column(String(20), default="draft")
     author: Mapped[Optional[str]] = mapped_column(String(120), nullable=True)
@@ -58,6 +60,7 @@ class PiaItemTranslation(Base):
     item_id: Mapped[str] = mapped_column(String(36), ForeignKey("pia_items.id", ondelete="CASCADE"), nullable=False)
     language: Mapped[str] = mapped_column(String(5), nullable=False)
     stem: Mapped[str] = mapped_column(Text, nullable=False)
+    stimulus: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # material to study/read above the stem
     options: Mapped[list[dict[str, Any]]] = mapped_column(JSON, nullable=False)  # [{"key": "a", "text": "..."}]
     explanation: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     distractor_rationale: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
@@ -174,6 +177,18 @@ class PiaEvent(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
 
 
+class PiaStimulusView(Base):
+    """Records the single release of a timed stimulus; the unique key is what enforces 'no replay'."""
+
+    __tablename__ = "pia_stimulus_views"
+    __table_args__ = (UniqueConstraint("session_id", "item_id", name="uq_pia_stimulus_once"),)
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    session_id: Mapped[str] = mapped_column(String(36), ForeignKey("pia_sessions.id", ondelete="CASCADE"), index=True)
+    item_id: Mapped[str] = mapped_column(String(36), ForeignKey("pia_items.id", ondelete="RESTRICT"))
+    shown_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+
 class PiaScoreReport(Base):
     __tablename__ = "pia_score_reports"
 
@@ -191,6 +206,6 @@ def _immutable(_mapper, _connection, target):
     raise ValueError(f"{type(target).__name__} rows are append-only")
 
 
-for _model in (PiaResponse, PiaEvent):
+for _model in (PiaResponse, PiaEvent, PiaStimulusView):
     event.listen(_model, "before_update", _immutable)
     event.listen(_model, "before_delete", _immutable)

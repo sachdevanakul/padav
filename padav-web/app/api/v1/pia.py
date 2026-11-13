@@ -7,7 +7,7 @@ from app.core.dependencies import CurrentUser, PiaServiceDep
 from app.core.rate_limit import write_rate_limit
 from app.schemas.pia import (
     AnswerIn, AnswerOut, BlueprintOut, ConsentIn, ConsentOut, EventIn, PiaItemPublic, ReportOut,
-    SessionCreate, SessionOut,
+    SessionCreate, SessionOut, StimulusOut,
 )
 from app.services.pia_blueprint import DOMAINS
 
@@ -48,6 +48,11 @@ def start_subtest(session_id: str, domain: str, current_user: CurrentUser, servi
 @router.get("/sessions/{session_id}/subtests/{domain}/items", response_model=List[PiaItemPublic])
 def subtest_items(session_id: str, domain: str, current_user: CurrentUser, service: PiaServiceDep):
     return service.items(current_user, session_id, _domain(domain))
+
+
+@router.post("/sessions/{session_id}/subtests/{domain}/items/{item_code}/stimulus", response_model=StimulusOut, dependencies=[Depends(write_rate_limit)])
+def release_stimulus(session_id: str, domain: str, item_code: str, current_user: CurrentUser, service: PiaServiceDep):
+    return service.release_stimulus(current_user, session_id, _domain(domain), item_code)
 
 
 @router.put("/sessions/{session_id}/subtests/{domain}/answers", response_model=AnswerOut, dependencies=[Depends(write_rate_limit)])
